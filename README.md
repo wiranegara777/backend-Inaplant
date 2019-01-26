@@ -7,11 +7,11 @@ Backend RSET API dari Aplikasi Controll Monitoring Perkebunan
  - Clone the repo
  - Move repo to htdocs folder
  - turn on xampp (APACHE and mysql)
- - make database named plant
+ - import plant.sql to database mysql
 
 ### enter this command
 
 ```sh
-$ php artisan migrate
+$ composer update
 $ php artisan serve
 ```
