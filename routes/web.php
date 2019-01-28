@@ -14,3 +14,8 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/pusher', function() {
+    event(new App\Events\MessagePusherEvent('wiranegara','Hi there Pusher!'));
+    //return "Event has been sent!";
+});

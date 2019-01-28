@@ -23,3 +23,6 @@ Route::post('login', 'API\UserController@login');
 Route::group(['middleware' => 'auth:api'], function(){
     Route::post('details', 'API\UserController@details');
 });
+
+Route::post('pusher', 'API\MessageController@sendMessage');
+
