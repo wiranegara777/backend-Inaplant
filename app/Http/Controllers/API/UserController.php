@@ -58,7 +58,7 @@ public $successStatus = 200;
         if($user->role == "farm manager"){
             return response()->json(['success' => $user], $this-> successStatus); 
         } else {
-            return response()->json(['error'=>'Unauthorised'], 401); 
+            return response()->json(['error'=>'Unauthorized'], 401); 
         }
     } 
 }

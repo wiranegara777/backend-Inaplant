@@ -18,11 +18,19 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-
+//user
 Route::post('login', 'API\UserController@login');
 Route::group(['middleware' => 'auth:api'], function(){
     Route::post('details', 'API\UserController@details');
 });
+//pusher
+Route::group(['middleware' => 'auth:api'], function(){  
+    Route::post('pusher', 'API\MessageController@pusher');
+});
 
-Route::post('pusher', 'API\MessageController@sendMessage');
+//message
+Route::group(['middleware' => 'auth:api'], function(){  
+    Route::get('messages','API\MessageController@fetch');
+});
 
+Route::post('messages','API\MessageController@sentMessage');
