@@ -55,7 +55,7 @@ public $successStatus = 200;
     public function details() 
     { 
         $user = Auth::user(); 
-        if($user->role == "farm manager"){
+        if($user->role == "2"){
             return response()->json(['success' => $user], $this-> successStatus); 
         } else {
             return response()->json(['error'=>'Unauthorized'], 401); 
