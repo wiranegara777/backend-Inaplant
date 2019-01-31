@@ -60,5 +60,19 @@ public $successStatus = 200;
         } else {
             return response()->json(['error'=>'Unauthorized'], 401); 
         }
-    } 
+    }
+    //image upload
+    public function uploadImage(Request $request){
+        $validator = Validator::make($request->all(), [ 
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:1024',
+        ]);
+        if ($validator->fails()) { 
+            return response()->json(['error'=>$validator->errors()], 401);            
+        }else{
+            $imageName = time().'.'.request()->image->getClientOriginalExtension();
+            request()->image->move(public_path('images'), $imageName);
+            return response()->json(['success' => 'image has been uploaded'], $this-> successStatus);
+        }
+        
+    }
 }
