@@ -8,7 +8,14 @@
  *   )
  * )
  */
-
+/**
+ * @SWG\SecurityScheme(
+ *   securityDefinition="Bearer",
+ *   type="apiKey",
+ *   name="Authorization",
+ *   in="header"
+ * )
+ */
 namespace App\Http\Controllers;
 
 use Illuminate\Foundation\Bus\DispatchesJobs;

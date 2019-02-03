@@ -12,7 +12,7 @@ class MessageController extends Controller
 
     public function pusher(Request $request){
         broadcast(new MessagePusherEvent($request->name,$request->message));
-        return response()->json(['success'=>'Event has been sent!'], $this-> successStatus); 
+        return response()->json(['success'=>'Message has been sent!'], $this-> successStatus); 
     }
 
     public function fetch(){

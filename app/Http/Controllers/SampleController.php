@@ -4,46 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-/**
- * @SWG\Get(
- *   tags={"user_login"},
- *   path="/customer/{customerId}/rate",
- *   summary="List customer rates",
- *   operationId="getCustomerRates",
- *   @SWG\Parameter(
- *     name="customerId",
- *     in="path",
- *     description="Target customer.",
- *     required=true,
- *     type="integer"
- *   ),
- *   @SWG\Parameter(
- *     name="filter",
- *     in="query",
- *     description="Filter results based on query string value.",
- *     required=false,
- *     enum={"active", "expired", "scheduled"},
- *     type="string"
- *   ),
- *   @SWG\Response(response=200, description="successful operation"),
- *   @SWG\Response(response=406, description="not acceptable"),
- *   @SWG\Response(response=500, description="internal server error")
- * )
- *
- */
-
- /**
- * @SWG\Get(
- *   path="/sample",
- *   summary="Sample",
- *   @SWG\Response(response=200, description="successful operation")
- * )
- *
- * Display a listing of the resource.
- *
- */
-
-
+// LOGIN API
 /**
  * @SWG\Post(
  *   tags={"user"},
@@ -54,6 +15,7 @@ use Illuminate\Http\Request;
  *     name="body",
  *     in="body",
  *     required=true,
+ *     description="api for login that return token for authentication and user detail",
  *     @SWG\Schema(
  *          @SWG\Property(
  *              property="email",
@@ -71,6 +33,70 @@ use Illuminate\Http\Request;
  * )
  *
  */
+
+ //PUSHER MESSAGE API
+ /**
+ * @SWG\Post(
+ *   tags={"Message"},
+ *   path="/pusher",
+ *   summary="Push Notification Message",
+ *   operationId="PushNotifications",
+ *   @SWG\Parameter(
+ *     name="body",
+ *     in="body",
+ *     required=true,
+ *     description="you need login first before using this api",
+ *     @SWG\Schema(
+ *          @SWG\Property(
+ *              property="name",
+ *              type="string",
+ *          ),
+ *          @SWG\Property(
+ *              property="message",
+ *              type="string"
+ *          )
+ *     )
+ *   ),
+ *   @SWG\Response(response=200, description="successful"),
+ *   security={{"Bearer":{}}}
+ * )
+ *
+ */
+
+//FETCH MESSAGE API
+ /**
+ * @SWG\Get(
+ *   tags={"Message"},
+ *   path="/messages",
+ *   summary="fetch all message",
+ *   description="you need login first before using this api",
+ *   operationId="fetch message",
+ *   @SWG\Response(response=200, description="successful"),
+ *   @SWG\Response(response=401, description="unauthenticated"),
+ *   security={{"Bearer":{}}}
+ * )
+ *
+ */
+
+ //Upload FILE
+ /**
+ * @SWG\Post(
+ *   tags={"File"},
+ *   path="/image",
+ *   summary="Image Upload",
+ *   operationId="ImageUpload",
+ *   @SWG\Parameter(
+ *     name="image",
+ *     in="formData",
+ *     type="file",
+ *     description="the file you upload",
+ *   ),
+ *   @SWG\Response(response=200, description="successful"),
+ * )
+ *
+ */
+
+
 class SampleController extends Controller
 {
     /**
