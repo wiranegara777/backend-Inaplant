@@ -1,4 +1,13 @@
 <?php
+/**
+ * @SWG\Swagger(
+ *   basePath="/api",
+ *   @SWG\Info(
+ *     title="Plant Control Monitoring API",
+ *     version="1.0.0"
+ *   )
+ * )
+ */
 
 namespace App\Http\Controllers;
 

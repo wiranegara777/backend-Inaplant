@@ -1,0 +1,97 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Plant Control Monitoring API",
+        "version": "1.0.0"
+    },
+    "basePath": "/api",
+    "paths": {
+        "/customer/{customerId}/rate": {
+            "get": {
+                "tags": [
+                    "user_login"
+                ],
+                "summary": "List customer rates",
+                "operationId": "getCustomerRates",
+                "parameters": [
+                    {
+                        "name": "customerId",
+                        "in": "path",
+                        "description": "Target customer.",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "filter",
+                        "in": "query",
+                        "description": "Filter results based on query string value.",
+                        "required": false,
+                        "type": "string",
+                        "enum": [
+                            "active",
+                            "expired",
+                            "scheduled"
+                        ]
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "406": {
+                        "description": "not acceptable"
+                    },
+                    "500": {
+                        "description": "internal server error"
+                    }
+                }
+            }
+        },
+        "/sample": {
+            "get": {
+                "summary": "Sample",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
+        "/login": {
+            "post": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "Login api",
+                "operationId": "getUserDetails",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "email": {
+                                    "description": "pemiliklahan@gmail.com",
+                                    "type": "string"
+                                },
+                                "password": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "401": {
+                        "description": "unauthorized"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {}
+}
