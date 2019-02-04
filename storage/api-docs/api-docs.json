@@ -42,6 +42,28 @@
                 }
             }
         },
+        "/user_info": {
+            "get": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "fetch user info",
+                "operationId": "fetch message",
+                "responses": {
+                    "200": {
+                        "description": "successful"
+                    },
+                    "401": {
+                        "description": "unauthenticated"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
         "/pusher": {
             "post": {
                 "tags": [
@@ -79,14 +101,65 @@
                 ]
             }
         },
-        "/messages": {
+        "/messages/{message_id}": {
             "get": {
                 "tags": [
                     "Message"
                 ],
-                "summary": "fetch all message",
-                "description": "you need login first before using this api",
+                "summary": "fetch all message between farmmanager and ahlipraktisi",
                 "operationId": "fetch message",
+                "parameters": [
+                    {
+                        "name": "message_id",
+                        "in": "path",
+                        "description": "you need login first before using this api",
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful"
+                    },
+                    "401": {
+                        "description": "unauthenticated"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
+        "/messages": {
+            "post": {
+                "tags": [
+                    "Message"
+                ],
+                "summary": "send message",
+                "description": "you need login first before using this api",
+                "operationId": "send message",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "you need login first before using this api",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "message": {
+                                    "type": "string"
+                                },
+                                "sender_id": {
+                                    "type": "integer"
+                                },
+                                "message_id": {
+                                    "type": "integer"
+                                }
+                            }
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "successful"

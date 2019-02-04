@@ -34,6 +34,20 @@ use Illuminate\Http\Request;
  *
  */
 
+//FETCH MESSAGE API
+ /**
+ * @SWG\Get(
+ *   tags={"user"},
+ *   path="/user_info",
+ *   summary="fetch user info",
+ *   operationId="fetch message",
+ *   @SWG\Response(response=200, description="successful"),
+ *   @SWG\Response(response=401, description="unauthenticated"),
+ *   security={{"Bearer":{}}}
+ * )
+ *
+ */
+
  //PUSHER MESSAGE API
  /**
  * @SWG\Post(
@@ -67,10 +81,50 @@ use Illuminate\Http\Request;
  /**
  * @SWG\Get(
  *   tags={"Message"},
- *   path="/messages",
- *   summary="fetch all message",
- *   description="you need login first before using this api",
+ *   path="/messages/{message_id}",
+ *   summary="fetch all message between farmmanager and ahlipraktisi",
  *   operationId="fetch message",
+ *   @SWG\Parameter(
+ *     name="message_id",
+ *     in="path",
+ *     type="integer",
+ *     description="you need login first before using this api",
+ *   ),
+ *   @SWG\Response(response=200, description="successful"),
+ *   @SWG\Response(response=401, description="unauthenticated"),
+ *   security={{"Bearer":{}}}
+ * )
+ *
+ */
+
+ //SEND MESSAGE API
+ /**
+ * @SWG\Post(
+ *   tags={"Message"},
+ *   path="/messages",
+ *   summary="send message",
+ *   description="you need login first before using this api",
+ *   operationId="send message",
+ *   @SWG\Parameter(
+ *     name="body",
+ *     in="body",
+ *     required=true,
+ *     description="you need login first before using this api",
+ *     @SWG\Schema(
+ *          @SWG\Property(
+ *              property="message",
+ *              type="string",
+ *          ),
+ *          @SWG\Property(
+ *              property="sender_id",
+ *              type="integer",
+ *          ),
+ *          @SWG\Property(
+ *              property="message_id",
+ *              type="integer",
+ *          ),
+ *     )
+ *   ),
  *   @SWG\Response(response=200, description="successful"),
  *   @SWG\Response(response=401, description="unauthenticated"),
  *   security={{"Bearer":{}}}

@@ -35,18 +35,21 @@ public $successStatus = 200;
             'name' => 'required', 
             'email' => 'required|email', 
             'password' => 'required', 
-            'c_password' => 'required|same:password', 
+            'c_password' => 'required|same:password',
+            'role' => 'required', 
         ]);
         if ($validator->fails()) { 
                     return response()->json(['error'=>$validator->errors()], 401);            
+                } else {
+                    $input = $request->all(); 
+                    $input['password'] = bcrypt($input['password']); 
+                    $user = User::create($input); 
+                    //$success['token'] =  $user->createToken('MyApp')-> accessToken; 
+                    //$success['name'] =  $user->name;
+                    return response()->json(['success'=>'success added new user'], $this-> successStatus); 
                 }
-        $input = $request->all(); 
-                $input['password'] = bcrypt($input['password']); 
-                $user = User::create($input); 
-                $success['token'] =  $user->createToken('MyApp')-> accessToken; 
-                $success['name'] =  $user->name;
-        return response()->json(['success'=>$success], $this-> successStatus); 
-            }
+        
+    }
 /** 
      * details api 
      * 
@@ -55,11 +58,11 @@ public $successStatus = 200;
     public function details() 
     { 
         $user = Auth::user(); 
-        if($user->role == "2"){
-            return response()->json(['success' => $user], $this-> successStatus); 
-        } else {
-            return response()->json(['error'=>'Unauthorized'], 401); 
-        }
+      //  if($user->role == "2"){
+        return response()->json(['success' => $user], $this-> successStatus); 
+     //   } else {
+       //     return response()->json(['error'=>'Unauthorized'], 401); 
+  //      }
     }
     //image upload
     public function uploadImage(Request $request){
