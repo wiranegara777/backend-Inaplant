@@ -12,7 +12,8 @@
         "laravel/passport": "4.0.3",
         "laravel/tinker": "~1.0",
         "pusher/pusher-php-server": "^3.3",
-        "zircote/swagger-php": "2.*"
+        "zircote/swagger-php": "2.*",
+        "brozot/laravel-fcm": "1.2.*"
     },
     "require-dev": {
         "filp/whoops": "~2.0",

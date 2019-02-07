@@ -175,6 +175,73 @@
                 ]
             }
         },
+        "/farm": {
+            "get": {
+                "tags": [
+                    "Farm"
+                ],
+                "summary": "fetch list farm that supervised by ahli praktisi",
+                "description": "you need login first before using this api!",
+                "operationId": "fetch farm",
+                "responses": {
+                    "200": {
+                        "description": "successful"
+                    },
+                    "401": {
+                        "description": "unauthenticated"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Farm"
+                ],
+                "summary": "create farm",
+                "operationId": "send message",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "you need login first before using this api !",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "name": {
+                                    "type": "string"
+                                },
+                                "id_pemilik_lahan": {
+                                    "type": "integer"
+                                },
+                                "id_farm_manager": {
+                                    "type": "integer"
+                                },
+                                "id_ahli_praktisi": {
+                                    "type": "integer"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful"
+                    },
+                    "401": {
+                        "description": "unauthenticated"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
         "/image": {
             "post": {
                 "tags": [

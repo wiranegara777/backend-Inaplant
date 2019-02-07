@@ -132,6 +132,59 @@ use Illuminate\Http\Request;
  *
  */
 
+//FETCH MESSAGE API
+ /**
+ * @SWG\Get(
+ *   tags={"Farm"},
+ *   path="/farm",
+ *   summary="fetch list farm that supervised by ahli praktisi",
+ *   description="you need login first before using this api!",
+ *   operationId="fetch farm",
+ *   @SWG\Response(response=200, description="successful"),
+ *   @SWG\Response(response=401, description="unauthenticated"),
+ *   security={{"Bearer":{}}}
+ * )
+ *
+ */
+
+ //Create FARM API
+ /**
+ * @SWG\Post(
+ *   tags={"Farm"},
+ *   path="/farm",
+ *   summary="create farm",
+ *   operationId="send message",
+ *   @SWG\Parameter(
+ *     name="body",
+ *     in="body",
+ *     required=true,
+ *     description="you need login first before using this api !",
+ *     @SWG\Schema(
+ *          @SWG\Property(
+ *              property="name",
+ *              type="string",
+ *          ),
+ *          @SWG\Property(
+ *              property="id_pemilik_lahan",
+ *              type="integer",
+ *          ),
+ *          @SWG\Property(
+ *              property="id_farm_manager",
+ *              type="integer",
+ *          ),
+ *          @SWG\Property(
+ *              property="id_ahli_praktisi",
+ *              type="integer",
+ *          ),
+ *     )
+ *   ),
+ *   @SWG\Response(response=200, description="successful"),
+ *   @SWG\Response(response=401, description="unauthenticated"),
+ *   security={{"Bearer":{}}}
+ * )
+ *
+ */
+
  //Upload FILE
  /**
  * @SWG\Post(

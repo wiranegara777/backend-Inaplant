@@ -140,6 +140,8 @@ return [
 
         //PassportService
         Laravel\Passport\PassportServiceProvider::class,
+        //FCMProvider
+        LaravelFCM\FCMServiceProvider::class,
 
         /*
          * Laravel Framework Service Providers...
@@ -228,6 +230,8 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'FCM'      => LaravelFCM\Facades\FCM::class,
+	    'FCMGroup' => LaravelFCM\Facades\FCMGroup::class, // Optional
 
     ],
 

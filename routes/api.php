@@ -36,3 +36,8 @@ Route::group(['middleware' => 'auth:api'], function(){
 Route::get('sample','SampleController@index');
 Route::post('image', 'API\UserController@uploadImage');
 
+//farm
+Route::group(['middleware' => 'auth:api'], function(){
+    Route::post('farm','API\FarmController@register');
+    Route::get('farm', 'API\FarmController@fetch_by_ahli');
+});
