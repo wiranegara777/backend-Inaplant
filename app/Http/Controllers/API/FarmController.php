@@ -30,7 +30,7 @@ public $successStatus = 200;
                     return response()->json(['success'=>'success added new Farm'], $this-> successStatus); 
                 }
     }
-
+    //GET FARM BY AHLI
     public function fetch_by_ahli(){
         $user = Auth::user(); 
         $farms = DB::table('farms')->where('id_ahli_praktisi', $user->id)->get()->toArray();

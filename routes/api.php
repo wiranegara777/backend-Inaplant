@@ -22,6 +22,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('login', 'API\UserController@login');
 Route::group(['middleware' => 'auth:api'], function(){
     Route::get('user_info', 'API\UserController@details');
+    Route::get('users/{role}','API\UserController@getUsers');
+    Route::post('logout','API\UserController@logout');
 });
 //pusher
 Route::group(['middleware' => 'auth:api'], function(){  
@@ -41,3 +43,6 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::post('farm','API\FarmController@register');
     Route::get('farm', 'API\FarmController@fetch_by_ahli');
 });
+
+//Schedule
+Route::post('schedule','API\ScheduleController@addSchedule');

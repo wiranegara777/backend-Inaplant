@@ -5,6 +5,8 @@ use App\Http\Controllers\Controller;
 use App\User; 
 use Illuminate\Support\Facades\Auth; 
 use Validator;
+use Illuminate\Support\Facades\DB;
+
 class UserController extends Controller 
 {
 public $successStatus = 200;
@@ -13,16 +15,33 @@ public $successStatus = 200;
      * 
      * @return \Illuminate\Http\Response 
      */ 
-    public function login(){ 
+    public function login(Request $request){ 
         if(Auth::attempt(['email' => request('email'), 'password' => request('password')])){ 
             $user = Auth::user(); 
-            $success['token'] =  $user->createToken('MyApp')-> accessToken; 
-            $success['user'] = $user;
-            return response()->json(['success' => $success], $this-> successStatus); 
+            if($user['devicetoken'] != null){
+                return response()->json(['error' => 'devicetoken is not null'], 401); 
+            } else {
+                $success['token'] =  $user->createToken('MyApp')-> accessToken; 
+                $success['user'] = $user;
+                $user['devicetoken'] = $request->devicetoken;
+                $user->save();
+                return response()->json(['success' => $success], $this-> successStatus);
+            }
         } 
         else{ 
             return response()->json(['error'=>'Unauthorized'], 401); 
         } 
+    }
+
+    public function logout(Request $request){
+        $user = Auth::user();
+        if ($user->devicetoken == $request->devicetoken){
+            $user->devicetoken = '';
+            $user->save();
+            return response()->json(['success' => 'success delete devicetoken'], $this-> successStatus);
+        } else {
+            return response()->json(['error' => 'devicetoken not same'], 401); 
+        }
     }
 /** 
      * Register api 
@@ -50,6 +69,14 @@ public $successStatus = 200;
                 }
         
     }
+
+    //GET LIST USER BY ROLE
+    public function getUsers(Request $request){
+        //$messages = \App\Message::with('user')->get()->toArray();
+        $users = DB::table('users')->where('role', $request->role)->get()->toArray();
+        return response()->json(['data' => $users], $this-> successStatus);
+    }
+
 /** 
      * details api 
      * 

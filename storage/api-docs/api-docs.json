@@ -263,6 +263,36 @@
                     }
                 }
             }
+        },
+        "/users/{role}": {
+            "get": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "get list user by role",
+                "operationId": "fetch user",
+                "parameters": [
+                    {
+                        "name": "role",
+                        "in": "path",
+                        "description": "you need login first before using this api",
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful"
+                    },
+                    "401": {
+                        "description": "unauthenticated"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
         }
     },
     "definitions": {},
