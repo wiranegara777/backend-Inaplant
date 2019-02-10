@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 07, 2019 at 12:57 PM
+-- Generation Time: Feb 09, 2019 at 07:31 AM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.0.33
 
@@ -51,7 +51,8 @@ INSERT INTO `farms` (`id`, `name`, `id_pemilik_lahan`, `id_farm_manager`, `id_ah
 (6, 'ciwidey', 1, 2, 4, '2019-02-07 04:46:22', '2019-02-07 04:46:22'),
 (7, 'ciwidey1', 1, 2, 4, '2019-02-07 04:46:25', '2019-02-07 04:46:25'),
 (8, 'ciwidey2', 1, 2, 4, '2019-02-07 04:46:29', '2019-02-07 04:46:29'),
-(9, 'cibulao6', 1, 2, 3, '2019-02-07 04:56:52', '2019-02-07 04:56:52');
+(9, 'cibulao6', 1, 2, 3, '2019-02-07 04:56:52', '2019-02-07 04:56:52'),
+(10, 'ciwidey2', 1, 2, 4, '2019-02-08 17:57:13', '2019-02-08 17:57:13');
 
 -- --------------------------------------------------------
 
@@ -94,7 +95,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (7, '2016_06_01_000005_create_oauth_personal_access_clients_table', 1),
 (8, '2019_01_27_022715_create_messages_table', 2),
 (9, '2019_01_28_222316_create_messages_table', 3),
-(10, '2019_02_07_110143_create_farms_table', 3);
+(10, '2019_02_07_110143_create_farms_table', 3),
+(11, '2019_02_09_000722_create_schedules_table', 4),
+(12, '2019_02_09_060232_add_devicetoken_to_users', 5);
 
 -- --------------------------------------------------------
 
@@ -121,6 +124,7 @@ CREATE TABLE `oauth_access_tokens` (
 INSERT INTO `oauth_access_tokens` (`id`, `user_id`, `client_id`, `name`, `scopes`, `revoked`, `created_at`, `updated_at`, `expires_at`) VALUES
 ('03bbfb2814c23f27a361fd06fdd274f453a8418f4f8b883f5bfa6cc891eda602b1f11e91e6d9d4a6', 1, 1, 'MyApp', '[]', 0, '2019-02-03 08:29:20', '2019-02-03 08:29:20', '2020-02-03 15:29:20'),
 ('0d00d629ae2cf36c75cc69086a68d899df09bbea8066eaffc9320a52eb636ee772df8b6068c3d28a', 2, 1, 'MyApp', '[]', 0, '2019-02-03 08:36:17', '2019-02-03 08:36:17', '2020-02-03 15:36:17'),
+('0e50717d482b8f84d5798c94bf0a60c5770ec5c8181ff4305025ea04a94a6c13a4cc56017a3484cf', 1, 1, 'MyApp', '[]', 0, '2019-02-08 23:08:59', '2019-02-08 23:08:59', '2020-02-09 06:08:59'),
 ('0f9f03ac14159cd0309ae6d1684543c820f2c776cf4e545f033c8c8c6d6b375b99f035f486ec687e', 1, 1, 'MyApp', '[]', 0, '2019-01-29 02:01:40', '2019-01-29 02:01:40', '2020-01-29 09:01:40'),
 ('10589c1f6ada0ec29c0fb87f2fb82eecc0e499ab8cd5539b503a4680b8ee5c02bf414cd68f87fde0', 1, 1, 'MyApp', '[]', 0, '2019-01-28 15:05:44', '2019-01-28 15:05:44', '2020-01-28 22:05:44'),
 ('16372da135267bdc8b3ab87fcdda415ba234bbac60813ab7cc7297f80d276d9d5fe63263261d122e', 1, 1, 'MyApp', '[]', 0, '2019-01-26 10:46:30', '2019-01-26 10:46:30', '2020-01-26 17:46:30'),
@@ -139,15 +143,18 @@ INSERT INTO `oauth_access_tokens` (`id`, `user_id`, `client_id`, `name`, `scopes
 ('61727f7244410fa641531c9f0544307b4a796441209e6416534ee9d5dd96a4d3ab357ad485386011', 1, 1, 'MyApp', '[]', 0, '2019-02-07 04:32:16', '2019-02-07 04:32:16', '2020-02-07 11:32:16'),
 ('636f2eb304697b4f5679853e739651c491d2fb4e87f6c8350d247135f44c69b454b86b00b196c184', 2, 1, 'MyApp', '[]', 0, '2019-01-26 09:54:08', '2019-01-26 09:54:08', '2020-01-26 16:54:08'),
 ('77d92d373a47e116bcd9a32fce558f9b2ae50f81940286cbfaf6c91da5da7a9055407a98e8db5caf', 2, 1, 'MyApp', '[]', 0, '2019-01-28 15:06:53', '2019-01-28 15:06:53', '2020-01-28 22:06:53'),
+('854499136709eb619d09deffe56c3366f695467b8c44da1ff04d155bef86e15ef6d85a90b52063d5', 2, 1, 'MyApp', '[]', 0, '2019-02-08 23:19:28', '2019-02-08 23:19:28', '2020-02-09 06:19:28'),
 ('8ea1e935bc97250de64f19507e7e69e34f46843350c18e35f9685625f63aa84001837d62f99d67c9', 3, 1, 'MyApp', '[]', 0, '2019-01-28 15:08:06', '2019-01-28 15:08:06', '2020-01-28 22:08:06'),
 ('93cbe06de1d6d375729ec6a98fea931c3a9a6f1881f68cde5cc6919054d1e5c0bfc08e76707ae203', 1, 1, 'MyApp', '[]', 0, '2019-01-24 18:15:06', '2019-01-24 18:15:06', '2020-01-25 01:15:06'),
 ('97e5e59c1d63e748deabce0d4b04d7c6ce84b5af396f5a44861e325f19035f514b264918a07d845b', 2, 1, 'MyApp', '[]', 0, '2019-01-24 18:53:35', '2019-01-24 18:53:35', '2020-01-25 01:53:35'),
 ('b0723bc2cd8eb26c06d2ac40dd02def94b3f9aa3303ea57db33df4cdd26a2e93847195ffeff77ff5', 1, 1, 'MyApp', '[]', 0, '2019-01-24 18:14:26', '2019-01-24 18:14:26', '2020-01-25 01:14:26'),
+('b0a6254e6e5c91e3cfd7d9d9ed47521fe07755cfbdc0a9df0be870640e4462760c00ec743092f660', 2, 1, 'MyApp', '[]', 0, '2019-02-08 23:21:21', '2019-02-08 23:21:21', '2020-02-09 06:21:21'),
 ('badbf80ad9d138f689beed124c20e6a408be6b4d8c15a99e276730c0344d34915a083a8aad7b8ba2', 1, 1, 'MyApp', '[]', 0, '2019-02-03 06:54:26', '2019-02-03 06:54:26', '2020-02-03 13:54:26'),
 ('bda8ca36f0b3f0bb507e1da1030e33d5db4246bd14e216398a31f117a47234542eca323b40c141c1', 1, 1, 'MyApp', '[]', 0, '2019-01-24 18:36:41', '2019-01-24 18:36:41', '2020-01-25 01:36:41'),
 ('c924457b45a6cb6bbd4a780fac9c758f3836e3530bd8bc790925061c640e02f1e18b968a38043fe7', 1, 1, 'MyApp', '[]', 0, '2019-02-07 03:59:17', '2019-02-07 03:59:17', '2020-02-07 10:59:17'),
 ('cb9e2bc845969d011b68740adc8b5093c5a1018fc8e33b39399d559be12e4f6995b2b6b759540c5f', 1, 1, 'MyApp', '[]', 0, '2019-02-07 04:25:35', '2019-02-07 04:25:35', '2020-02-07 11:25:35'),
 ('cc23b1a1698663c22a6122332b3ab417a22d6fbe72acb007213727e4783f7581aa377d48697ce54c', 1, 1, 'MyApp', '[]', 0, '2019-02-03 06:03:53', '2019-02-03 06:03:53', '2020-02-03 13:03:53'),
+('cc8f26ee2b6378832583ec5df48c918f61b7d82725f26c2a6178d9355c5c8758b9978059618aa58d', 2, 1, 'MyApp', '[]', 0, '2019-02-08 23:28:07', '2019-02-08 23:28:07', '2020-02-09 06:28:07'),
 ('d182143261830bfb83cec8c42f602c7fa7d5975abd00cad5d1078656e40ab7c3dc829dabf561292c', 2, 1, 'MyApp', '[]', 0, '2019-01-24 18:33:31', '2019-01-24 18:33:31', '2020-01-25 01:33:31'),
 ('e0eda42ce16b5ffaf0bbb928ed09d37a212393a39c703d22142a24f49450382b24a85a0cd3163f88', 1, 1, 'MyApp', '[]', 0, '2019-02-03 15:24:04', '2019-02-03 15:24:04', '2020-02-03 22:24:04'),
 ('e682b316f02be083a3c9d5df77d07f2ad99123dae53a3ef78c9751894f2ae245cac044c6a06099e9', 1, 1, 'MyApp', '[]', 0, '2019-02-03 07:42:27', '2019-02-03 07:42:27', '2020-02-03 14:42:27'),
@@ -244,6 +251,32 @@ CREATE TABLE `password_resets` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `schedules`
+--
+
+CREATE TABLE `schedules` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `farm_id` int(11) NOT NULL,
+  `task` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` int(11) NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `schedules`
+--
+
+INSERT INTO `schedules` (`id`, `farm_id`, `task`, `status`, `description`, `image`, `created_at`, `updated_at`) VALUES
+(1, 1, 'penanaman', 0, 'blablablabalbala', '1549674080.jpg', '2019-02-08 18:01:20', '2019-02-08 18:01:20'),
+(2, 1, 'penanaman', 0, 'blablablabalbala', '1549674110', '2019-02-08 18:01:50', '2019-02-08 18:01:50'),
+(3, 1, 'penanaman', 0, 'blablablabalbala', 'images/1549674198.jpg', '2019-02-08 18:03:18', '2019-02-08 18:03:18');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -255,18 +288,19 @@ CREATE TABLE `users` (
   `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `devicetoken` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `role`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'James', 'pemiliklahan@gmail.com', 1, '$2y$10$LD4Kt48NdGkRDSsx5ZAGuunhKASWqlOpWIvG9JEV7hmro7dtIxge.', NULL, '2019-01-24 18:10:37', '2019-01-24 18:10:37'),
-(2, 'Budi', 'farmmanager@gmail.com', 2, '$2y$10$4gZu2zN/0baEdB3cc1DNF.OGbDvoEC1RSA1g4xf.qV8QP4FQHGXiS', NULL, '2019-01-24 18:33:31', '2019-01-24 18:33:31'),
-(3, 'Andi', 'ahlipraktisi@gmail.com', 3, '$2y$10$LD4Kt48NdGkRDSsx5ZAGuunhKASWqlOpWIvG9JEV7hmro7dtIxge.', NULL, '2019-01-27 00:22:10', '2019-01-27 00:22:10'),
-(4, 'mahatir', 'ahlipraktisi2@gmail.com', 3, '$2y$10$BrZ5ega/lIfyT1r.W/oQRuXsv230vw5E8xCEcb3i9ILITr9DfrVWq', NULL, '2019-02-07 04:45:03', '2019-02-07 04:45:03');
+INSERT INTO `users` (`id`, `name`, `email`, `role`, `password`, `remember_token`, `created_at`, `updated_at`, `devicetoken`) VALUES
+(1, 'James', 'pemiliklahan@gmail.com', 1, '$2y$10$LD4Kt48NdGkRDSsx5ZAGuunhKASWqlOpWIvG9JEV7hmro7dtIxge.', NULL, '2019-01-24 18:10:37', '2019-02-08 23:09:00', 'rwef23rcf2e2'),
+(2, 'Budi', 'farmmanager@gmail.com', 2, '$2y$10$4gZu2zN/0baEdB3cc1DNF.OGbDvoEC1RSA1g4xf.qV8QP4FQHGXiS', NULL, '2019-01-24 18:33:31', '2019-02-08 23:29:51', ''),
+(3, 'Andi', 'ahlipraktisi@gmail.com', 3, '$2y$10$LD4Kt48NdGkRDSsx5ZAGuunhKASWqlOpWIvG9JEV7hmro7dtIxge.', NULL, '2019-01-27 00:22:10', '2019-01-27 00:22:10', ''),
+(4, 'mahatir', 'ahlipraktisi2@gmail.com', 3, '$2y$10$BrZ5ega/lIfyT1r.W/oQRuXsv230vw5E8xCEcb3i9ILITr9DfrVWq', NULL, '2019-02-07 04:45:03', '2019-02-07 04:45:03', '');
 
 --
 -- Indexes for dumped tables
@@ -331,6 +365,12 @@ ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`);
 
 --
+-- Indexes for table `schedules`
+--
+ALTER TABLE `schedules`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -345,7 +385,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `farms`
 --
 ALTER TABLE `farms`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `messages`
@@ -357,7 +397,7 @@ ALTER TABLE `messages`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `oauth_clients`
@@ -370,6 +410,12 @@ ALTER TABLE `oauth_clients`
 --
 ALTER TABLE `oauth_personal_access_clients`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `schedules`
+--
+ALTER TABLE `schedules`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`

@@ -27,6 +27,9 @@
                                 },
                                 "password": {
                                     "type": "string"
+                                },
+                                "devicetoken": {
+                                    "type": "string"
                                 }
                             }
                         }
@@ -285,6 +288,43 @@
                     },
                     "401": {
                         "description": "unauthenticated"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
+        "/logout": {
+            "post": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "Logout api",
+                "operationId": "logout",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "api for logout",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "devicetoken": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "401": {
+                        "description": "unauthorized"
                     }
                 },
                 "security": [

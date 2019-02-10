@@ -25,7 +25,11 @@ use Illuminate\Http\Request;
  *          @SWG\Property(
  *              property="password",
  *              type="string"
- *          )
+ *          ),
+*          @SWG\Property(
+ *              property="devicetoken",
+ *              type="string"
+ *          ),
  *     )
  *   ),
  *   @SWG\Response(response=200, description="successful operation"),
