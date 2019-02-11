@@ -46,3 +46,6 @@ Route::group(['middleware' => 'auth:api'], function(){
 
 //Schedule
 Route::post('schedule','API\ScheduleController@addSchedule');
+
+//notification
+Route::post('pushmessage','API\MessageController@sendNotif');
