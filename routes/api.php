@@ -49,3 +49,8 @@ Route::post('schedule','API\ScheduleController@addSchedule');
 
 //notification
 Route::post('pushmessage','API\MessageController@sendNotif');
+
+Route::group(['middleware' => 'auth:api'], function(){
+    Route::post('report','API\ReportController@register');
+    Route::get('report', 'API\ReportController@fetch_by_farm');
+});

@@ -267,6 +267,49 @@
                 }
             }
         },
+        "/schedule": {
+            "post": {
+                "tags": [
+                    "schedule"
+                ],
+                "summary": "add new Schedule",
+                "operationId": "PostSchedule",
+                "parameters": [
+                    {
+                        "name": "image",
+                        "in": "formData",
+                        "description": "the file you upload",
+                        "type": "file"
+                    },
+                    {
+                        "name": "farm_id",
+                        "in": "formData",
+                        "description": "farm manager id",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "task",
+                        "in": "formData",
+                        "description": "task",
+                        "type": "string"
+                    },
+                    {
+                        "name": "description",
+                        "in": "formData",
+                        "description": "description",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "401": {
+                        "description": "unauthorized"
+                    }
+                }
+            }
+        },
         "/users/{role}": {
             "get": {
                 "tags": [

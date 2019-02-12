@@ -102,9 +102,11 @@ class MessageController extends Controller
         // curl_close($ch);
         
         $url = "https://fcm.googleapis.com/fcm/send";
-        $token = "ftawcwzFw8g:APA91bH14X-bN-hcAhmjsqA77cyTsLzwrgnXACWTBchBKXLT47VbnwUX_fyM0UKiMzYg7wVo1IshwUwDpMXNQGhMRKu7LEmEerGqFm4a_d0lfxquptW42z9-ANKDH3HAiOUDBTiaaEmA";
-        $serverKey = 'AAAAXRRZoeM:APA91bHQLsQVYBMC9BtFJ-_6w-I1hTu4zAB5EXkF-lUKd-kr89YTt9-OyBfZjp4kZ79EWmArkTj9aUbP0kmv-P-IEu4Mn-uGeiGO5u9KQDjpTFCv5uddrzAujkN9MSxLsxG0xe3ysaJs';
-        $title = "NOTIF DARI LARAVEL";
+       // $token = "ftawcwzFw8g:APA91bH14X-bN-hcAhmjsqA77cyTsLzwrgnXACWTBchBKXLT47VbnwUX_fyM0UKiMzYg7wVo1IshwUwDpMXNQGhMRKu7LEmEerGqFm4a_d0lfxquptW42z9-ANKDH3HAiOUDBTiaaEmA";
+       // $serverKey = 'AAAAXRRZoeM:APA91bHQLsQVYBMC9BtFJ-_6w-I1hTu4zAB5EXkF-lUKd-kr89YTt9-OyBfZjp4kZ79EWmArkTj9aUbP0kmv-P-IEu4Mn-uGeiGO5u9KQDjpTFCv5uddrzAujkN9MSxLsxG0xe3ysaJs';
+        $token = 'd2KHiwc17h0:APA91bH9NpAIjx9HkjQPj5EjOXsXaxGQMGMNAzzIUFzQSTb0DcVxIYwWmmE7uaAWD9yH125MvaCvX8pj4vcbLWGAXbh5XwwcgVIeEuukPDMKJFqlWUUPniqlBduIGAuRAsRx5lKuxuGh';
+        $serverKey = 'AAAAbN4PyRo:APA91bEzIxHOTn8Y8qMlZzyEsWz_Her4hsKOFbDgjOiqBR_OvhnvgOvEXwttynju9YykHgZ2pQET7UzEoSnuM2BAvmn0dpQ6s6moESqBJEb12WTcPEJtajCLoEzE3ofy6SCWjDVOOhO1';
+        $title = "NOTIF DARI LARAVEL";  
         $body = "tes lagi";
         $notification = array('title' =>$title , 'body' => $body, 'sound' => 'default', 'badge' => '1');
         $arrayToSend = array('to' => $token, 'notification' => $notification,'priority'=>'high');
