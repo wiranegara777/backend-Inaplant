@@ -6,6 +6,63 @@
     },
     "basePath": "/api",
     "paths": {
+        "/form": {
+            "get": {
+                "tags": [
+                    "Form"
+                ],
+                "summary": "get Form",
+                "operationId": "getForm",
+                "responses": {
+                    "200": {
+                        "description": "successful"
+                    },
+                    "401": {
+                        "description": "unauthenticated"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Form"
+                ],
+                "summary": "add new form",
+                "operationId": "addForm",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "you need login first before using this api",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "variabel1": {
+                                    "type": "string"
+                                },
+                                "variabel2": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
         "/login": {
             "post": {
                 "tags": [
@@ -104,36 +161,6 @@
                 ]
             }
         },
-        "/messages/{message_id}": {
-            "get": {
-                "tags": [
-                    "Message"
-                ],
-                "summary": "fetch all message between farmmanager and ahlipraktisi",
-                "operationId": "fetch message",
-                "parameters": [
-                    {
-                        "name": "message_id",
-                        "in": "path",
-                        "description": "you need login first before using this api",
-                        "type": "integer"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful"
-                    },
-                    "401": {
-                        "description": "unauthenticated"
-                    }
-                },
-                "security": [
-                    {
-                        "Bearer": []
-                    }
-                ]
-            }
-        },
         "/messages": {
             "post": {
                 "tags": [
@@ -156,7 +183,7 @@
                                 "sender_id": {
                                     "type": "integer"
                                 },
-                                "message_id": {
+                                "receiver_id": {
                                     "type": "integer"
                                 }
                             }
@@ -284,7 +311,7 @@
                     {
                         "name": "farm_id",
                         "in": "formData",
-                        "description": "farm manager id",
+                        "description": "farm id",
                         "type": "integer"
                     },
                     {

@@ -81,25 +81,6 @@ use Illuminate\Http\Request;
  *
  */
 
-//FETCH MESSAGE API
- /**
- * @SWG\Get(
- *   tags={"Message"},
- *   path="/messages/{message_id}",
- *   summary="fetch all message between farmmanager and ahlipraktisi",
- *   operationId="fetch message",
- *   @SWG\Parameter(
- *     name="message_id",
- *     in="path",
- *     type="integer",
- *     description="you need login first before using this api",
- *   ),
- *   @SWG\Response(response=200, description="successful"),
- *   @SWG\Response(response=401, description="unauthenticated"),
- *   security={{"Bearer":{}}}
- * )
- *
- */
 
  //SEND MESSAGE API
  /**
@@ -124,7 +105,7 @@ use Illuminate\Http\Request;
  *              type="integer",
  *          ),
  *          @SWG\Property(
- *              property="message_id",
+ *              property="receiver_id",
  *              type="integer",
  *          ),
  *     )
