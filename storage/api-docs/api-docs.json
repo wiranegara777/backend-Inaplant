@@ -6,6 +6,63 @@
     },
     "basePath": "/api",
     "paths": {
+        "/form": {
+            "get": {
+                "tags": [
+                    "Form"
+                ],
+                "summary": "get Form",
+                "operationId": "getForm",
+                "responses": {
+                    "200": {
+                        "description": "successful"
+                    },
+                    "401": {
+                        "description": "unauthenticated"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Form"
+                ],
+                "summary": "add new form",
+                "operationId": "addForm",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "you need login first before using this api",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "variabel1": {
+                                    "type": "string"
+                                },
+                                "variabel2": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
         "/login": {
             "post": {
                 "tags": [
@@ -284,7 +341,7 @@
                     {
                         "name": "farm_id",
                         "in": "formData",
-                        "description": "farm manager id",
+                        "description": "farm id",
                         "type": "integer"
                     },
                     {
