@@ -33,81 +33,18 @@ class MessageController extends Controller
         return response()->json(['success'=>'Message has been sent!'], $this-> successStatus); 
     }
 
-    public function sendNotif(){
-        // $optionBuilder = new OptionsBuilder();
-        // $optionBuilder->setTimeToLive(60*20);
+    public function sendNotif(Request $request){
 
-        // $notificationBuilder = new PayloadNotificationBuilder('NOTIF DARI LARAVEL');
-        // $notificationBuilder->setBody('JAV KAMPANK')
-        //                     ->setSound('default');
-
-        // $dataBuilder = new PayloadDataBuilder();
-        // $dataBuilder->addData(['a_data' => 'my_data']);
-
-        // $option = $optionBuilder->build();
-        // $notification = $notificationBuilder->build();
-        // $data = $dataBuilder->build();
-
-        // $token = "ftawcwzFw8g:APA91bH14X-bN-hcAhmjsqA77cyTsLzwrgnXACWTBchBKXLT47VbnwUX_fyM0UKiMzYg7wVo1IshwUwDpMXNQGhMRKu7LEmEerGqFm4a_d0lfxquptW42z9-ANKDH3HAiOUDBTiaaEmA";
-
-        // $downstreamResponse = FCM::sendTo($token, $option, $notification);
-        // $response['number_sent'] = $downstreamResponse->numberSuccess();
-        // $response['number_failed'] = $downstreamResponse->numberFailure();
-        // $response['token']=$token;
-        // return response()->json(['report'=> $response], $this-> successStatus); 
-
-
-
-        // $fcmUrl = 'https://fcm.googleapis.com/fcm/send';
-        // $token='ftawcwzFw8g:APA91bH14X-bN-hcAhmjsqA77cyTsLzwrgnXACWTBchBKXLT47VbnwUX_fyM0UKiMzYg7wVo1IshwUwDpMXNQGhMRKu7LEmEerGqFm4a_d0lfxquptW42z9-ANKDH3HAiOUDBTiaaEmA';
-        
-    
-        // $notification = [
-        //     'title'=>'nyobain notif!',
-        //     'body' => 'JAV KAMPANK!',
-        //     'sound' => true,
-        // ];
-        
-        // $extraNotificationData = ["message" => $notification,"moredata" =>'dd'];
-    
-        // $fcmNotification = [
-        //     //'registration_ids' => $tokenList, //multple token array
-        //     'to'        => $token, //single token
-        //     'notification' => $notification,
-        //     'data' => $extraNotificationData
-        // ];
-    
-        // $headers = [
-        //     'Authorization: key=AIzaSyAO87Mi_wofsEoaGaJ7a_sUhcwWTVgcnwM',
-        //     'Content-Type: application/json'
-        // ];
-    
-    
-        // $ch = curl_init();
-        // curl_setopt($ch, CURLOPT_URL,$fcmUrl);
-        // curl_setopt($ch, CURLOPT_POST, true);
-        // curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-        // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        // curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        // curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($fcmNotification));
-        // $result = curl_exec($ch);
-        // //Close request
-
-        // if ($result === FALSE) {
-        //     die('FCM Send Error: ' . curl_error($ch));
-        //     return response()->json(['report'=> 'gagal'], 401); 
-        // }else{
-        //     return response()->json(['report'=> 'berhasil'], $this-> successStatus); 
-        // }
-        // curl_close($ch);
-        
+        $token = "f0k5AlpOIKY:APA91bH5AroXgCAX0KlcC9qMn4E5AJDZIN36z8ilthxo2qWv_pdLGsLxxfI-IA3-Wn7mT54_ukl9Su1kIpfkQH37nUqXvSGl2haMev04fI8qJRqGcIyJOKusFQIzw0zGtTq8YHe8IS1G";
+        //$token = $request->devicetoken
+        $serverKey = "AAAAH2esEZE:APA91bG_H69wYXS-b25BdNDJ5Bynqsexd_MABrubuFLr3Of1q2oqaQftiCiIw4-8ZK9aicaodKcavPnXB_gNNfXKOYu_ya6ZsHBGX-_ai0UtyEp446FI9ZnOiZHmNEZ2yOYFMqsoiUhD";
         $url = "https://fcm.googleapis.com/fcm/send";
-       // $token = "ftawcwzFw8g:APA91bH14X-bN-hcAhmjsqA77cyTsLzwrgnXACWTBchBKXLT47VbnwUX_fyM0UKiMzYg7wVo1IshwUwDpMXNQGhMRKu7LEmEerGqFm4a_d0lfxquptW42z9-ANKDH3HAiOUDBTiaaEmA";
-       // $serverKey = 'AAAAXRRZoeM:APA91bHQLsQVYBMC9BtFJ-_6w-I1hTu4zAB5EXkF-lUKd-kr89YTt9-OyBfZjp4kZ79EWmArkTj9aUbP0kmv-P-IEu4Mn-uGeiGO5u9KQDjpTFCv5uddrzAujkN9MSxLsxG0xe3ysaJs';
-        $token = 'd2KHiwc17h0:APA91bH9NpAIjx9HkjQPj5EjOXsXaxGQMGMNAzzIUFzQSTb0DcVxIYwWmmE7uaAWD9yH125MvaCvX8pj4vcbLWGAXbh5XwwcgVIeEuukPDMKJFqlWUUPniqlBduIGAuRAsRx5lKuxuGh';
-        $serverKey = 'AAAAbN4PyRo:APA91bEzIxHOTn8Y8qMlZzyEsWz_Her4hsKOFbDgjOiqBR_OvhnvgOvEXwttynju9YykHgZ2pQET7UzEoSnuM2BAvmn0dpQ6s6moESqBJEb12WTcPEJtajCLoEzE3ofy6SCWjDVOOhO1';
+        //$token = "ftawcwzFw8g:APA91bH14X-bN-hcAhmjsqA77cyTsLzwrgnXACWTBchBKXLT47VbnwUX_fyM0UKiMzYg7wVo1IshwUwDpMXNQGhMRKu7LEmEerGqFm4a_d0lfxquptW42z9-ANKDH3HAiOUDBTiaaEmA";
+        //$serverKey = 'AAAAXRRZoeM:APA91bHQLsQVYBMC9BtFJ-_6w-I1hTu4zAB5EXkF-lUKd-kr89YTt9-OyBfZjp4kZ79EWmArkTj9aUbP0kmv-P-IEu4Mn-uGeiGO5u9KQDjpTFCv5uddrzAujkN9MSxLsxG0xe3ysaJs';
+        //$token = 'd2KHiwc17h0:APA91bH9NpAIjx9HkjQPj5EjOXsXaxGQMGMNAzzIUFzQSTb0DcVxIYwWmmE7uaAWD9yH125MvaCvX8pj4vcbLWGAXbh5XwwcgVIeEuukPDMKJFqlWUUPniqlBduIGAuRAsRx5lKuxuGh';
+       // $serverKey = 'AAAAbN4PyRo:APA91bEzIxHOTn8Y8qMlZzyEsWz_Her4hsKOFbDgjOiqBR_OvhnvgOvEXwttynju9YykHgZ2pQET7UzEoSnuM2BAvmn0dpQ6s6moESqBJEb12WTcPEJtajCLoEzE3ofy6SCWjDVOOhO1';
         $title = "NOTIF DARI LARAVEL";  
-        $body = "tes lagi";
+        $body = "tes ganti firebase";
         $notification = array('title' =>$title , 'body' => $body, 'sound' => 'default', 'badge' => '1');
         $arrayToSend = array('to' => $token, 'notification' => $notification,'priority'=>'high');
         $json = json_encode($arrayToSend);
@@ -122,9 +59,9 @@ class MessageController extends Controller
         //Send the request
         $response = curl_exec($ch);
         //Close request
-        if ($response === FALSE) {
-        die('FCM Send Error: ' . curl_error($ch));
-        }
+      //  if ($response === FALSE) {
+      //  die('FCM Send Error: ' . curl_error($ch));
+      //  }
         curl_close($ch);
     }
 }
