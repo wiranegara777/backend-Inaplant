@@ -61,6 +61,8 @@ Route::group(['middleware' => 'auth:api'], function(){
 Route::group(['middleware' => 'auth:api'], function(){
     Route::post('form','API\FormController@addForm');
     Route::get('form', 'API\FormController@getForm');
+    Route::put('form/{id}', 'API\FormController@editForm');
+
 });
 
 

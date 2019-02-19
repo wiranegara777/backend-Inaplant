@@ -63,6 +63,49 @@
                 ]
             }
         },
+        "/form/{id}": {
+            "put": {
+                "tags": [
+                    "Form"
+                ],
+                "summary": "update form form",
+                "operationId": "updateForm",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "you need login first before using this api",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "you need login first before using this api",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "variabel1": {
+                                    "type": "string"
+                                },
+                                "variabel2": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
         "/login": {
             "post": {
                 "tags": [

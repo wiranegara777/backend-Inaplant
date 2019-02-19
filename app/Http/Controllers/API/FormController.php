@@ -39,5 +39,17 @@ public $successStatus = 200;
         return response()->json(['data' => $form], $this-> successStatus);
     }
 
+    public function editForm(Request $request, $id){
+        $form = Form::find($id);
+        $form->variabel1 = $request->variabel1;
+        $form->variabel2 = $request->variabel2;
+        $response = $form->save();
+        if ($response == true) {
+            return response()->json(['success'=>'success update form'], $this-> successStatus); 
+        } else {
+            return response()->json(['error'=>'failed update'], 401);
+        }
+    }
+
 
 }
