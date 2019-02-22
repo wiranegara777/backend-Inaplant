@@ -24,6 +24,7 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::get('user_info', 'API\UserController@details');
     Route::get('users/{role}','API\UserController@getUsers');
     Route::post('logout','API\UserController@logout');
+    Route::get('user/{id}','API\UserController@getUserById');
 });
 //pusher
 Route::group(['middleware' => 'auth:api'], function(){  
@@ -34,11 +35,12 @@ Route::group(['middleware' => 'auth:api'], function(){
 Route::group(['middleware' => 'auth:api'], function(){  
     Route::get('messages/{message_id}','API\MessageController@fetch');
    // Route::post('messages','API\MessageController@sentMessage');   
-   Route::post('messages','FirebaseController@firestore');         
+   Route::post('messages','FirebaseController@firestore'); 
+   Route::post('image', 'API\UserController@uploadImage');
+        
 });
 
 Route::get('sample','SampleController@index');
-Route::post('image', 'API\UserController@uploadImage');
 
 //farm
 Route::group(['middleware' => 'auth:api'], function(){

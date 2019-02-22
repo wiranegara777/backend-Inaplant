@@ -184,6 +184,7 @@ use Illuminate\Http\Request;
  *     description="the file you upload",
  *   ),
  *   @SWG\Response(response=200, description="successful"),
+ *   security={{"Bearer":{}}}
  * )
  *
  */

@@ -77,6 +77,11 @@ public $successStatus = 200;
         return response()->json(['data' => $users], $this-> successStatus);
     }
 
+    public function getUserById(Request $request){
+        $user = User::find($request->id);
+        return response()->json(['data' => $user], $this-> successStatus); 
+    }
+
 /** 
      * details api 
      * 
@@ -100,8 +105,10 @@ public $successStatus = 200;
             return response()->json(['error'=>$validator->errors()], 401);            
         }else{
             $imageName = time().'.'.request()->image->getClientOriginalExtension();
+            $imageName = '/'.$imageName;
+            $image['image_path'] = 'api.inagrow.com/images'.$imageName;
             request()->image->move(public_path('images'), $imageName);
-            return response()->json(['success' => 'image has been uploaded'], $this-> successStatus);
+            return response()->json(['success' => $image], $this-> successStatus);
         }
         
     }

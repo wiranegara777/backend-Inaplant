@@ -334,7 +334,12 @@
                     "200": {
                         "description": "successful"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
             }
         },
         "/schedule": {
@@ -390,6 +395,36 @@
                 "parameters": [
                     {
                         "name": "role",
+                        "in": "path",
+                        "description": "you need login first before using this api",
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful"
+                    },
+                    "401": {
+                        "description": "unauthenticated"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
+        "/user/{id}": {
+            "get": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "get user detail by id",
+                "operationId": "fetch user by id",
+                "parameters": [
+                    {
+                        "name": "id",
                         "in": "path",
                         "description": "you need login first before using this api",
                         "type": "integer"
