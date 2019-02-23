@@ -5,6 +5,7 @@ namespace App;
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Model;
 
 class User extends Authenticatable
 {
@@ -16,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'role'
+        'name', 'email', 'password', 'role','alamat','no_hp','foto'
     ];
 
     /**
@@ -30,5 +31,9 @@ class User extends Authenticatable
 
     public function messages(){
         return $this->hasMany('App\Message');
+    }
+
+    public function komoditas(){
+        return $this->hasMany('App\Komoditas','id_ahlipraktisi');
     }
 }

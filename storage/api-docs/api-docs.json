@@ -443,6 +443,56 @@
                         "Bearer": []
                     }
                 ]
+            },
+            "put": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "edit profile user",
+                "operationId": "editProfilUser",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "user id",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Login first before using this api",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "name": {
+                                    "type": "string"
+                                },
+                                "email": {
+                                    "type": "string"
+                                },
+                                "no_hp": {
+                                    "type": "string"
+                                },
+                                "alamat": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "401": {
+                        "description": "unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
             }
         },
         "/logout": {
@@ -473,6 +523,83 @@
                     },
                     "401": {
                         "description": "unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
+        "/register_ahli": {
+            "post": {
+                "tags": [
+                    "Ahli_Praktisi"
+                ],
+                "summary": "Register Ahli Praktisi",
+                "operationId": "regisAhli",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Register Ahli Praktisi",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "name": {
+                                    "type": "string"
+                                },
+                                "email": {
+                                    "type": "string"
+                                },
+                                "password": {
+                                    "type": "string"
+                                },
+                                "c_password": {
+                                    "type": "string"
+                                },
+                                "komoditas": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "401": {
+                        "description": "unauthorized"
+                    }
+                }
+            }
+        },
+        "/user_foto/{id}": {
+            "post": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "edit foto user",
+                "operationId": "ImageUploadUser",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "user id",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "image",
+                        "in": "formData",
+                        "description": "the file you upload",
+                        "type": "file"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful"
                     }
                 },
                 "security": [

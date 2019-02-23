@@ -25,7 +25,16 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::get('users/{role}','API\UserController@getUsers');
     Route::post('logout','API\UserController@logout');
     Route::get('user/{id}','API\UserController@getUserById');
+    Route::put('user/{id}','API\UserController@editUser');
+    Route::post('user_foto/{id}','API\UserController@editImage');
 });
+
+//ahlipraktisi
+Route::group(['middleware' => 'auth:api'], function(){  
+    
+});
+Route::post('register_ahli', 'API\UserController@registerAhliPraktisi');
+
 //pusher
 Route::group(['middleware' => 'auth:api'], function(){  
     Route::post('pusher', 'API\MessageController@pusher');

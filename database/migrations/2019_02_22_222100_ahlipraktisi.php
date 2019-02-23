@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddSpesialisToUsers extends Migration
+class Ahlipraktisi extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,10 @@ class AddSpesialisToUsers extends Migration
      */
     public function up()
     {
-        Schema::table('users', function($table) {
-            $table->string('spesialis');
+        Schema::create('komoditas', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('id_ahlipraktisi');
+            $table->string('komoditas');
         });
     }
 
@@ -25,8 +27,6 @@ class AddSpesialisToUsers extends Migration
      */
     public function down()
     {
-        Schema::table('users', function($table) {
-            $table->dropColumn('spesialis');
-        });
+        Schema::dropIfExists('komoditas');
     }
 }

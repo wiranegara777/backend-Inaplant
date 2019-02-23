@@ -6,6 +6,7 @@ use App\User;
 use Illuminate\Support\Facades\Auth; 
 use Validator;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class UserController extends Controller 
 {
@@ -79,6 +80,9 @@ public $successStatus = 200;
 
     public function getUserById(Request $request){
         $user = User::find($request->id);
+        if ($user->role == 3){
+            $user['komoditas'] = $user->komoditas;
+        }
         return response()->json(['data' => $user], $this-> successStatus); 
     }
 
@@ -105,6 +109,7 @@ public $successStatus = 200;
             return response()->json(['error'=>$validator->errors()], 401);            
         }else{
             $imageName = time().'.'.request()->image->getClientOriginalExtension();
+            $imageName = strtolower($imageName);
             $imageName = '/'.$imageName;
             $image['image_path'] = 'api.inagrow.com/images'.$imageName;
             request()->image->move(public_path('images'), $imageName);
@@ -112,4 +117,72 @@ public $successStatus = 200;
         }
         
     }
+
+    //REGISTER AHLI PRAKTISI
+    public function registerAhliPraktisi(Request $request){
+        $validator = Validator::make($request->all(), [ 
+            'name' => 'required', 
+            'email' => 'required|email', 
+            'password' => 'required', 
+            'c_password' => 'required|same:password',
+            'komoditas' => 'required'
+        ]); 
+        if ($validator->fails()) { 
+            return response()->json(['error'=>$validator->errors()], 401);            
+        }else{
+            $user = new \App\User;
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->password = bcrypt($request->name);
+            $user->role = 3;
+            $user->save();
+
+            $komoditas = new \App\Komoditas(['komoditas' => $request->komoditas]);
+            $user->komoditas()->save($komoditas);
+
+            return response()->json(['success' => 'success register to Inagrow'], $this-> successStatus);
+        }
+    }
+
+    //EDIT USER PROFILE 
+    public function editUser(Request $request, $id){
+        $validator = Validator::make($request->all(), [ 
+            'name' => 'required', 
+            'email' => 'required|email', 
+            'no_hp' => 'required',
+            'alamat' => 'required',       
+        ]); 
+        if ($validator->fails()){
+            return response()->json(['error'=>$validator->errors()], 401);
+        }else{
+            $user = User::find($id);
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->no_hp = $request->no_hp;
+            $user->alamat = $request->alamat;
+            $user->save();
+
+            return response()->json(['success' => 'success edit profile !'], $this-> successStatus);
+        }
+    }
+
+    public function editImage(Request $request, $id){
+        $validator = Validator::make($request->all(), [ 
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:1024',
+        ]);
+        if ($validator->fails()) { 
+            return response()->json(['error'=>$validator->errors()], 401);            
+        }else{
+            $user = User::find($id);
+            $imageName = time().'.'.request()->image->getClientOriginalExtension();
+            $imageName = strtolower($imageName);
+            $imageName = '/'.$imageName;
+            $imageName = 'http://api.inagrow.com/backend-Inaplant/public/images'.$imageName;
+            request()->image->move(public_path('images'), $imageName);
+            $user->foto = $imageName;
+            $user->save();
+            return response()->json(['success' => 'success edit image'], $this-> successStatus);
+        }
+    }
+
 }
