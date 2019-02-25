@@ -106,6 +106,46 @@
                 ]
             }
         },
+        "/groupfarm": {
+            "post": {
+                "tags": [
+                    "GroupFarm"
+                ],
+                "summary": "add new groupFarm",
+                "operationId": "addNewGroup",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "you need login first before using this api",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "name": {
+                                    "type": "string"
+                                },
+                                "id_pemilik_lahan": {
+                                    "type": "integer"
+                                },
+                                "komoditas": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
         "/login": {
             "post": {
                 "tags": [

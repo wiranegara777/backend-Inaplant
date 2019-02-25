@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller; 
 use App\Farm;
 use App\User; 
+use App\Groupfarm;
 use Illuminate\Support\Facades\Auth; 
 use Validator;
 use Illuminate\Support\Facades\DB;
@@ -35,6 +36,21 @@ public $successStatus = 200;
         $user = Auth::user(); 
         $farms = DB::table('farms')->where('id_ahli_praktisi', $user->id)->get()->toArray();
         return response()->json(['data' => $farms], $this-> successStatus);
+    }
+
+    public function postgroupfarm(Request $request){
+        $validator = Validator::make($request->all(), [ 
+            'name' => 'required',  
+            'id_pemilik_lahan' => 'required', 
+            'komoditas' => 'required',
+        ]);
+        if ($validator->fails()) { 
+            return response()->json(['error'=>$validator->errors()], 401);   
+         } else {
+             $input = $request->all();
+             $farm = Groupfarm::create($input);
+             return response()->json(['success'=>'success added new GroupFarm'], $this-> successStatus);
+         }
     }
 
 

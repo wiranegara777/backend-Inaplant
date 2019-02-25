@@ -55,6 +55,8 @@ Route::get('sample','SampleController@index');
 Route::group(['middleware' => 'auth:api'], function(){
     Route::post('farm','API\FarmController@register');
     Route::get('farm', 'API\FarmController@fetch_by_ahli');
+
+    Route::post('groupfarm','API\FarmController@postgroupfarm');
 });
 
 //Schedule
