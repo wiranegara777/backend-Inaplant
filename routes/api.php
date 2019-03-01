@@ -12,6 +12,11 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+//pusher
+// Route::group(['middleware' => 'auth:api'], function(){  
+//     Route::post('pusher', 'API\MessageController@pusher');
+// });
+
 Route::post('register', 'API\UserController@register');
 
 
@@ -35,10 +40,12 @@ Route::group(['middleware' => 'auth:api'], function(){
 });
 Route::post('register_ahli', 'API\UserController@registerAhliPraktisi');
 
-//pusher
+//farmmanager
 Route::group(['middleware' => 'auth:api'], function(){  
-    Route::post('pusher', 'API\MessageController@pusher');
+    Route::post('assign', 'API\UserController@assignFarmManager');
+
 });
+
 
 //message
 Route::group(['middleware' => 'auth:api'], function(){  
@@ -57,6 +64,7 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::get('farm', 'API\FarmController@fetch_by_ahli');
 
     Route::post('groupfarm','API\FarmController@postgroupfarm');
+    Route::get('groupfarm/{id}','API\FarmController@getGroupfarm');
 });
 
 //Schedule

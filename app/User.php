@@ -36,4 +36,8 @@ class User extends Authenticatable
     public function komoditas(){
         return $this->hasMany('App\Komoditas','id_ahlipraktisi');
     }
+
+    public function groupfarm(){
+        return $this->hasOne('App\Assignfarm','id_farm_manager');
+    }
 }

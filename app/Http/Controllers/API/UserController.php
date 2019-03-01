@@ -184,5 +184,22 @@ public $successStatus = 200;
             return response()->json(['success' => 'success edit image'], $this-> successStatus);
         }
     }
+    
+    //Assign Farm Manager
+    public function assignFarmManager(Request $request){
+        $validator = Validator::make($request->all(), [ 
+            'id_farm_manager' => 'required', 
+            'id_group_farm' => 'required',        
+        ]); 
+        if ($validator->fails()){
+            return response()->json(['error'=>$validator->errors()], 401);
+        }else{
+            $user = User::find($request->id_farm_manager);
+            $assign = new \App\Assignfarm(['id_group_farm' => $request->id_group_farm]);
+            $user->groupfarm()->save($assign);
+
+            return response()->json(['success' => 'success assign groupfarm !'], $this-> successStatus);
+        }
+    }
 
 }

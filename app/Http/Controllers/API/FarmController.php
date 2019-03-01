@@ -53,5 +53,16 @@ public $successStatus = 200;
          }
     }
 
+    //GET GROUP FARM
+    public function getGroupfarm($id){
+        $Groupfarm = Groupfarm::find($id);
+        if($Groupfarm != NULL){
+            return response()->json(['success'=>$Groupfarm], $this-> successStatus);
+        } else {
+            return response()->json(['error'=>'failed to fetch'], 401);
+        }
+        
+    }
+
 
 }
