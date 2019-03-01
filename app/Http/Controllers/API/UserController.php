@@ -234,4 +234,38 @@ public $successStatus = 200;
         
     }
 
+    //Register Pemilik Lahan
+    public function registerPemilikLahan(Request $request) 
+    { 
+        $validator = Validator::make($request->all(), [ 
+            'name' => 'required', 
+            'email' => 'required|email', 
+            'password' => 'required', 
+            'c_password' => 'required|same:password',
+            'group_farm_name' => 'required',
+            'komoditas' => 'required' 
+        ]);
+        if ($validator->fails()) { 
+                    return response()->json(['error'=>$validator->errors()], 401);            
+                } else {
+                    
+                    //$user = User::create($input); 
+                    $user = new \App\User;
+                    $user->name = $request->name;
+                    $user->email = $request->email;
+                    $user->password = bcrypt($request->password);
+                    $user->role = 1;
+                    $user->save();
+
+                    $farm = new \App\Groupfarm;
+                    $farm->id_pemilik_lahan = $user->id;
+                    $farm->komoditas = $request->komoditas;
+                    $farm->name = $request->group_farm_name;
+                    $farm->save();
+        
+                    return response()->json(['success'=>'success added new pemilik lahan '], $this-> successStatus); 
+                }
+        
+    }
+
 }

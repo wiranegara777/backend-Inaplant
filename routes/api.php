@@ -46,6 +46,8 @@ Route::group(['middleware' => 'auth:api'], function(){
 });
 Route::post('register_farmmanager', 'API\UserController@registerFarmManager');
 
+//pemiilik lahan
+Route::post('register_pemiliklahan', 'API\UserController@registerPemilikLahan');
 
 
 //message

@@ -247,3 +247,48 @@ use Illuminate\Http\Request;
  *
  */
 
+  // REGISTER PEMILIK LAHAN
+/**
+ * @SWG\Post(
+ *   tags={"PemilikLahan"},
+ *   path="/register_pemiliklahan",
+ *   summary="Register Pemilik lahan dan Group Farm",
+ *   operationId="regispemilliklahan",
+ *   @SWG\Parameter(
+ *     name="body",
+ *     in="body",
+ *     required=true,
+ *     description="Register Farm Manager",
+ *     @SWG\Schema( 
+ *          @SWG\Property(
+ *              property="name",
+ *              type="string"
+ *          ),
+ *          @SWG\Property(
+ *              property="email",
+ *              type="string"
+ *          ),
+ *          @SWG\Property(
+ *              property="password",
+ *              type="string"
+ *          ),
+ *          @SWG\Property(
+ *              property="c_password",
+ *              type="string"
+ *          ),
+ *          @SWG\Property(
+ *              property="group_farm_name",
+ *              type="string"
+ *          ),
+ *          @SWG\Property(
+ *              property="komoditas",
+ *              type="string"
+ *          ),
+ *     )
+ *   ),
+ *   @SWG\Response(response=200, description="successful operation"),
+ *   @SWG\Response(response=401, description="unauthorized"),
+ * )
+ *
+ */
+
