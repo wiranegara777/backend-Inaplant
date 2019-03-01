@@ -3,6 +3,7 @@ namespace App\Http\Controllers\API;
 use Illuminate\Http\Request; 
 use App\Http\Controllers\Controller; 
 use App\User; 
+use App\Farm;
 use Illuminate\Support\Facades\Auth; 
 use Validator;
 use Illuminate\Support\Facades\DB;
@@ -122,7 +123,7 @@ public $successStatus = 200;
     public function registerAhliPraktisi(Request $request){
         $validator = Validator::make($request->all(), [ 
             'name' => 'required', 
-            'email' => 'required|email', 
+            'email' => 'required|email|unique:users,email', 
             'password' => 'required', 
             'c_password' => 'required|same:password',
             'komoditas' => 'required'
@@ -133,7 +134,7 @@ public $successStatus = 200;
             $user = new \App\User;
             $user->name = $request->name;
             $user->email = $request->email;
-            $user->password = bcrypt($request->name);
+            $user->password = bcrypt($request->password);
             $user->role = 3;
             $user->save();
 
@@ -166,6 +167,7 @@ public $successStatus = 200;
         }
     }
 
+    //edit image profil user
     public function editImage(Request $request, $id){
         $validator = Validator::make($request->all(), [ 
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:1024',
@@ -200,6 +202,36 @@ public $successStatus = 200;
 
             return response()->json(['success' => 'success assign groupfarm !'], $this-> successStatus);
         }
+    }
+
+    //Register Farm Manager
+    public function registerFarmManager(Request $request) 
+    { 
+        $validator = Validator::make($request->all(), [ 
+            'name' => 'required', 
+            'email' => 'required|email', 
+            'password' => 'required', 
+            'c_password' => 'required|same:password', 
+        ]);
+        if ($validator->fails()) { 
+                    return response()->json(['error'=>$validator->errors()], 401);            
+                } else {
+                    
+                    //$user = User::create($input); 
+                    $user = new \App\User;
+                    $user->name = $request->name;
+                    $user->email = $request->email;
+                    $user->password = bcrypt($request->password);
+                    $user->role = 3;
+                    $user->save();
+
+                    $farm = new \App\Farm;
+                    $farm->id_farm_manager = $user->id;
+                    $farm->save();
+        
+                    return response()->json(['success'=>'success added new farm manager'], $this-> successStatus); 
+                }
+        
     }
 
 }

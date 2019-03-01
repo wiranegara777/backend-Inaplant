@@ -6,106 +6,6 @@
     },
     "basePath": "/api",
     "paths": {
-        "/form": {
-            "get": {
-                "tags": [
-                    "Form"
-                ],
-                "summary": "get Form",
-                "operationId": "getForm",
-                "responses": {
-                    "200": {
-                        "description": "successful"
-                    },
-                    "401": {
-                        "description": "unauthenticated"
-                    }
-                },
-                "security": [
-                    {
-                        "Bearer": []
-                    }
-                ]
-            },
-            "post": {
-                "tags": [
-                    "Form"
-                ],
-                "summary": "add new form",
-                "operationId": "addForm",
-                "parameters": [
-                    {
-                        "name": "body",
-                        "in": "body",
-                        "description": "you need login first before using this api",
-                        "required": true,
-                        "schema": {
-                            "properties": {
-                                "variabel1": {
-                                    "type": "string"
-                                },
-                                "variabel2": {
-                                    "type": "string"
-                                }
-                            }
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful"
-                    }
-                },
-                "security": [
-                    {
-                        "Bearer": []
-                    }
-                ]
-            }
-        },
-        "/form/{id}": {
-            "put": {
-                "tags": [
-                    "Form"
-                ],
-                "summary": "update form form",
-                "operationId": "updateForm",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "you need login first before using this api",
-                        "type": "integer"
-                    },
-                    {
-                        "name": "body",
-                        "in": "body",
-                        "description": "you need login first before using this api",
-                        "required": true,
-                        "schema": {
-                            "properties": {
-                                "variabel1": {
-                                    "type": "string"
-                                },
-                                "variabel2": {
-                                    "type": "string"
-                                }
-                            }
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful"
-                    }
-                },
-                "security": [
-                    {
-                        "Bearer": []
-                    }
-                ]
-            }
-        },
         "/groupfarm": {
             "post": {
                 "tags": [
@@ -137,6 +37,36 @@
                 "responses": {
                     "200": {
                         "description": "successful"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
+        "/groupfarm/{id}": {
+            "get": {
+                "tags": [
+                    "GroupFarm"
+                ],
+                "summary": "get groupfarm detail",
+                "operationId": "fetchgroupfarm",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "you need login first before using this api",
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful"
+                    },
+                    "401": {
+                        "description": "unauthenticated"
                     }
                 },
                 "security": [
@@ -254,49 +184,6 @@
                         "Bearer": []
                     }
                 ]
-            }
-        },
-        "/schedule": {
-            "post": {
-                "tags": [
-                    "schedule"
-                ],
-                "summary": "add new Schedule",
-                "operationId": "PostSchedule",
-                "parameters": [
-                    {
-                        "name": "image",
-                        "in": "formData",
-                        "description": "the file you upload",
-                        "type": "file"
-                    },
-                    {
-                        "name": "farm_id",
-                        "in": "formData",
-                        "description": "farm id",
-                        "type": "integer"
-                    },
-                    {
-                        "name": "task",
-                        "in": "formData",
-                        "description": "task",
-                        "type": "string"
-                    },
-                    {
-                        "name": "description",
-                        "in": "formData",
-                        "description": "description",
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation"
-                    },
-                    "401": {
-                        "description": "unauthorized"
-                    }
-                }
             }
         },
         "/users/{role}": {
@@ -449,7 +336,7 @@
         "/register_ahli": {
             "post": {
                 "tags": [
-                    "Ahli_Praktisi"
+                    "AhliPraktisi"
                 ],
                 "summary": "Register Ahli Praktisi",
                 "operationId": "regisAhli",
@@ -521,6 +408,87 @@
                         "Bearer": []
                     }
                 ]
+            }
+        },
+        "/assign": {
+            "post": {
+                "tags": [
+                    "FarmManager"
+                ],
+                "summary": "assign farm manager to GroupFarm",
+                "operationId": "assign",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "login first before using this api",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "id_farm_manager": {
+                                    "type": "integer"
+                                },
+                                "id_group_farm": {
+                                    "type": "integer"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "401": {
+                        "description": "unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
+        "/register_farmmanager": {
+            "post": {
+                "tags": [
+                    "FarmManager"
+                ],
+                "summary": "Register Farm Manager",
+                "operationId": "regisfarmmanager",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Register Farm Manager",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "name": {
+                                    "type": "string"
+                                },
+                                "email": {
+                                    "type": "string"
+                                },
+                                "password": {
+                                    "type": "string"
+                                },
+                                "c_password": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "401": {
+                        "description": "unauthorized"
+                    }
+                }
             }
         }
     },

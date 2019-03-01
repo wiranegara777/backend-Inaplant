@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFarmsTable extends Migration
+class Farm extends Migration
 {
     /**
      * Run the migrations.
@@ -15,10 +15,17 @@ class CreateFarmsTable extends Migration
     {
         Schema::create('farms', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->integer('id_pemilik_lahan');
+            $table->integer('jumlah_pohon');
+            $table->string('varietas');
+            $table->string('siklus_pertumbuhan');
+            $table->dateTime('panen_pertama');
+            $table->dateTime('panen_terakhir');
+            $table->integer('jumlah_produksi_pertahun');
+            $table->string('latitude_longtitude_1');
+            $table->string('latitude_longtitude_2');
+            $table->string('latitude_longtitude_3');
+            $table->string('latitude_longtitude_4');
             $table->integer('id_farm_manager');
-            $table->integer('id_ahli praktisi');
             $table->timestamps();
         });
     }

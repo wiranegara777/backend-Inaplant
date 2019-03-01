@@ -73,7 +73,7 @@ use Illuminate\Http\Request;
   // REGISTER AHLI_PRAKTISI
 /**
  * @SWG\Post(
- *   tags={"Ahli_Praktisi"},
+ *   tags={"AhliPraktisi"},
  *   path="/register_ahli",
  *   summary="Register Ahli Praktisi",
  *   operationId="regisAhli",
@@ -179,3 +179,71 @@ use Illuminate\Http\Request;
  * )
  *
  */
+
+ // ASSIGN FARM MANAGER API
+/**
+ * @SWG\Post(
+ *   tags={"FarmManager"},
+ *   path="/assign",
+ *   summary="assign farm manager to GroupFarm",
+ *   operationId="assign",
+ *   @SWG\Parameter(
+ *     name="body",
+ *     in="body",
+ *     required=true,
+ *     description="login first before using this api",
+ *     @SWG\Schema( 
+ *          @SWG\Property(
+ *              property="id_farm_manager",
+ *              type="integer"
+ *          ),
+ *          @SWG\Property(
+ *              property="id_group_farm",
+ *              type="integer"
+ *          ),
+ *     )
+ *   ),
+ *   @SWG\Response(response=200, description="successful operation"),
+ *   @SWG\Response(response=401, description="unauthorized"),
+ *   security={{"Bearer":{}}}
+ * )
+ *
+ */
+
+  // REGISTER FARM MANAGER
+/**
+ * @SWG\Post(
+ *   tags={"FarmManager"},
+ *   path="/register_farmmanager",
+ *   summary="Register Farm Manager",
+ *   operationId="regisfarmmanager",
+ *   @SWG\Parameter(
+ *     name="body",
+ *     in="body",
+ *     required=true,
+ *     description="Register Farm Manager",
+ *     @SWG\Schema( 
+ *          @SWG\Property(
+ *              property="name",
+ *              type="string"
+ *          ),
+ *          @SWG\Property(
+ *              property="email",
+ *              type="string"
+ *          ),
+ *          @SWG\Property(
+ *              property="password",
+ *              type="string"
+ *          ),
+ *          @SWG\Property(
+ *              property="c_password",
+ *              type="string"
+ *          ),
+ *     )
+ *   ),
+ *   @SWG\Response(response=200, description="successful operation"),
+ *   @SWG\Response(response=401, description="unauthorized"),
+ * )
+ *
+ */
+

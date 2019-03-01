@@ -32,3 +32,23 @@
  * )
  *
  */
+
+  //GET GROUP FARM detail
+ /**
+ * @SWG\Get(
+ *   tags={"GroupFarm"},
+ *   path="/groupfarm/{id}",
+ *   summary="get groupfarm detail",
+ *   operationId="fetchgroupfarm",
+ *   @SWG\Parameter(
+ *     name="id",
+ *     in="path",
+ *     type="integer",
+ *     description="you need login first before using this api",
+ *   ),
+ *   @SWG\Response(response=200, description="successful"),
+ *   @SWG\Response(response=401, description="unauthenticated"),
+ *   security={{"Bearer":{}}}
+ * )
+ *
+ */

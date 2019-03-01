@@ -43,8 +43,9 @@ Route::post('register_ahli', 'API\UserController@registerAhliPraktisi');
 //farmmanager
 Route::group(['middleware' => 'auth:api'], function(){  
     Route::post('assign', 'API\UserController@assignFarmManager');
-
 });
+Route::post('register_farmmanager', 'API\UserController@registerFarmManager');
+
 
 
 //message
