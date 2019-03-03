@@ -52,3 +52,128 @@
  * )
  *
  */
+
+ //POST GroupFarm
+ /**
+ * @SWG\Post(
+ *   tags={"Term"},
+ *   path="/term",
+ *   summary="add new Term (Time periodic)",
+ *   operationId="addNewTerm",
+ *   @SWG\Parameter(
+ *     name="body",
+ *     in="body",
+ *     required=true,
+ *     description="you need login first before using this api",
+ *     @SWG\Schema(
+ *          @SWG\Property(
+ *              property="name",
+ *              type="string",
+ *          ),
+ *          @SWG\Property(
+ *              property="id_pemilik_lahan",
+ *              type="integer"
+ *          ),
+ *           @SWG\Property(
+ *              property="start_date",
+ *              type="string"
+ *          ),
+ *           @SWG\Property(
+ *              property="end_date",
+ *              type="string"
+ *          ),
+ *     )
+ *   ),
+ *   @SWG\Response(response=200, description="successful"),
+ *   security={{"Bearer":{}}}
+ * )
+ *
+ */
+
+   //GET list TERM
+ /**
+ * @SWG\Get(
+ *   tags={"Term"},
+ *   path="/term/{id_pemilik_lahan}",
+ *   summary="get list term",
+ *   operationId="getTerms",
+ *   @SWG\Parameter(
+ *     name="id_pemilik_lahan",
+ *     in="path",
+ *     type="integer",
+ *     description="you need login first before using this api",
+ *   ),
+ *   @SWG\Response(response=200, description="successful"),
+ *   @SWG\Response(response=401, description="unauthenticated"),
+ *   security={{"Bearer":{}}}
+ * )
+ *
+ */
+
+// edit Profile farm
+/**
+ * @SWG\Put(
+ *   tags={"farm"},
+ *   path="/farm/{id_farm}",
+ *   summary="edit profile farm",
+ *   operationId="editProfilFarm",
+ *   @SWG\Parameter(
+ *     name="id_farm",
+ *     in="path",
+ *     type="integer",
+ *     description="farm id",
+ *   ),
+ *   @SWG\Parameter(
+ *     name="body",
+ *     in="body",
+ *     required=true,
+ *     description="Login first before using this api",
+ *     @SWG\Schema( 
+ *          @SWG\Property(
+ *              property="jumlah_pohon",
+ *              type="string"
+ *          ),
+ *          @SWG\Property(
+ *              property="varietas",
+ *              type="string"
+ *          ),
+ *          @SWG\Property(
+ *              property="siklus_pertumbuhan",
+ *              type="string"
+ *          ),
+ *          @SWG\Property(
+ *              property="panen_pertama",
+ *              type="string"
+ *          ),
+ *          @SWG\Property(
+ *              property="panen_terakhir",
+ *              type="string"
+ *          ),
+ *          @SWG\Property(
+ *              property="jumlah_produksi_pertahun",
+ *              type="string"
+ *          ),
+ *          @SWG\Property(
+ *              property="latitude_longtitude_1",
+ *              type="string"
+ *          ),
+ *          @SWG\Property(
+ *              property="latitude_longtitude_2",
+ *              type="string"
+ *          ),
+ *          @SWG\Property(
+ *              property="latitude_longtitude_3",
+ *              type="string"
+ *          ),
+ *          @SWG\Property(
+ *              property="latitude_longtitude_4",
+ *              type="string"
+ *          ),
+ *     )
+ *   ),
+ *   @SWG\Response(response=200, description="successful operation"),
+ *   @SWG\Response(response=401, description="unauthorized"),
+ *   security={{"Bearer":{}}}
+ * )
+ *
+ */
