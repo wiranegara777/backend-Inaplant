@@ -84,12 +84,12 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::post('report','API\ReportController@register');
     Route::get('report', 'API\ReportController@fetch_by_farm');
 });
-//form
+//Task
 Route::group(['middleware' => 'auth:api'], function(){
-    Route::post('form','API\FormController@addForm');
-    Route::get('form', 'API\FormController@getForm');
-    Route::put('form/{id}', 'API\FormController@editForm');
-
+    Route::post('task','API\TaskController@postTask');
+    Route::get('tasks/{id_pemilik_lahan}','API\TaskController@getTasks');
+    Route::get('task/{id_task}','API\TaskController@getDetailtask');
+    Route::put('task/{id_task}','API\TaskController@updateStatustask');
 });
 
 

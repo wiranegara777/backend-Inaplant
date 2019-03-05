@@ -222,7 +222,7 @@ public $successStatus = 200;
                     $user->name = $request->name;
                     $user->email = $request->email;
                     $user->password = bcrypt($request->password);
-                    $user->role = 3;
+                    $user->role = 2;
                     $user->save();
 
                     $farm = new \App\Farm;

@@ -96,14 +96,7 @@ public $successStatus = 200;
             $farm->update($request->only(['jumlah_pohon','varietas','siklus_pertumbuhan',
             'panen_pertama','panen_terakhir','jumlah_produksi_pertahun','latitude_longtitude_1',
             'latitude_longtitude_2','latitude_longtitude_3','latitude_longtitude_4',]));
-         //   return response()->json(['error'=>$validator->errors()], 401);
-         //   $user = User::find($id);
-         //   $user->name = $request->name;
-          //  $user->email = $request->email;
-          //  $user->no_hp = $request->no_hp;
-           // $user->alamat = $request->alamat;
-           // $user->save();
-
+            
             return response()->json(['success' => 'success edit farm profile !'], $this-> successStatus);
         
     }

@@ -329,6 +329,140 @@
                 ]
             }
         },
+        "/task": {
+            "post": {
+                "tags": [
+                    "Task"
+                ],
+                "summary": "post task",
+                "operationId": "posttask",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "post task",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "title": {
+                                    "type": "string"
+                                },
+                                "description": {
+                                    "type": "string"
+                                },
+                                "id_pemilik_lahan": {
+                                    "type": "integer"
+                                },
+                                "id_term": {
+                                    "type": "integer"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "401": {
+                        "description": "unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
+        "/tasks/{id_pemilik_lahan}": {
+            "get": {
+                "tags": [
+                    "Task"
+                ],
+                "summary": "get list user by role",
+                "operationId": "fetchlisttask",
+                "parameters": [
+                    {
+                        "name": "id_pemilik_lahan",
+                        "in": "path",
+                        "description": "you need login first before using this api",
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful"
+                    },
+                    "401": {
+                        "description": "unauthenticated"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
+        "/task/{id_task}": {
+            "get": {
+                "tags": [
+                    "Task"
+                ],
+                "summary": "get detail task",
+                "operationId": "fetchdetailtask",
+                "parameters": [
+                    {
+                        "name": "id_task",
+                        "in": "path",
+                        "description": "you need login first before using this api",
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful"
+                    },
+                    "401": {
+                        "description": "unauthenticated"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Task"
+                ],
+                "summary": "update status task to 1",
+                "operationId": "updatedetailtask",
+                "parameters": [
+                    {
+                        "name": "id_task",
+                        "in": "path",
+                        "description": "you need login first before using this api",
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful"
+                    },
+                    "401": {
+                        "description": "unauthenticated"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
         "/users/{role}": {
             "get": {
                 "tags": [
