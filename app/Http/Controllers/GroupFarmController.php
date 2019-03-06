@@ -177,3 +177,17 @@
  * )
  *
  */
+
+   //GET list TERM
+ /**
+ * @SWG\Get(
+ *   tags={"user"},
+ *   path="/user_groupfarm",
+ *   summary="get groupfarm that associated by user",
+ *   operationId="getgroupfarmuser",
+ *   @SWG\Response(response=200, description="successful"),
+ *   @SWG\Response(response=401, description="unauthenticated"),
+ *   security={{"Bearer":{}}}
+ * )
+ *
+ */

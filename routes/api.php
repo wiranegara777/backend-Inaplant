@@ -71,6 +71,7 @@ Route::group(['middleware' => 'auth:api'], function(){
 
     Route::post('groupfarm','API\FarmController@postgroupfarm');
     Route::get('groupfarm/{id}','API\FarmController@getGroupfarm');
+    Route::get('user_groupfarm','API\FarmController@getPemiliklahan');
 });
 
 //Schedule

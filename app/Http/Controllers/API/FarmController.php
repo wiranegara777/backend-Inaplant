@@ -101,4 +101,20 @@ public $successStatus = 200;
         
     }
 
+    public function getPemiliklahan(){
+        $user = Auth::user();
+        if($user->role == 2){
+            $Groupfarm = $user->Groupfarm()->first();
+            if($Groupfarm != NULL){
+                $group = Groupfarm::find($Groupfarm->id_group_farm);
+                return response()->json(['success' => $group], $this-> successStatus);
+            } else {
+                return response()->json(['failed' => 'failed to fetch'], 401);
+            }   
+        } else {
+            return response()->json(['failed' => 'you are not logged in as farmmanager'], $this-> successStatus);
+        }
+     
+    }
+
 }

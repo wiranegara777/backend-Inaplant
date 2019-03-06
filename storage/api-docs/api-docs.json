@@ -219,6 +219,28 @@
                 ]
             }
         },
+        "/user_groupfarm": {
+            "get": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "get groupfarm that associated by user",
+                "operationId": "getgroupfarmuser",
+                "responses": {
+                    "200": {
+                        "description": "successful"
+                    },
+                    "401": {
+                        "description": "unauthenticated"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
         "/login": {
             "post": {
                 "tags": [
