@@ -44,7 +44,7 @@
  * @SWG\Get(
  *   tags={"Task"},
  *   path="/tasks/{id_pemilik_lahan}",
- *   summary="get list user by role",
+ *   summary="get list task",
  *   operationId="fetchlisttask",
  *   @SWG\Parameter(
  *     name="id_pemilik_lahan",
@@ -64,13 +64,13 @@
  * @SWG\Get(
  *   tags={"Task"},
  *   path="/task/{id_task}",
- *   summary="get detail task",
+ *   summary="get detail task by farmmanager",
  *   operationId="fetchdetailtask",
  *   @SWG\Parameter(
  *     name="id_task",
  *     in="path",
  *     type="integer",
- *     description="you need login first before using this api",
+ *     description="you need login as farmmanager first before using this api",
  *   ),
  *   @SWG\Response(response=200, description="successful"),
  *   @SWG\Response(response=401, description="unauthenticated"),

@@ -40,7 +40,7 @@ public $successStatus = 200;
         if ($user->devicetoken == $request->devicetoken){
             $user->devicetoken = '';
             $user->save();
-            return response()->json(['success' => 'success delete devicetoken'], $this-> successStatus);
+            return response()->json(['success' => 'success logout and delete devicetoken'], $this-> successStatus);
         } else {
             return response()->json(['error' => 'devicetoken not same'], 401); 
         }
@@ -75,16 +75,30 @@ public $successStatus = 200;
     //GET LIST USER BY ROLE
     public function getUsers(Request $request){
         //$messages = \App\Message::with('user')->get()->toArray();
-        $users = DB::table('users')->where('role', $request->role)->get()->toArray();
-        return response()->json(['data' => $users], $this-> successStatus);
+        try{
+            $users = DB::table('users')->where('role', $request->role)->get()->toArray();
+        } catch (Exception $e) {
+            $users = NULL;
+        } 
+        if($users != NULL){
+            return response()->json(['success' => $users], $this-> successStatus);
+        }else{
+            return response()->json(['error' => 'user not found !'], $this-> successStatus);
+        }
     }
 
     public function getUserById(Request $request){
         $user = User::find($request->id);
-        if ($user->role == 3){
-            $user['komoditas'] = $user->komoditas;
+        if($user == NULL){
+            return response()->json(['error' => 'user not found !'], 401);
+        }else{
+            if ($user->role == 3){
+                $komoditas = DB::table('komoditas')->where('id_ahlipraktisi', $user->id)->first();
+                $user['komoditas'] = $komoditas->komoditas;
+            }
+            return response()->json(['data' => $user], $this-> successStatus); 
         }
-        return response()->json(['data' => $user], $this-> successStatus); 
+        
     }
 
 /** 
@@ -112,7 +126,7 @@ public $successStatus = 200;
             $imageName = time().'.'.request()->image->getClientOriginalExtension();
             $imageName = strtolower($imageName);
             $imageName = '/'.$imageName;
-            $image['image_path'] = 'api.inagrow.com/images'.$imageName;
+            $image['image_path'] = 'http://api.inacrop.com/laravel/public/images'.$imageName;
             request()->image->move(public_path('images'), $imageName);
             return response()->json(['success' => $image], $this-> successStatus);
         }
@@ -147,24 +161,21 @@ public $successStatus = 200;
 
     //EDIT USER PROFILE 
     public function editUser(Request $request, $id){
-        $validator = Validator::make($request->all(), [ 
-            'name' => 'required', 
-            'email' => 'required|email', 
-            'no_hp' => 'required',
-            'alamat' => 'required',       
-        ]); 
-        if ($validator->fails()){
-            return response()->json(['error'=>$validator->errors()], 401);
-        }else{
             $user = User::find($id);
-            $user->name = $request->name;
-            $user->email = $request->email;
-            $user->no_hp = $request->no_hp;
-            $user->alamat = $request->alamat;
-            $user->save();
-
-            return response()->json(['success' => 'success edit profile !'], $this-> successStatus);
-        }
+            if($user != NULL){
+                $user->update($request->only(['name','email','no_hp','alamat']));
+                if($request->hasFile('foto')) {
+                    $imageName = time().'.'.request()->foto->getClientOriginalExtension();
+                    $imageName = strtolower($imageName);
+                    $imageName = '/'.$imageName;
+                    $user->foto = 'http://api.inacrop.com/laravel/public/images'.$imageName;
+                    request()->foto->move(public_path('images'), $imageName);
+                    $user->save();
+                }
+                return response()->json(['success' => 'success edit profile !'], $this-> successStatus);
+            }else{
+                return response()->json(['error' => 'user not found !'], $this-> successStatus);
+            }    
     }
 
     //edit image profil user
@@ -179,7 +190,7 @@ public $successStatus = 200;
             $imageName = time().'.'.request()->image->getClientOriginalExtension();
             $imageName = strtolower($imageName);
             $imageName = '/'.$imageName;
-            $imageName = 'http://api.inagrow.com/backend-Inaplant/public/images'.$imageName;
+            $imageName = 'http://api.inacrop.com/laravel/public/images'.$imageName;
             request()->image->move(public_path('images'), $imageName);
             $user->foto = $imageName;
             $user->save();

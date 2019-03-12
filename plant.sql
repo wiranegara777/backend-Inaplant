@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 04, 2019 at 12:39 AM
+-- Generation Time: Mar 10, 2019 at 07:31 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.2.14
 
@@ -71,31 +71,9 @@ CREATE TABLE `farms` (
 --
 
 INSERT INTO `farms` (`id`, `jumlah_pohon`, `varietas`, `siklus_pertumbuhan`, `panen_pertama`, `panen_terakhir`, `jumlah_produksi_pertahun`, `latitude_longtitude_1`, `latitude_longtitude_2`, `latitude_longtitude_3`, `latitude_longtitude_4`, `id_farm_manager`, `created_at`, `updated_at`) VALUES
-(1, 13, 'string', 'string', '2019-03-03 23:30:48', '2019-03-03 23:30:48', 12, 'string', 'string', 'string', 'string', 12, '2019-02-28 20:46:30', '2019-03-03 16:37:24'),
-(2, 13, 'string', 'string', '2019-03-03 23:30:48', '2019-03-03 23:30:48', 12, 'string', 'string', 'string', 'string', 13, '2019-02-28 20:49:25', '2019-03-03 16:37:39');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `forms`
---
-
-CREATE TABLE `forms` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `id_ahlipraktisi` int(11) NOT NULL,
-  `variabel1` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `variabel2` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `forms`
---
-
-INSERT INTO `forms` (`id`, `id_ahlipraktisi`, `variabel1`, `variabel2`, `created_at`, `updated_at`) VALUES
-(1, 4, 'ASU', 'KHON', '2019-02-15 02:54:58', '2019-02-15 02:56:08'),
-(2, 4, 'string', 'string', '2019-02-15 02:55:14', '2019-02-22 22:58:32');
+(1, 13, '1', 'string', '2019-03-03 23:30:48', '2019-03-03 23:30:48', 12, 'string', 'string', 'string', 'string', 12, '2019-02-28 20:46:30', '2019-03-03 16:37:24'),
+(2, 13, '1', 'string', '2019-03-03 23:30:48', '2019-03-03 23:30:48', 12, 'string', 'string', 'string', 'string', 13, '2019-02-28 20:49:25', '2019-03-03 16:37:39'),
+(3, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 15, '2019-03-05 15:52:37', '2019-03-05 15:52:37');
 
 -- --------------------------------------------------------
 
@@ -118,7 +96,6 @@ CREATE TABLE `groupfarms` (
 
 INSERT INTO `groupfarms` (`id`, `name`, `id_pemilik_lahan`, `komoditas`, `created_at`, `updated_at`) VALUES
 (1, 'Ranch', 1, 'Kopi', '2019-02-25 16:06:18', '2019-02-25 16:06:18'),
-(2, 'Rodels', 1, 'jagung', '2019-02-25 16:13:32', '2019-02-25 16:13:32'),
 (3, 'Gardenia', 14, 'strawberry', '2019-02-28 23:00:18', '2019-02-28 23:00:18');
 
 -- --------------------------------------------------------
@@ -148,6 +125,39 @@ INSERT INTO `komoditas` (`id`, `id_ahlipraktisi`, `komoditas`, `created_at`, `up
 (7, 9, 'jagung', '2019-02-22 16:35:57', '2019-02-22 16:35:57'),
 (8, 10, 'kopi', '2019-02-28 18:19:24', '2019-02-28 18:19:24'),
 (9, 11, 'kopi', '2019-02-28 18:23:53', '2019-02-28 18:23:53');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `laporans`
+--
+
+CREATE TABLE `laporans` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `id_group_farm` int(11) NOT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `note` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `varietas` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `foto1` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `foto2` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `foto3` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `id_farm_manager` int(11) NOT NULL,
+  `is_overdue` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `laporans`
+--
+
+INSERT INTO `laporans` (`id`, `id_group_farm`, `name`, `note`, `varietas`, `foto1`, `foto2`, `foto3`, `id_farm_manager`, `is_overdue`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Laporan Perkebunan', 'contoh note', '1', NULL, NULL, NULL, 2, 1, '2019-03-06 18:13:08', '2019-03-06 18:13:08'),
+(2, 1, 'laporan 2', 'ga ada', '2', NULL, NULL, NULL, 2, 0, '2019-03-06 18:18:04', '2019-03-06 18:18:04'),
+(3, 1, 'laporan 3', 'hmmmm', '1', NULL, NULL, NULL, 2, 1, '2019-03-06 18:20:02', '2019-03-06 18:20:02'),
+(4, 1, 'LAPORANNN', 'hmmmmmmmm', '2', 'C:\\xampp\\tmp\\php31E5.tmp', NULL, 'C:\\xampp\\tmp\\php31E6.tmp', 2, 1, '2019-03-06 18:22:32', '2019-03-06 18:22:32'),
+(5, 1, 'Nyiram kebooon', 'sayayaaaa', '1', 'api.inacrop.com/images/1551921834.jpg', NULL, 'api.inacrop.com/images/1551921834.jpg', 2, 1, '2019-03-06 18:23:54', '2019-03-06 18:23:54'),
+(6, 1, 'Nyiram kebooon 2', 'sayayaaaa', '1', 'http://api.inacrop.com/laravel/public/images/1551922059.jpg', NULL, 'http://api.inacrop.com/laravel/public/images/1551922059.jpg', 2, 1, '2019-03-06 18:27:39', '2019-03-06 18:27:39');
 
 -- --------------------------------------------------------
 
@@ -213,7 +223,11 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (19, '2019_02_26_231929_assign', 12),
 (20, '2019_02_26_231930_assign', 13),
 (21, '2019_03_01_031632_farm', 14),
-(22, '2019_03_02_232611_term', 15);
+(22, '2019_03_02_232611_term', 15),
+(23, '2019_03_04_110421_create_task', 16),
+(24, '2019_03_05_020226_statustask', 17),
+(25, '2019_03_07_002113_create_laporan', 18),
+(26, '2019_03_08_061427_create_varietas', 19);
 
 -- --------------------------------------------------------
 
@@ -247,16 +261,25 @@ INSERT INTO `oauth_access_tokens` (`id`, `user_id`, `client_id`, `name`, `scopes
 ('10589c1f6ada0ec29c0fb87f2fb82eecc0e499ab8cd5539b503a4680b8ee5c02bf414cd68f87fde0', 1, 1, 'MyApp', '[]', 0, '2019-01-28 15:05:44', '2019-01-28 15:05:44', '2020-01-28 22:05:44'),
 ('12b9cd7d645e1c0cb5d8d082bdca5a05088a3ac4ca27a66bfe10a3af99dadf507ce87ae6fc30671c', 1, 1, 'MyApp', '[]', 0, '2019-02-14 21:10:20', '2019-02-14 21:10:20', '2020-02-15 04:10:20'),
 ('16372da135267bdc8b3ab87fcdda415ba234bbac60813ab7cc7297f80d276d9d5fe63263261d122e', 1, 1, 'MyApp', '[]', 0, '2019-01-26 10:46:30', '2019-01-26 10:46:30', '2020-01-26 17:46:30'),
+('16d38df7e0366c0275b26deec32c3a406814433c3fd4144fd1c83056a4ea92d1134e37537a70d29a', 1, 1, 'MyApp', '[]', 0, '2019-03-10 10:57:52', '2019-03-10 10:57:52', '2020-03-10 17:57:52'),
+('17fc446297e47027b68db31e5c9d7030db97261d72b541785e5a5fec0af22ea7da90c4f3ddc1d99c', 1, 1, 'MyApp', '[]', 0, '2019-03-04 04:22:58', '2019-03-04 04:22:58', '2020-03-04 11:22:58'),
 ('19e2f8eb155bc219499f2f65c30161e0749ee2fec6198197278a86c7605437c1e0eabe3051839fdc', 3, 1, 'MyApp', '[]', 0, '2019-02-07 04:55:52', '2019-02-07 04:55:52', '2020-02-07 11:55:52'),
 ('1e4e1f559b7ba64ccb0ca89f81d8f7361d8e24a76b6c7af7436db6d748e944757c4677ad0e0279d5', 3, 1, 'MyApp', '[]', 0, '2019-02-21 21:46:48', '2019-02-21 21:46:48', '2020-02-22 04:46:48'),
+('23ceea8ec73e86de6e0fbe7948085a81ec6656b67c1acc27c6c8a5bfd6bbf0d9a078a716a014320f', 1, 1, 'MyApp', '[]', 0, '2019-03-10 10:38:30', '2019-03-10 10:38:30', '2020-03-10 17:38:30'),
 ('23fd3db64099cda6772326cc0786af593b119f3182101db7a6b1782cffa0b22636bd242b774f195e', 1, 1, 'MyApp', '[]', 0, '2019-01-27 03:38:06', '2019-01-27 03:38:06', '2020-01-27 10:38:06'),
 ('27d9700d4871b3ecdfd4f9c668647adb7456c639a0932854dca01362d8bb7a42571759915ebe995c', 1, 1, 'MyApp', '[]', 0, '2019-01-24 18:25:02', '2019-01-24 18:25:02', '2020-01-25 01:25:02'),
 ('27f1394fdc9d41fdf9ccf49605b84313873dead618860092d6ef1d646211c31fdba1c18f1c5e855f', 1, 1, 'MyApp', '[]', 0, '2019-01-27 00:58:12', '2019-01-27 00:58:12', '2020-01-27 07:58:12'),
+('2aff5bfe2a9f2baacfca7e2df4052d98b9b9d4893832fc03fb4dd0cd551ac4d8fbae88852dfd0ac5', 15, 1, 'MyApp', '[]', 0, '2019-03-08 04:51:51', '2019-03-08 04:51:51', '2020-03-08 11:51:51'),
 ('30cee2787f54f23a97c74fb25051bebf596f44d7141647e6a943a80365ca83e95cb8cb15002942a8', 1, 1, 'MyApp', '[]', 0, '2019-01-24 18:15:09', '2019-01-24 18:15:09', '2020-01-25 01:15:09'),
 ('31ccd5e9bf85ec8a93a6ac0f15d7b4f38a50b47eb689c4fb2f41eef766b9a6d949c673b4b5ec4563', 1, 1, 'MyApp', '[]', 0, '2019-01-24 18:15:12', '2019-01-24 18:15:12', '2020-01-25 01:15:12'),
+('35e1f4c4aad3275728cf490c54a5b1a462b965cf18d03fe69642d4ee53f8eca4b5a74afb8a743371', 2, 1, 'MyApp', '[]', 0, '2019-03-04 19:54:09', '2019-03-04 19:54:09', '2020-03-05 02:54:09'),
+('374920cac7777f6be16b7db308ae4bdf964d585100b2eba43063c7f9784a45277b5574300ebc55e3', 2, 1, 'MyApp', '[]', 0, '2019-03-06 01:57:51', '2019-03-06 01:57:51', '2020-03-06 08:57:51'),
 ('392db63414286042094aeecb3e7b0d4117e04fb20529e846d917431720c1831e55b78b98b6890bf0', 1, 1, 'MyApp', '[]', 0, '2019-01-27 02:44:47', '2019-01-27 02:44:47', '2020-01-27 09:44:47'),
 ('3a46b6e54ab03542ab9a9725ded575d49f35d997dcc8517ba30134231e5e4faeeba3e674c809ce1a', 3, 1, 'MyApp', '[]', 0, '2019-02-11 07:18:30', '2019-02-11 07:18:30', '2020-02-11 14:18:30'),
+('3c5765fc6247c66f7dfdf5025e4f20a149cb67fde2cfe1581bed5c8b31efc71ae187bc129281f354', 1, 1, 'MyApp', '[]', 0, '2019-03-06 02:11:39', '2019-03-06 02:11:39', '2020-03-06 09:11:39'),
 ('4249e06f30ff2bb97b36281c7c3b620529c42f81cf6f97df3e89ddffdb3497780d24b288a258ec84', 1, 1, 'MyApp', '[]', 0, '2019-01-27 03:44:13', '2019-01-27 03:44:13', '2020-01-27 10:44:13'),
+('44b98e380b14f2d2e9ab4173f772f687c50598c865d2a48c92f1944d10f5d5bb5fd5e249c42bf083', 2, 1, 'MyApp', '[]', 0, '2019-03-06 18:10:54', '2019-03-06 18:10:54', '2020-03-07 01:10:54'),
+('4ca4bd9499cc0e69a817bd560d0e0e286dee24ca737b2a4ef8aa8fcf8bf853a0aa6a528994cae1e6', 15, 1, 'MyApp', '[]', 0, '2019-03-05 16:26:02', '2019-03-05 16:26:02', '2020-03-05 23:26:02'),
 ('4ffb575343a1b2f24da2832c7e070c58637eff51ca1641129a2035a3307f943f4724899174c03240', 1, 1, 'MyApp', '[]', 0, '2019-02-03 06:54:16', '2019-02-03 06:54:16', '2020-02-03 13:54:16'),
 ('552afffa18daf61babb943ff425d41860215c4af1852194758992d5006d3e31e5b25ce0db11cceae', 1, 1, 'MyApp', '[]', 0, '2019-01-24 18:10:38', '2019-01-24 18:10:38', '2020-01-25 01:10:38'),
 ('59642d0b260c064283980aca9a87f9fa1cafccf5adba952fee8ddcc6188e66a22786b00bb2c255ec', 1, 1, 'MyApp', '[]', 0, '2019-01-28 16:13:42', '2019-01-28 16:13:42', '2020-01-28 23:13:42'),
@@ -266,12 +289,16 @@ INSERT INTO `oauth_access_tokens` (`id`, `user_id`, `client_id`, `name`, `scopes
 ('6228ff54bd04e75264b38ff6b40b835fc31772897d87485a1d1b2f8882fefb1026e50329ff84886b', 1, 1, 'MyApp', '[]', 0, '2019-02-25 16:12:32', '2019-02-25 16:12:32', '2020-02-25 23:12:32'),
 ('62b59083c846dec3022b7148d4385a9903cc9b39d3b6ba92b0f7f40508fa2524444ea1553089063c', 1, 1, 'MyApp', '[]', 0, '2019-02-21 00:49:05', '2019-02-21 00:49:05', '2020-02-21 07:49:05'),
 ('636f2eb304697b4f5679853e739651c491d2fb4e87f6c8350d247135f44c69b454b86b00b196c184', 2, 1, 'MyApp', '[]', 0, '2019-01-26 09:54:08', '2019-01-26 09:54:08', '2020-01-26 16:54:08'),
+('67b2132deeee6b328c3006303c4459f93037f7f26ce0569f7eefc154018290e707d89bb2c755e03d', 2, 1, 'MyApp', '[]', 0, '2019-03-08 04:30:42', '2019-03-08 04:30:42', '2020-03-08 11:30:42'),
 ('77d92d373a47e116bcd9a32fce558f9b2ae50f81940286cbfaf6c91da5da7a9055407a98e8db5caf', 2, 1, 'MyApp', '[]', 0, '2019-01-28 15:06:53', '2019-01-28 15:06:53', '2020-01-28 22:06:53'),
 ('81208f958f30de438ff9e3d59c66c6b848827cbea101fda6149e7891fc0d078e952b3ea31cd5dbb0', 2, 1, 'MyApp', '[]', 0, '2019-02-11 02:37:44', '2019-02-11 02:37:44', '2020-02-11 09:37:44'),
 ('854499136709eb619d09deffe56c3366f695467b8c44da1ff04d155bef86e15ef6d85a90b52063d5', 2, 1, 'MyApp', '[]', 0, '2019-02-08 23:19:28', '2019-02-08 23:19:28', '2020-02-09 06:19:28'),
 ('8a4ed4483fc4b75a858399a0b4be4a20d471e073867df500bf5a9fe9fad2720aa666e03480fdc886', 1, 1, 'MyApp', '[]', 0, '2019-03-03 15:57:12', '2019-03-03 15:57:12', '2020-03-03 22:57:12'),
+('8c1d60c2de264a007b7bd41568bfb1df770e4fff0bcf3f343402f28cd6a478faab36668d2c05f7cf', 2, 1, 'MyApp', '[]', 0, '2019-03-04 19:41:47', '2019-03-04 19:41:47', '2020-03-05 02:41:47'),
 ('8ea1e935bc97250de64f19507e7e69e34f46843350c18e35f9685625f63aa84001837d62f99d67c9', 3, 1, 'MyApp', '[]', 0, '2019-01-28 15:08:06', '2019-01-28 15:08:06', '2020-01-28 22:08:06'),
+('92d4bd8359c5e65f1d19e0678e18aeda91c2c479a433b5c27c087da0b49bd78dc0414e2360ef38b8', 15, 1, 'MyApp', '[]', 0, '2019-03-05 15:53:18', '2019-03-05 15:53:18', '2020-03-05 22:53:18'),
 ('93cbe06de1d6d375729ec6a98fea931c3a9a6f1881f68cde5cc6919054d1e5c0bfc08e76707ae203', 1, 1, 'MyApp', '[]', 0, '2019-01-24 18:15:06', '2019-01-24 18:15:06', '2020-01-25 01:15:06'),
+('95d3ae45dd24fb31b1dde65e93a9c8b683e03bc031558a139f8f5f356ec0dc51ca0c389ced47a8b6', 2, 1, 'MyApp', '[]', 0, '2019-03-07 23:31:17', '2019-03-07 23:31:17', '2020-03-08 06:31:17'),
 ('97e5e59c1d63e748deabce0d4b04d7c6ce84b5af396f5a44861e325f19035f514b264918a07d845b', 2, 1, 'MyApp', '[]', 0, '2019-01-24 18:53:35', '2019-01-24 18:53:35', '2020-01-25 01:53:35'),
 ('9e0d00352b64f320ac1931d899d843ea59652c43a02a94ec5650c992913a6522b0fbb12ab8a658c4', 2, 1, 'MyApp', '[]', 0, '2019-03-03 16:26:45', '2019-03-03 16:26:45', '2020-03-03 23:26:45'),
 ('9ef4b6e218f1f08b4b38fe7998704e95c40e0de700971df8487a7a5e761f008ed7354aa540091e9c', 2, 1, 'MyApp', '[]', 0, '2019-03-03 16:35:04', '2019-03-03 16:35:04', '2020-03-03 23:35:04'),
@@ -285,15 +312,20 @@ INSERT INTO `oauth_access_tokens` (`id`, `user_id`, `client_id`, `name`, `scopes
 ('c78382c3f809ccf8fc93a45641a2ef966aabe0e176e459b4acfd19943cb45cb173618b827184aa64', 11, 1, 'MyApp', '[]', 0, '2019-02-28 18:24:37', '2019-02-28 18:24:37', '2020-03-01 01:24:37'),
 ('c924457b45a6cb6bbd4a780fac9c758f3836e3530bd8bc790925061c640e02f1e18b968a38043fe7', 1, 1, 'MyApp', '[]', 0, '2019-02-07 03:59:17', '2019-02-07 03:59:17', '2020-02-07 10:59:17'),
 ('cb9e2bc845969d011b68740adc8b5093c5a1018fc8e33b39399d559be12e4f6995b2b6b759540c5f', 1, 1, 'MyApp', '[]', 0, '2019-02-07 04:25:35', '2019-02-07 04:25:35', '2020-02-07 11:25:35'),
+('cbef6816a9903309cfeb42ddf572070bfff5251c201727f9371919c960d464b2ca9c49fa5bbf12fc', 14, 1, 'MyApp', '[]', 0, '2019-03-10 11:04:01', '2019-03-10 11:04:01', '2020-03-10 18:04:01'),
 ('cc23b1a1698663c22a6122332b3ab417a22d6fbe72acb007213727e4783f7581aa377d48697ce54c', 1, 1, 'MyApp', '[]', 0, '2019-02-03 06:03:53', '2019-02-03 06:03:53', '2020-02-03 13:03:53'),
 ('cc8f26ee2b6378832583ec5df48c918f61b7d82725f26c2a6178d9355c5c8758b9978059618aa58d', 2, 1, 'MyApp', '[]', 0, '2019-02-08 23:28:07', '2019-02-08 23:28:07', '2020-02-09 06:28:07'),
 ('d085af0206bad1699cbf6d24859b84b128b0610e724b2b5843778b581667bedcdfa7f27f8a388aaf', 1, 1, 'MyApp', '[]', 0, '2019-02-21 21:42:30', '2019-02-21 21:42:30', '2020-02-22 04:42:30'),
 ('d182143261830bfb83cec8c42f602c7fa7d5975abd00cad5d1078656e40ab7c3dc829dabf561292c', 2, 1, 'MyApp', '[]', 0, '2019-01-24 18:33:31', '2019-01-24 18:33:31', '2020-01-25 01:33:31'),
+('d1fba699935e2ccf8d3c5452104873477563050181d10bd5bc7967b0dcbd341f63f7fe7869d77071', 2, 1, 'MyApp', '[]', 0, '2019-03-06 18:17:13', '2019-03-06 18:17:13', '2020-03-07 01:17:13'),
+('d4b9616e8a94a7928d1c5f9a5a9556c65f7385bdf91d2e0e2a83a1548234c31a3e14e40f327451aa', 1, 1, 'MyApp', '[]', 0, '2019-03-04 19:42:19', '2019-03-04 19:42:19', '2020-03-05 02:42:19'),
 ('d55f964d942315e11c47d1735b623a3ed75d9a989851566c73f0ff8d98a400cc8b4e9c1dc2802a48', 14, 1, 'MyApp', '[]', 0, '2019-02-28 23:01:19', '2019-02-28 23:01:19', '2020-03-01 06:01:19'),
 ('dce018366e871a7e6352ef4f101eceacc6b905f5dfb1a0b09f19057d55b5d57e0e9011cedccfa9c2', 3, 1, 'MyApp', '[]', 0, '2019-02-10 23:33:56', '2019-02-10 23:33:56', '2020-02-11 06:33:56'),
 ('de66eb1c900aa24f58b678f18634804963134e114e8bc7a4eef206c01e43fd7a14083667eaff4459', 2, 1, 'MyApp', '[]', 0, '2019-02-11 02:37:05', '2019-02-11 02:37:05', '2020-02-11 09:37:05'),
+('df10e5705be661de01ab83fa224f6ba9ed07913998089a0d4ede13f46c08739fd6fb86714764d327', 1, 1, 'MyApp', '[]', 0, '2019-03-07 20:38:52', '2019-03-07 20:38:52', '2020-03-08 03:38:52'),
 ('e0eda42ce16b5ffaf0bbb928ed09d37a212393a39c703d22142a24f49450382b24a85a0cd3163f88', 1, 1, 'MyApp', '[]', 0, '2019-02-03 15:24:04', '2019-02-03 15:24:04', '2020-02-03 22:24:04'),
 ('e682b316f02be083a3c9d5df77d07f2ad99123dae53a3ef78c9751894f2ae245cac044c6a06099e9', 1, 1, 'MyApp', '[]', 0, '2019-02-03 07:42:27', '2019-02-03 07:42:27', '2020-02-03 14:42:27'),
+('e8c1defe8c205b028d1c03d6bf75b6bd654a15b04e3aa882904d2545de9ee308dd1fee7c0da02156', 2, 1, 'MyApp', '[]', 0, '2019-03-10 11:14:29', '2019-03-10 11:14:29', '2020-03-10 18:14:29'),
 ('ec4fb26ebaa85a9f551ba0e4cdd6a50bc94f54fb8b4dfe9e9af62ba081ca27879673b338d606ef81', 3, 1, 'MyApp', '[]', 0, '2019-02-07 04:47:23', '2019-02-07 04:47:23', '2020-02-07 11:47:23'),
 ('ecff4759545b6eacb5614219bfd14b2521df6e51a88c4aa7f87caaf8600c09efaf6a7b2fb4730c54', 1, 1, 'MyApp', '[]', 0, '2019-01-27 02:47:46', '2019-01-27 02:47:46', '2020-01-27 09:47:46'),
 ('edb2c3b253e861d3d84b3bd86e6be15b4401e80eace1cb0e080cd080651b999f5820bdc6c67eaa16', 4, 1, 'MyApp', '[]', 0, '2019-02-15 02:53:43', '2019-02-15 02:53:43', '2020-02-15 09:53:43'),
@@ -390,52 +422,51 @@ CREATE TABLE `password_resets` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `reports`
+-- Table structure for table `statustasks`
 --
 
-CREATE TABLE `reports` (
+CREATE TABLE `statustasks` (
   `id` int(10) UNSIGNED NOT NULL,
-  `farm_id` int(11) NOT NULL,
-  `deskripsi` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id_task` int(11) NOT NULL,
+  `id_farm_manager` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `reports`
+-- Dumping data for table `statustasks`
 --
 
-INSERT INTO `reports` (`id`, `farm_id`, `deskripsi`, `created_at`, `updated_at`) VALUES
-(1, 2, 'ini tes tes tes', '2019-02-11 02:38:10', '2019-02-11 02:38:10'),
-(2, 2, 'report 2', '2019-02-11 02:38:23', '2019-02-11 02:38:23'),
-(3, 2, 'report 3', '2019-02-11 02:38:29', '2019-02-11 02:38:29'),
-(4, 3, 'report farm 2', '2019-02-11 02:38:39', '2019-02-11 02:38:39'),
-(5, 3, 'report farm 2..', '2019-02-11 02:38:46', '2019-02-11 02:38:46');
+INSERT INTO `statustasks` (`id`, `id_task`, `id_farm_manager`, `status`, `created_at`, `updated_at`) VALUES
+(1, 1, '2', 1, '2019-03-04 21:47:55', '2019-03-04 21:47:55'),
+(2, 2, '2', 0, '2019-03-04 21:47:55', '2019-03-04 21:47:55'),
+(3, 1, '15', 1, '2019-03-05 15:54:04', '2019-03-05 16:45:48'),
+(4, 2, '15', 0, '2019-03-05 15:54:04', '2019-03-05 15:54:04');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `schedules`
+-- Table structure for table `tasks`
 --
 
-CREATE TABLE `schedules` (
+CREATE TABLE `tasks` (
   `id` int(10) UNSIGNED NOT NULL,
-  `farm_id` int(11) NOT NULL,
-  `task` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` int(11) NOT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `image` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id_pemilik_lahan` int(11) NOT NULL,
+  `title` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id_term` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `schedules`
+-- Dumping data for table `tasks`
 --
 
-INSERT INTO `schedules` (`id`, `farm_id`, `task`, `status`, `description`, `image`, `created_at`, `updated_at`) VALUES
-(4, 1, 'Pengarirannn', 0, 'contoh pengaairan kopi', 'images/1549867811.jpg', '2019-02-10 23:50:11', '2019-02-10 23:50:11'),
-(5, 2, 'pengairan', 0, 'contoh pengairan', 'images/1549868106.jpg', '2019-02-10 23:55:06', '2019-02-10 23:55:06');
+INSERT INTO `tasks` (`id`, `id_pemilik_lahan`, `title`, `description`, `id_term`, `created_at`, `updated_at`) VALUES
+(1, 1, 'nyangkul', 'ya nyangkul', 1, '2019-03-04 04:25:56', '2019-03-04 04:25:56'),
+(2, 1, 'nyiram', 'ya nyiram', 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -487,16 +518,38 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `role`, `password`, `remember_token`, `created_at`, `updated_at`, `devicetoken`, `no_hp`, `alamat`, `foto`) VALUES
-(1, 'James', 'pemiliklahan@gmail.com', 1, '$2y$10$LD4Kt48NdGkRDSsx5ZAGuunhKASWqlOpWIvG9JEV7hmro7dtIxge.', NULL, '2019-01-24 18:10:37', '2019-03-03 15:57:12', '', '', '', ''),
-(2, 'Budi', 'farmmanager@gmail.com', 2, '$2y$10$4gZu2zN/0baEdB3cc1DNF.OGbDvoEC1RSA1g4xf.qV8QP4FQHGXiS', NULL, '2019-01-24 18:33:31', '2019-03-03 16:35:05', '', '', '', ''),
+(1, 'James', 'pemiliklahan@gmail.com', 1, '$2y$10$LD4Kt48NdGkRDSsx5ZAGuunhKASWqlOpWIvG9JEV7hmro7dtIxge.', NULL, '2019-01-24 18:10:37', '2019-03-10 10:57:52', '', '', '', ''),
+(2, 'Watanabe', 'farmmanager@gmail.com', 2, '$2y$10$4gZu2zN/0baEdB3cc1DNF.OGbDvoEC1RSA1g4xf.qV8QP4FQHGXiS', NULL, '2019-01-24 18:33:31', '2019-03-10 11:14:30', '', '08217391465', 'Jln PegangTimur', 'http://api.inacrop.com/laravel/public/images/1552045260.jpg'),
 (3, 'Lara Croft', 'ahlipraktisi@gmail.com', 3, '$2y$10$LD4Kt48NdGkRDSsx5ZAGuunhKASWqlOpWIvG9JEV7hmro7dtIxge.', NULL, '2019-01-27 00:22:10', '2019-02-22 23:49:14', '', '0124612464', 'balebak', ''),
 (4, 'mahatir', 'ahlipraktisi2@gmail.com', 3, '$2y$10$BrZ5ega/lIfyT1r.W/oQRuXsv230vw5E8xCEcb3i9ILITr9DfrVWq', NULL, '2019-02-07 04:45:03', '2019-02-15 02:53:43', '', '', '', ''),
 (8, 'Slamet Pangarep', 'ahlikopi@gmail.com', 3, '$2y$10$BrZ5ega/lIfyT1r.W/oQRuXsv230vw5E8xCEcb3i9ILITr9DfrVWq', NULL, '2019-02-22 16:27:11', '2019-02-22 16:27:11', NULL, NULL, NULL, NULL),
 (9, 'Hayami Saori', 'ahlijagung@gmail.com', 3, '$2y$10$BrZ5ega/lIfyT1r.W/oQRuXsv230vw5E8xCEcb3i9ILITr9DfrVWq', NULL, '2019-02-22 16:35:57', '2019-02-22 16:35:57', NULL, NULL, NULL, NULL),
 (11, 'wuik', 'wira@gmail.com', 3, '$2y$10$jEBKcjNDR0f3WPu8TQCfP.vW3aSmrEjUM2Wm0K3OLEEfGueqDYztq', NULL, '2019-02-28 18:23:53', '2019-02-28 18:24:37', '', NULL, NULL, NULL),
-(12, 'Nier', 'farmmanager2@gmail.com', 3, '$2y$10$AbumpHTAWqN8qHTzZY6w.ePeGwnS/mN7nXzxyzewZWj65zrOA1wl6', NULL, '2019-02-28 20:46:30', '2019-02-28 20:46:30', NULL, NULL, NULL, NULL),
-(13, 'Haruka Kanagawa', 'farmmanager3@gmail.com', 3, '$2y$10$lg74G58261H4/LNPtVXCreJSfVVDesi3NehSDiFuCU30YLJSBm4Aa', NULL, '2019-02-28 20:49:25', '2019-02-28 20:49:53', '', NULL, NULL, NULL),
-(14, 'Saya Kawamoto', 'sayaya@gmail.com', 1, '$2y$10$7yUGJ2.YSTTV3zBrBUmS0uFxOSoeB2ySlYE8/1Vv/aJSxZn7FEiFm', NULL, '2019-02-28 23:00:17', '2019-03-02 16:44:02', '', NULL, NULL, NULL);
+(12, 'Nier', 'farmmanager2@gmail.com', 2, '$2y$10$AbumpHTAWqN8qHTzZY6w.ePeGwnS/mN7nXzxyzewZWj65zrOA1wl6', NULL, '2019-02-28 20:46:30', '2019-02-28 20:46:30', NULL, NULL, NULL, NULL),
+(13, 'Haruka Kanagawa', 'farmmanager3@gmail.com', 2, '$2y$10$lg74G58261H4/LNPtVXCreJSfVVDesi3NehSDiFuCU30YLJSBm4Aa', NULL, '2019-02-28 20:49:25', '2019-02-28 20:49:53', '', NULL, NULL, NULL),
+(14, 'Saya Kawamoto', 'sayaya@gmail.com', 1, '$2y$10$7yUGJ2.YSTTV3zBrBUmS0uFxOSoeB2ySlYE8/1Vv/aJSxZn7FEiFm', NULL, '2019-02-28 23:00:17', '2019-03-10 11:04:01', '', NULL, NULL, NULL),
+(15, 'Yuvi', 'yuvi@gmail.com', 2, '$2y$10$METowo52aai0xUrLPjc/ZOgLMv9n.wJmzzy6DSaczC2MV4VNCHdpy', NULL, '2019-03-05 15:52:37', '2019-03-08 04:51:51', '', '08787788777', 'jakarta', 'http://api.inacrop.com/laravel/public/images/1552045415.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `varietas`
+--
+
+CREATE TABLE `varietas` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(225) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `varietas`
+--
+
+INSERT INTO `varietas` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 'oryza satyva', NULL, NULL),
+(2, 'laksuma zenus', NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -515,12 +568,6 @@ ALTER TABLE `farms`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `forms`
---
-ALTER TABLE `forms`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `groupfarms`
 --
 ALTER TABLE `groupfarms`
@@ -530,6 +577,12 @@ ALTER TABLE `groupfarms`
 -- Indexes for table `komoditas`
 --
 ALTER TABLE `komoditas`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `laporans`
+--
+ALTER TABLE `laporans`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -585,15 +638,15 @@ ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`);
 
 --
--- Indexes for table `reports`
+-- Indexes for table `statustasks`
 --
-ALTER TABLE `reports`
+ALTER TABLE `statustasks`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `schedules`
+-- Indexes for table `tasks`
 --
-ALTER TABLE `schedules`
+ALTER TABLE `tasks`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -610,6 +663,12 @@ ALTER TABLE `users`
   ADD UNIQUE KEY `users_email_unique` (`email`);
 
 --
+-- Indexes for table `varietas`
+--
+ALTER TABLE `varietas`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -623,13 +682,7 @@ ALTER TABLE `assignfarms`
 -- AUTO_INCREMENT for table `farms`
 --
 ALTER TABLE `farms`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `forms`
---
-ALTER TABLE `forms`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `groupfarms`
@@ -644,6 +697,12 @@ ALTER TABLE `komoditas`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
+-- AUTO_INCREMENT for table `laporans`
+--
+ALTER TABLE `laporans`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- AUTO_INCREMENT for table `messages`
 --
 ALTER TABLE `messages`
@@ -653,7 +712,7 @@ ALTER TABLE `messages`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `oauth_clients`
@@ -668,16 +727,16 @@ ALTER TABLE `oauth_personal_access_clients`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `reports`
+-- AUTO_INCREMENT for table `statustasks`
 --
-ALTER TABLE `reports`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+ALTER TABLE `statustasks`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `schedules`
+-- AUTO_INCREMENT for table `tasks`
 --
-ALTER TABLE `schedules`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+ALTER TABLE `tasks`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `terms`
@@ -689,7 +748,13 @@ ALTER TABLE `terms`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT for table `varietas`
+--
+ALTER TABLE `varietas`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

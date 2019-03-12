@@ -78,26 +78,6 @@ use Illuminate\Http\Request;
 
 
 
- //Upload FILE
- /**
- * @SWG\Post(
- *   tags={"File"},
- *   path="/image",
- *   summary="Image Upload",
- *   operationId="ImageUpload",
- *   @SWG\Parameter(
- *     name="image",
- *     in="formData",
- *     type="file",
- *     description="the file you upload",
- *   ),
- *   @SWG\Response(response=200, description="successful"),
- *   security={{"Bearer":{}}}
- * )
- *
- */
-
-
 class SampleController extends Controller
 {
     /**

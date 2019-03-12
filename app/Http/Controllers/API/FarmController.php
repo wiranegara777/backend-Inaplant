@@ -6,6 +6,7 @@ use App\Farm;
 use App\User; 
 use App\Groupfarm;
 use App\Term;
+use App\Varietas;
 use Illuminate\Support\Facades\Auth; 
 use Validator;
 use Illuminate\Support\Facades\DB;
@@ -60,7 +61,7 @@ public $successStatus = 200;
         if($Groupfarm != NULL){
             return response()->json(['success'=>$Groupfarm], $this-> successStatus);
         } else {
-            return response()->json(['error'=>'failed to fetch'], 401);
+            return response()->json(['error'=>'groupfarm not found !'], 401);
         }
         
     }
@@ -86,19 +87,21 @@ public $successStatus = 200;
         if($terms != NULL){
             return response()->json(['data' => $terms], $this-> successStatus);
         } else {
-            return response()->json(['error'=>'failed to get'], 401);
+            return response()->json(['error'=>'terms not found !'], 401);
         }
     }
 
     //EDIT FARM PROFILE 
     public function editFarm(Request $request, $id_farm){
             $farm = Farm::find($id_farm);
-            $farm->update($request->only(['jumlah_pohon','varietas','siklus_pertumbuhan',
-            'panen_pertama','panen_terakhir','jumlah_produksi_pertahun','latitude_longtitude_1',
-            'latitude_longtitude_2','latitude_longtitude_3','latitude_longtitude_4',]));
-            
-            return response()->json(['success' => 'success edit farm profile !'], $this-> successStatus);
-        
+            if($farm != NULL){
+                $farm->update($request->only(['jumlah_pohon','varietas','siklus_pertumbuhan',
+                'panen_pertama','panen_terakhir','jumlah_produksi_pertahun','latitude_longtitude_1',
+                'latitude_longtitude_2','latitude_longtitude_3','latitude_longtitude_4',]));
+                return response()->json(['success' => 'success edit farm profile !'], $this-> successStatus);
+            }else{
+                return response()->json(['error' => 'farm not found !'], 401);
+            }         
     }
 
     public function getPemiliklahan(){
@@ -109,12 +112,31 @@ public $successStatus = 200;
                 $group = Groupfarm::find($Groupfarm->id_group_farm);
                 return response()->json(['success' => $group], $this-> successStatus);
             } else {
-                return response()->json(['failed' => 'failed to fetch'], 401);
+                return response()->json(['failed' => 'you are not assigned to groupfarm !'], 401);
             }   
         } else {
             return response()->json(['failed' => 'you are not logged in as farmmanager'], $this-> successStatus);
         }
      
+    }
+
+    public function getFarm($id_farm){
+        $farm = Farm::find($id_farm);
+        if($farm == NULL){
+            return response()->json(['error' => 'farm not found !'], $this-> successStatus);
+        }else{
+            $varietas = Varietas::find($farm->varietas);
+            $farm['varietas'] = $varietas;
+            return response()->json(['success' => $farm], $this-> successStatus);
+        }
+       
+     
+    }
+
+    public function getVarietas(){
+        $varietas = Varietas::all();
+        return response()->json(['success' => $varietas], $this-> successStatus);
+
     }
 
 }

@@ -115,7 +115,7 @@
  * @SWG\Put(
  *   tags={"farm"},
  *   path="/farm/{id_farm}",
- *   summary="edit profile farm",
+ *   summary="edit profile farm (note : bisa isi salah satu, dua,dst atau semua attribut)",
  *   operationId="editProfilFarm",
  *   @SWG\Parameter(
  *     name="id_farm",
@@ -183,8 +183,42 @@
  * @SWG\Get(
  *   tags={"user"},
  *   path="/user_groupfarm",
- *   summary="get groupfarm that associated by user",
+ *   summary="get groupfarm that associated to farmmanager",
  *   operationId="getgroupfarmuser",
+ *   @SWG\Response(response=200, description="successful"),
+ *   @SWG\Response(response=401, description="unauthenticated"),
+ *   security={{"Bearer":{}}}
+ * )
+ *
+ */
+
+   //GET Detail farm
+ /**
+ * @SWG\Get(
+ *   tags={"farm"},
+ *   path="/farm/{id_farm}",
+ *   summary="get detailFarm by id_farm",
+ *   operationId="getdetailfarmm",
+ *   @SWG\Parameter(
+ *     name="id_farm",
+ *     in="path",
+ *     type="integer",
+ *     description="farm id",
+ *   ),
+ *   @SWG\Response(response=200, description="successful"),
+ *   @SWG\Response(response=401, description="unauthenticated"),
+ *   security={{"Bearer":{}}}
+ * )
+ *
+ */
+
+    //GET list TERM
+ /**
+ * @SWG\Get(
+ *   tags={"varietas"},
+ *   path="/varietas",
+ *   summary="get all varietas",
+ *   operationId="getallvarietas",
  *   @SWG\Response(response=200, description="successful"),
  *   @SWG\Response(response=401, description="unauthenticated"),
  *   security={{"Bearer":{}}}

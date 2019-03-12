@@ -46,7 +46,11 @@ class TaskController extends Controller
                 $array_task['status'] = $status->status;
                 array_push($sum,$array_task); 
             }
-            return response()->json(['success' => $sum], $this-> successStatus);
+            if($sum == NULL){
+                return response()->json(['error' => 'Tasks not found !'], 401);
+            }else{
+                return response()->json(['success' => $sum], $this-> successStatus);
+            }
         }else{
             $sum = 0;
             $tasks = DB::table('tasks')->where('id_pemilik_lahan', $id_pemilik_lahan)->get();
@@ -62,7 +66,11 @@ class TaskController extends Controller
                 $statustask->status = 0;
                 $statustask->save();
             }
-            return response()->json(['success' => $sum], $this-> successStatus);
+            if($sum == NULL){
+                return response()->json(['error' => 'Tasks not found !'], 401);
+            }else{
+                return response()->json(['success' => $sum], $this-> successStatus);
+            }      
         }
     }
 
@@ -70,28 +78,43 @@ class TaskController extends Controller
     public function getDetailtask($id_task){
         $user = Auth::user();
         $id_farm_manager = $user->id;
-        $task = DB::table('tasks')->where('id', $id_task)->first();
-        $task = (array) $task;
-        $status = DB::table('statustasks')->where([
-            ['id_task','=', $id_task],
-            ['id_farm_manager','=',$id_farm_manager]
-            ])->first();
-        $task['status'] = $status->status;
+        if($user->role == 2){
+            $task = DB::table('tasks')->where('id', $id_task)->first();
+            $task = (array) $task;
+            $status = DB::table('statustasks')->where([
+                ['id_task','=', $id_task],
+                ['id_farm_manager','=',$id_farm_manager]
+                ])->first();
+            $task['status'] = $status->status;
 
-        return response()->json(['success' => $task], $this-> successStatus);
+            return response()->json(['success' => $task], $this-> successStatus);
+        }else{
+            return response()->json(['failed' => 'you are not logged in as farm manager'], 401);
+
+        }
+        
     }
 
     public function updateStatustask($id_task){
         $user = Auth::user();
         $id_farm_manager = $user->id;
-        $status = DB::table('statustasks')->where([
-            ['id_task','=', $id_task],
-            ['id_farm_manager','=',$id_farm_manager]
-            ])->first();
-        $status = Statustask::find($status->id);
-        $status->status = 1;
-        $status->save();
+        try {
+            $status = DB::table('statustasks')->where([
+                ['id_task','=', $id_task],
+                ['id_farm_manager','=',$id_farm_manager]
+                ])->first();
+            }
+            catch (\Exception $e) {
+              $status=NULL;
+            }
+        if($status != NULL){
+            $status = Statustask::find($status->id);
+            $status->status = 1;
+            $status->save();
+            return response()->json(['success' => 'update status task success'], 401);
+        }else{
+            return response()->json(['error' => 'Task not found'], $this-> successStatus);
+        }
 
-        return response()->json(['success' => 'update status task success'], $this-> successStatus);
     }
 }

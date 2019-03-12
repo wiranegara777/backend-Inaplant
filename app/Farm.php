@@ -11,4 +11,11 @@ class Farm extends Model
     'jumlah_produksi_pertahun','latitude_longtitude_1','latitude_longtitude_2',
     'latitude_longtitude_3','latitude_longtitude_4','id_farm_manager'
 ];
+
+public function varietas(){
+    return $this->hasOne('App\Varietas','id','varietas');
 }
+
+}
+
+

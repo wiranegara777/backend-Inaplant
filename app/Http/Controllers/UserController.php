@@ -113,10 +113,10 @@ use Illuminate\Http\Request;
 
   // edit Profile
 /**
- * @SWG\Put(
+ * @SWG\Post(
  *   tags={"user"},
  *   path="/user/{id}",
- *   summary="edit profile user",
+ *   summary="edit profile user (note : bisa isi salah satu, dua,dst atau semua attribut)",
  *   operationId="editProfilUser",
  *   @SWG\Parameter(
  *     name="id",
@@ -125,28 +125,34 @@ use Illuminate\Http\Request;
  *     description="user id",
  *   ),
  *   @SWG\Parameter(
- *     name="body",
- *     in="body",
- *     required=true,
- *     description="Login first before using this api",
- *     @SWG\Schema( 
- *          @SWG\Property(
- *              property="name",
- *              type="string"
- *          ),
- *          @SWG\Property(
- *              property="email",
- *              type="string"
- *          ),
- *          @SWG\Property(
- *              property="no_hp",
- *              type="string"
- *          ),
- *          @SWG\Property(
- *              property="alamat",
- *              type="string"
- *          ),
- *     )
+ *     name="foto",
+ *     in="formData",
+ *     type="file",
+ *     description="foto user",
+ *   ),
+ *   @SWG\Parameter(
+ *     name="name",
+ *     in="formData",
+ *     type="string",
+ *     description="nama profil",
+ *   ),
+ *   @SWG\Parameter(
+ *     name="email",
+ *     in="formData",
+ *     type="string",
+ *     description="email user",
+ *   ),
+ *   @SWG\Parameter(
+ *     name="no_hp",
+ *     in="formData",
+ *     type="string",
+ *     description="nomor hp user",
+ *   ),
+ *   @SWG\Parameter(
+ *     name="alamat",
+ *     in="formData",
+ *     type="string",
+ *     description="alamat",
  *   ),
  *   @SWG\Response(response=200, description="successful operation"),
  *   @SWG\Response(response=401, description="unauthorized"),
@@ -155,30 +161,6 @@ use Illuminate\Http\Request;
  *
  */
 
- //Upload FILE
- /**
- * @SWG\Post(
- *   tags={"user"},
- *   path="/user_foto/{id}",
- *   summary="edit foto user",
- *   operationId="ImageUploadUser",
- *   @SWG\Parameter(
- *     name="id",
- *     in="path",
- *     type="integer",
- *     description="user id",
- *   ),
- *   @SWG\Parameter(
- *     name="image",
- *     in="formData",
- *     type="file",
- *     description="the file you upload",
- *   ),
- *   @SWG\Response(response=200, description="successful"),
- *   security={{"Bearer":{}}}
- * )
- *
- */
 
  // ASSIGN FARM MANAGER API
 /**

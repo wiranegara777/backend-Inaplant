@@ -150,11 +150,39 @@
             }
         },
         "/farm/{id_farm}": {
+            "get": {
+                "tags": [
+                    "farm"
+                ],
+                "summary": "get detailFarm by id_farm",
+                "operationId": "getdetailfarmm",
+                "parameters": [
+                    {
+                        "name": "id_farm",
+                        "in": "path",
+                        "description": "farm id",
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful"
+                    },
+                    "401": {
+                        "description": "unauthenticated"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            },
             "put": {
                 "tags": [
                     "farm"
                 ],
-                "summary": "edit profile farm",
+                "summary": "edit profile farm (note : bisa isi salah satu, dua,dst atau semua attribut)",
                 "operationId": "editProfilFarm",
                 "parameters": [
                     {
@@ -224,8 +252,145 @@
                 "tags": [
                     "user"
                 ],
-                "summary": "get groupfarm that associated by user",
+                "summary": "get groupfarm that associated to farmmanager",
                 "operationId": "getgroupfarmuser",
+                "responses": {
+                    "200": {
+                        "description": "successful"
+                    },
+                    "401": {
+                        "description": "unauthenticated"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
+        "/varietas": {
+            "get": {
+                "tags": [
+                    "varietas"
+                ],
+                "summary": "get all varietas",
+                "operationId": "getallvarietas",
+                "responses": {
+                    "200": {
+                        "description": "successful"
+                    },
+                    "401": {
+                        "description": "unauthenticated"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
+        "/laporan": {
+            "post": {
+                "tags": [
+                    "Laporan"
+                ],
+                "summary": "post laporan",
+                "operationId": "laporanPost",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "formData",
+                        "description": "name Laporan",
+                        "type": "string"
+                    },
+                    {
+                        "name": "note",
+                        "in": "formData",
+                        "description": "Note from farmmanager",
+                        "type": "string"
+                    },
+                    {
+                        "name": "varietas",
+                        "in": "formData",
+                        "description": "varietas tanaman",
+                        "type": "string"
+                    },
+                    {
+                        "name": "is_overdue",
+                        "in": "formData",
+                        "description": "is overdue",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "foto1",
+                        "in": "formData",
+                        "description": "optional foto1",
+                        "type": "file"
+                    },
+                    {
+                        "name": "foto2",
+                        "in": "formData",
+                        "description": "optional foto2",
+                        "type": "file"
+                    },
+                    {
+                        "name": "foto3",
+                        "in": "formData",
+                        "description": "optional foto3",
+                        "type": "file"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
+        "/laporans": {
+            "get": {
+                "tags": [
+                    "Laporan"
+                ],
+                "summary": "get list laporan by pemilik lahan",
+                "operationId": "getlistlaporan",
+                "responses": {
+                    "200": {
+                        "description": "successful"
+                    },
+                    "401": {
+                        "description": "unauthenticated"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
+        "/laporan/{id_laporan}": {
+            "get": {
+                "tags": [
+                    "Laporan"
+                ],
+                "summary": "get detaillaporan by id laporan",
+                "operationId": "getdetaillaporanbyid",
+                "parameters": [
+                    {
+                        "name": "id_laporan",
+                        "in": "path",
+                        "description": "id laporan",
+                        "type": "integer"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "successful"
@@ -324,33 +489,6 @@
                 ]
             }
         },
-        "/image": {
-            "post": {
-                "tags": [
-                    "File"
-                ],
-                "summary": "Image Upload",
-                "operationId": "ImageUpload",
-                "parameters": [
-                    {
-                        "name": "image",
-                        "in": "formData",
-                        "description": "the file you upload",
-                        "type": "file"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful"
-                    }
-                },
-                "security": [
-                    {
-                        "Bearer": []
-                    }
-                ]
-            }
-        },
         "/task": {
             "post": {
                 "tags": [
@@ -402,7 +540,7 @@
                 "tags": [
                     "Task"
                 ],
-                "summary": "get list user by role",
+                "summary": "get list task",
                 "operationId": "fetchlisttask",
                 "parameters": [
                     {
@@ -432,13 +570,13 @@
                 "tags": [
                     "Task"
                 ],
-                "summary": "get detail task",
+                "summary": "get detail task by farmmanager",
                 "operationId": "fetchdetailtask",
                 "parameters": [
                     {
                         "name": "id_task",
                         "in": "path",
-                        "description": "you need login first before using this api",
+                        "description": "you need login as farmmanager first before using this api",
                         "type": "integer"
                     }
                 ],
@@ -544,11 +682,11 @@
                     }
                 ]
             },
-            "put": {
+            "post": {
                 "tags": [
                     "user"
                 ],
-                "summary": "edit profile user",
+                "summary": "edit profile user (note : bisa isi salah satu, dua,dst atau semua attribut)",
                 "operationId": "editProfilUser",
                 "parameters": [
                     {
@@ -558,26 +696,34 @@
                         "type": "integer"
                     },
                     {
-                        "name": "body",
-                        "in": "body",
-                        "description": "Login first before using this api",
-                        "required": true,
-                        "schema": {
-                            "properties": {
-                                "name": {
-                                    "type": "string"
-                                },
-                                "email": {
-                                    "type": "string"
-                                },
-                                "no_hp": {
-                                    "type": "string"
-                                },
-                                "alamat": {
-                                    "type": "string"
-                                }
-                            }
-                        }
+                        "name": "foto",
+                        "in": "formData",
+                        "description": "foto user",
+                        "type": "file"
+                    },
+                    {
+                        "name": "name",
+                        "in": "formData",
+                        "description": "nama profil",
+                        "type": "string"
+                    },
+                    {
+                        "name": "email",
+                        "in": "formData",
+                        "description": "email user",
+                        "type": "string"
+                    },
+                    {
+                        "name": "no_hp",
+                        "in": "formData",
+                        "description": "nomor hp user",
+                        "type": "string"
+                    },
+                    {
+                        "name": "alamat",
+                        "in": "formData",
+                        "description": "alamat",
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -674,39 +820,6 @@
                         "description": "unauthorized"
                     }
                 }
-            }
-        },
-        "/user_foto/{id}": {
-            "post": {
-                "tags": [
-                    "user"
-                ],
-                "summary": "edit foto user",
-                "operationId": "ImageUploadUser",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "user id",
-                        "type": "integer"
-                    },
-                    {
-                        "name": "image",
-                        "in": "formData",
-                        "description": "the file you upload",
-                        "type": "file"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful"
-                    }
-                },
-                "security": [
-                    {
-                        "Bearer": []
-                    }
-                ]
             }
         },
         "/assign": {
