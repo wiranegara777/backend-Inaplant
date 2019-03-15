@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 10, 2019 at 07:31 PM
+-- Generation Time: Mar 14, 2019 at 07:36 AM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.2.14
 
@@ -71,7 +71,7 @@ CREATE TABLE `farms` (
 --
 
 INSERT INTO `farms` (`id`, `jumlah_pohon`, `varietas`, `siklus_pertumbuhan`, `panen_pertama`, `panen_terakhir`, `jumlah_produksi_pertahun`, `latitude_longtitude_1`, `latitude_longtitude_2`, `latitude_longtitude_3`, `latitude_longtitude_4`, `id_farm_manager`, `created_at`, `updated_at`) VALUES
-(1, 13, '1', 'string', '2019-03-03 23:30:48', '2019-03-03 23:30:48', 12, 'string', 'string', 'string', 'string', 12, '2019-02-28 20:46:30', '2019-03-03 16:37:24'),
+(1, 46, '1', 'string', '2019-03-03 23:30:48', '2019-03-03 23:30:48', 12, 'string', 'string', 'string', 'string', 12, '2019-02-28 20:46:30', '2019-03-12 04:02:02'),
 (2, 13, '1', 'string', '2019-03-03 23:30:48', '2019-03-03 23:30:48', 12, 'string', 'string', 'string', 'string', 13, '2019-02-28 20:49:25', '2019-03-03 16:37:39'),
 (3, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 15, '2019-03-05 15:52:37', '2019-03-05 15:52:37');
 
@@ -269,7 +269,9 @@ INSERT INTO `oauth_access_tokens` (`id`, `user_id`, `client_id`, `name`, `scopes
 ('23fd3db64099cda6772326cc0786af593b119f3182101db7a6b1782cffa0b22636bd242b774f195e', 1, 1, 'MyApp', '[]', 0, '2019-01-27 03:38:06', '2019-01-27 03:38:06', '2020-01-27 10:38:06'),
 ('27d9700d4871b3ecdfd4f9c668647adb7456c639a0932854dca01362d8bb7a42571759915ebe995c', 1, 1, 'MyApp', '[]', 0, '2019-01-24 18:25:02', '2019-01-24 18:25:02', '2020-01-25 01:25:02'),
 ('27f1394fdc9d41fdf9ccf49605b84313873dead618860092d6ef1d646211c31fdba1c18f1c5e855f', 1, 1, 'MyApp', '[]', 0, '2019-01-27 00:58:12', '2019-01-27 00:58:12', '2020-01-27 07:58:12'),
+('2a7fe42eadebf6102fbb27e5bbd478001a000229efe8a743da8e88c5cddefce5b0082195046ae779', 1, 1, 'MyApp', '[]', 0, '2019-03-13 23:35:18', '2019-03-13 23:35:18', '2020-03-14 06:35:18'),
 ('2aff5bfe2a9f2baacfca7e2df4052d98b9b9d4893832fc03fb4dd0cd551ac4d8fbae88852dfd0ac5', 15, 1, 'MyApp', '[]', 0, '2019-03-08 04:51:51', '2019-03-08 04:51:51', '2020-03-08 11:51:51'),
+('2bea0c0f14570a6a575cecb16af362c2422d5b977c460187e0e6dd731b2d6846a0f68d1115f0aff3', 1, 1, 'MyApp', '[]', 0, '2019-03-13 23:12:34', '2019-03-13 23:12:34', '2020-03-14 06:12:34'),
 ('30cee2787f54f23a97c74fb25051bebf596f44d7141647e6a943a80365ca83e95cb8cb15002942a8', 1, 1, 'MyApp', '[]', 0, '2019-01-24 18:15:09', '2019-01-24 18:15:09', '2020-01-25 01:15:09'),
 ('31ccd5e9bf85ec8a93a6ac0f15d7b4f38a50b47eb689c4fb2f41eef766b9a6d949c673b4b5ec4563', 1, 1, 'MyApp', '[]', 0, '2019-01-24 18:15:12', '2019-01-24 18:15:12', '2020-01-25 01:15:12'),
 ('35e1f4c4aad3275728cf490c54a5b1a462b965cf18d03fe69642d4ee53f8eca4b5a74afb8a743371', 2, 1, 'MyApp', '[]', 0, '2019-03-04 19:54:09', '2019-03-04 19:54:09', '2020-03-05 02:54:09'),
@@ -281,8 +283,10 @@ INSERT INTO `oauth_access_tokens` (`id`, `user_id`, `client_id`, `name`, `scopes
 ('44b98e380b14f2d2e9ab4173f772f687c50598c865d2a48c92f1944d10f5d5bb5fd5e249c42bf083', 2, 1, 'MyApp', '[]', 0, '2019-03-06 18:10:54', '2019-03-06 18:10:54', '2020-03-07 01:10:54'),
 ('4ca4bd9499cc0e69a817bd560d0e0e286dee24ca737b2a4ef8aa8fcf8bf853a0aa6a528994cae1e6', 15, 1, 'MyApp', '[]', 0, '2019-03-05 16:26:02', '2019-03-05 16:26:02', '2020-03-05 23:26:02'),
 ('4ffb575343a1b2f24da2832c7e070c58637eff51ca1641129a2035a3307f943f4724899174c03240', 1, 1, 'MyApp', '[]', 0, '2019-02-03 06:54:16', '2019-02-03 06:54:16', '2020-02-03 13:54:16'),
+('51233aef765f10829d4236b56bd58be9d1a9ca07c21c2e13e65ac1d14b1201f6d3279376e5e00eb6', 14, 1, 'MyApp', '[]', 0, '2019-03-12 04:17:02', '2019-03-12 04:17:02', '2020-03-12 11:17:02'),
 ('552afffa18daf61babb943ff425d41860215c4af1852194758992d5006d3e31e5b25ce0db11cceae', 1, 1, 'MyApp', '[]', 0, '2019-01-24 18:10:38', '2019-01-24 18:10:38', '2020-01-25 01:10:38'),
 ('59642d0b260c064283980aca9a87f9fa1cafccf5adba952fee8ddcc6188e66a22786b00bb2c255ec', 1, 1, 'MyApp', '[]', 0, '2019-01-28 16:13:42', '2019-01-28 16:13:42', '2020-01-28 23:13:42'),
+('5da84a32d0eedb5bd6b0600df12d316999bd43bd4ea76610a26183a043fa594416166cc58369404e', 1, 1, 'MyApp', '[]', 0, '2019-03-13 23:31:01', '2019-03-13 23:31:01', '2020-03-14 06:31:01'),
 ('5e24464541a13977e6958245c1ae35b6653809051e42fc53fec88a8964afc426ec78e348af362230', 3, 1, 'MyApp', '[]', 0, '2019-02-11 06:15:32', '2019-02-11 06:15:32', '2020-02-11 13:15:32'),
 ('5f9e40a553b47c449df81dcb5ebc7985edee067812d0cde3cc6643f6144c274ce922041ff17f4155', 1, 1, 'MyApp', '[]', 0, '2019-01-30 19:13:50', '2019-01-30 19:13:50', '2020-01-31 02:13:50'),
 ('61727f7244410fa641531c9f0544307b4a796441209e6416534ee9d5dd96a4d3ab357ad485386011', 1, 1, 'MyApp', '[]', 0, '2019-02-07 04:32:16', '2019-02-07 04:32:16', '2020-02-07 11:32:16'),
@@ -290,12 +294,14 @@ INSERT INTO `oauth_access_tokens` (`id`, `user_id`, `client_id`, `name`, `scopes
 ('62b59083c846dec3022b7148d4385a9903cc9b39d3b6ba92b0f7f40508fa2524444ea1553089063c', 1, 1, 'MyApp', '[]', 0, '2019-02-21 00:49:05', '2019-02-21 00:49:05', '2020-02-21 07:49:05'),
 ('636f2eb304697b4f5679853e739651c491d2fb4e87f6c8350d247135f44c69b454b86b00b196c184', 2, 1, 'MyApp', '[]', 0, '2019-01-26 09:54:08', '2019-01-26 09:54:08', '2020-01-26 16:54:08'),
 ('67b2132deeee6b328c3006303c4459f93037f7f26ce0569f7eefc154018290e707d89bb2c755e03d', 2, 1, 'MyApp', '[]', 0, '2019-03-08 04:30:42', '2019-03-08 04:30:42', '2020-03-08 11:30:42'),
+('6810a45ec3ec8358f1ef1886e5814a120d60c1c322dc5f4a7cce4a198411ca7bf61e5d3eab726e6c', 15, 1, 'MyApp', '[]', 0, '2019-03-12 04:03:54', '2019-03-12 04:03:54', '2020-03-12 11:03:54'),
 ('77d92d373a47e116bcd9a32fce558f9b2ae50f81940286cbfaf6c91da5da7a9055407a98e8db5caf', 2, 1, 'MyApp', '[]', 0, '2019-01-28 15:06:53', '2019-01-28 15:06:53', '2020-01-28 22:06:53'),
 ('81208f958f30de438ff9e3d59c66c6b848827cbea101fda6149e7891fc0d078e952b3ea31cd5dbb0', 2, 1, 'MyApp', '[]', 0, '2019-02-11 02:37:44', '2019-02-11 02:37:44', '2020-02-11 09:37:44'),
 ('854499136709eb619d09deffe56c3366f695467b8c44da1ff04d155bef86e15ef6d85a90b52063d5', 2, 1, 'MyApp', '[]', 0, '2019-02-08 23:19:28', '2019-02-08 23:19:28', '2020-02-09 06:19:28'),
 ('8a4ed4483fc4b75a858399a0b4be4a20d471e073867df500bf5a9fe9fad2720aa666e03480fdc886', 1, 1, 'MyApp', '[]', 0, '2019-03-03 15:57:12', '2019-03-03 15:57:12', '2020-03-03 22:57:12'),
 ('8c1d60c2de264a007b7bd41568bfb1df770e4fff0bcf3f343402f28cd6a478faab36668d2c05f7cf', 2, 1, 'MyApp', '[]', 0, '2019-03-04 19:41:47', '2019-03-04 19:41:47', '2020-03-05 02:41:47'),
 ('8ea1e935bc97250de64f19507e7e69e34f46843350c18e35f9685625f63aa84001837d62f99d67c9', 3, 1, 'MyApp', '[]', 0, '2019-01-28 15:08:06', '2019-01-28 15:08:06', '2020-01-28 22:08:06'),
+('8f24488099d8565d3b5328a89503452b4a0cc323c77bebc729ac626d4cdd9e7830888953aa42d980', 13, 1, 'MyApp', '[]', 0, '2019-03-13 23:16:01', '2019-03-13 23:16:01', '2020-03-14 06:16:01'),
 ('92d4bd8359c5e65f1d19e0678e18aeda91c2c479a433b5c27c087da0b49bd78dc0414e2360ef38b8', 15, 1, 'MyApp', '[]', 0, '2019-03-05 15:53:18', '2019-03-05 15:53:18', '2020-03-05 22:53:18'),
 ('93cbe06de1d6d375729ec6a98fea931c3a9a6f1881f68cde5cc6919054d1e5c0bfc08e76707ae203', 1, 1, 'MyApp', '[]', 0, '2019-01-24 18:15:06', '2019-01-24 18:15:06', '2020-01-25 01:15:06'),
 ('95d3ae45dd24fb31b1dde65e93a9c8b683e03bc031558a139f8f5f356ec0dc51ca0c389ced47a8b6', 2, 1, 'MyApp', '[]', 0, '2019-03-07 23:31:17', '2019-03-07 23:31:17', '2020-03-08 06:31:17'),
@@ -310,6 +316,7 @@ INSERT INTO `oauth_access_tokens` (`id`, `user_id`, `client_id`, `name`, `scopes
 ('bda8ca36f0b3f0bb507e1da1030e33d5db4246bd14e216398a31f117a47234542eca323b40c141c1', 1, 1, 'MyApp', '[]', 0, '2019-01-24 18:36:41', '2019-01-24 18:36:41', '2020-01-25 01:36:41'),
 ('bf0de194f11f0d785538e7813ee09f44b9cd88d2c645660339ee55953ca73cb74bc823c1b08cb580', 3, 1, 'MyApp', '[]', 0, '2019-02-22 15:07:12', '2019-02-22 15:07:12', '2020-02-22 22:07:12'),
 ('c78382c3f809ccf8fc93a45641a2ef966aabe0e176e459b4acfd19943cb45cb173618b827184aa64', 11, 1, 'MyApp', '[]', 0, '2019-02-28 18:24:37', '2019-02-28 18:24:37', '2020-03-01 01:24:37'),
+('c7bb0766bee3e9fc66c450631968a97f5f35d0c2a885c40afaf78562b497d85641115a305838ebb2', 2, 1, 'MyApp', '[]', 0, '2019-03-12 03:46:59', '2019-03-12 03:46:59', '2020-03-12 10:46:59'),
 ('c924457b45a6cb6bbd4a780fac9c758f3836e3530bd8bc790925061c640e02f1e18b968a38043fe7', 1, 1, 'MyApp', '[]', 0, '2019-02-07 03:59:17', '2019-02-07 03:59:17', '2020-02-07 10:59:17'),
 ('cb9e2bc845969d011b68740adc8b5093c5a1018fc8e33b39399d559be12e4f6995b2b6b759540c5f', 1, 1, 'MyApp', '[]', 0, '2019-02-07 04:25:35', '2019-02-07 04:25:35', '2020-02-07 11:25:35'),
 ('cbef6816a9903309cfeb42ddf572070bfff5251c201727f9371919c960d464b2ca9c49fa5bbf12fc', 14, 1, 'MyApp', '[]', 0, '2019-03-10 11:04:01', '2019-03-10 11:04:01', '2020-03-10 18:04:01'),
@@ -330,7 +337,8 @@ INSERT INTO `oauth_access_tokens` (`id`, `user_id`, `client_id`, `name`, `scopes
 ('ecff4759545b6eacb5614219bfd14b2521df6e51a88c4aa7f87caaf8600c09efaf6a7b2fb4730c54', 1, 1, 'MyApp', '[]', 0, '2019-01-27 02:47:46', '2019-01-27 02:47:46', '2020-01-27 09:47:46'),
 ('edb2c3b253e861d3d84b3bd86e6be15b4401e80eace1cb0e080cd080651b999f5820bdc6c67eaa16', 4, 1, 'MyApp', '[]', 0, '2019-02-15 02:53:43', '2019-02-15 02:53:43', '2020-02-15 09:53:43'),
 ('f04f7954de5f4b9cf2f8b8bc4021e55482cb5580d578b2c7f820aa54d160430dff5eb3e6b4dd293a', 2, 1, 'MyApp', '[]', 0, '2019-02-21 21:23:18', '2019-02-21 21:23:18', '2020-02-22 04:23:18'),
-('fade1831d7c849dbecc54a6abe3392df2afd4fc48aeb97fd0dc26e580a26b60d8aeaa4551e69ff09', 3, 1, 'MyApp', '[]', 0, '2019-02-22 22:38:01', '2019-02-22 22:38:01', '2020-02-23 05:38:01');
+('fade1831d7c849dbecc54a6abe3392df2afd4fc48aeb97fd0dc26e580a26b60d8aeaa4551e69ff09', 3, 1, 'MyApp', '[]', 0, '2019-02-22 22:38:01', '2019-02-22 22:38:01', '2020-02-23 05:38:01'),
+('fe82242a26fcc28918dcb12ae24aeb612e063667b4873e37ae57419f1e157eecdc82354e51335041', 1, 1, 'MyApp', '[]', 0, '2019-03-12 04:13:22', '2019-03-12 04:13:22', '2020-03-12 11:13:22');
 
 -- --------------------------------------------------------
 
@@ -440,9 +448,13 @@ CREATE TABLE `statustasks` (
 
 INSERT INTO `statustasks` (`id`, `id_task`, `id_farm_manager`, `status`, `created_at`, `updated_at`) VALUES
 (1, 1, '2', 1, '2019-03-04 21:47:55', '2019-03-04 21:47:55'),
-(2, 2, '2', 0, '2019-03-04 21:47:55', '2019-03-04 21:47:55'),
+(2, 2, '2', 1, '2019-03-04 21:47:55', '2019-03-12 03:55:07'),
 (3, 1, '15', 1, '2019-03-05 15:54:04', '2019-03-05 16:45:48'),
-(4, 2, '15', 0, '2019-03-05 15:54:04', '2019-03-05 15:54:04');
+(4, 2, '15', 0, '2019-03-05 15:54:04', '2019-03-05 15:54:04'),
+(7, 1, '13', 1, '2019-03-13 23:16:25', '2019-03-13 23:29:23'),
+(8, 2, '13', 0, '2019-03-13 23:16:25', '2019-03-13 23:16:25'),
+(9, 1, '1', 0, '2019-03-13 23:31:47', '2019-03-13 23:31:47'),
+(10, 2, '1', 0, '2019-03-13 23:31:47', '2019-03-13 23:31:47');
 
 -- --------------------------------------------------------
 
@@ -518,17 +530,17 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `role`, `password`, `remember_token`, `created_at`, `updated_at`, `devicetoken`, `no_hp`, `alamat`, `foto`) VALUES
-(1, 'James', 'pemiliklahan@gmail.com', 1, '$2y$10$LD4Kt48NdGkRDSsx5ZAGuunhKASWqlOpWIvG9JEV7hmro7dtIxge.', NULL, '2019-01-24 18:10:37', '2019-03-10 10:57:52', '', '', '', ''),
-(2, 'Watanabe', 'farmmanager@gmail.com', 2, '$2y$10$4gZu2zN/0baEdB3cc1DNF.OGbDvoEC1RSA1g4xf.qV8QP4FQHGXiS', NULL, '2019-01-24 18:33:31', '2019-03-10 11:14:30', '', '08217391465', 'Jln PegangTimur', 'http://api.inacrop.com/laravel/public/images/1552045260.jpg'),
+(1, 'James', 'pemiliklahan@gmail.com', 1, '$2y$10$LD4Kt48NdGkRDSsx5ZAGuunhKASWqlOpWIvG9JEV7hmro7dtIxge.', NULL, '2019-01-24 18:10:37', '2019-03-13 23:35:18', '', '', '', ''),
+(2, 'Watanabe', 'farmmanager@gmail.com', 2, '$2y$10$4gZu2zN/0baEdB3cc1DNF.OGbDvoEC1RSA1g4xf.qV8QP4FQHGXiS', NULL, '2019-01-24 18:33:31', '2019-03-12 03:47:00', '', '08217391465', 'Jln PegangTimur', 'http://api.inacrop.com/laravel/public/images/1552045260.jpg'),
 (3, 'Lara Croft', 'ahlipraktisi@gmail.com', 3, '$2y$10$LD4Kt48NdGkRDSsx5ZAGuunhKASWqlOpWIvG9JEV7hmro7dtIxge.', NULL, '2019-01-27 00:22:10', '2019-02-22 23:49:14', '', '0124612464', 'balebak', ''),
 (4, 'mahatir', 'ahlipraktisi2@gmail.com', 3, '$2y$10$BrZ5ega/lIfyT1r.W/oQRuXsv230vw5E8xCEcb3i9ILITr9DfrVWq', NULL, '2019-02-07 04:45:03', '2019-02-15 02:53:43', '', '', '', ''),
 (8, 'Slamet Pangarep', 'ahlikopi@gmail.com', 3, '$2y$10$BrZ5ega/lIfyT1r.W/oQRuXsv230vw5E8xCEcb3i9ILITr9DfrVWq', NULL, '2019-02-22 16:27:11', '2019-02-22 16:27:11', NULL, NULL, NULL, NULL),
 (9, 'Hayami Saori', 'ahlijagung@gmail.com', 3, '$2y$10$BrZ5ega/lIfyT1r.W/oQRuXsv230vw5E8xCEcb3i9ILITr9DfrVWq', NULL, '2019-02-22 16:35:57', '2019-02-22 16:35:57', NULL, NULL, NULL, NULL),
 (11, 'wuik', 'wira@gmail.com', 3, '$2y$10$jEBKcjNDR0f3WPu8TQCfP.vW3aSmrEjUM2Wm0K3OLEEfGueqDYztq', NULL, '2019-02-28 18:23:53', '2019-02-28 18:24:37', '', NULL, NULL, NULL),
 (12, 'Nier', 'farmmanager2@gmail.com', 2, '$2y$10$AbumpHTAWqN8qHTzZY6w.ePeGwnS/mN7nXzxyzewZWj65zrOA1wl6', NULL, '2019-02-28 20:46:30', '2019-02-28 20:46:30', NULL, NULL, NULL, NULL),
-(13, 'Haruka Kanagawa', 'farmmanager3@gmail.com', 2, '$2y$10$lg74G58261H4/LNPtVXCreJSfVVDesi3NehSDiFuCU30YLJSBm4Aa', NULL, '2019-02-28 20:49:25', '2019-02-28 20:49:53', '', NULL, NULL, NULL),
-(14, 'Saya Kawamoto', 'sayaya@gmail.com', 1, '$2y$10$7yUGJ2.YSTTV3zBrBUmS0uFxOSoeB2ySlYE8/1Vv/aJSxZn7FEiFm', NULL, '2019-02-28 23:00:17', '2019-03-10 11:04:01', '', NULL, NULL, NULL),
-(15, 'Yuvi', 'yuvi@gmail.com', 2, '$2y$10$METowo52aai0xUrLPjc/ZOgLMv9n.wJmzzy6DSaczC2MV4VNCHdpy', NULL, '2019-03-05 15:52:37', '2019-03-08 04:51:51', '', '08787788777', 'jakarta', 'http://api.inacrop.com/laravel/public/images/1552045415.jpg');
+(13, 'Haruka Kanagawa', 'farmmanager3@gmail.com', 2, '$2y$10$lg74G58261H4/LNPtVXCreJSfVVDesi3NehSDiFuCU30YLJSBm4Aa', NULL, '2019-02-28 20:49:25', '2019-03-13 23:16:01', '', NULL, NULL, NULL),
+(14, 'Saya Kawamoto', 'sayaya@gmail.com', 1, '$2y$10$7yUGJ2.YSTTV3zBrBUmS0uFxOSoeB2ySlYE8/1Vv/aJSxZn7FEiFm', NULL, '2019-02-28 23:00:17', '2019-03-12 04:17:02', '', NULL, NULL, NULL),
+(15, 'Yuvi', 'yuvi@gmail.com', 2, '$2y$10$METowo52aai0xUrLPjc/ZOgLMv9n.wJmzzy6DSaczC2MV4VNCHdpy', NULL, '2019-03-05 15:52:37', '2019-03-12 04:03:54', '', '08787788777', 'jakarta', 'http://api.inacrop.com/laravel/public/images/1552045415.jpg');
 
 -- --------------------------------------------------------
 
@@ -730,7 +742,7 @@ ALTER TABLE `oauth_personal_access_clients`
 -- AUTO_INCREMENT for table `statustasks`
 --
 ALTER TABLE `statustasks`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `tasks`

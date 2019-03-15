@@ -35,43 +35,56 @@ class TaskController extends Controller
     //get list task
     public function getTasks($id_pemilik_lahan){
         $user = Auth::user();
-        $id_farm_manager = $user->id;
-        $check = DB::table('statustasks')->where('id_farm_manager', $id_farm_manager)->get()->toArray();
-        if($check != NULL){
+        if($user->role == 1){
             $tasks = DB::table('tasks')->where('id_pemilik_lahan', $id_pemilik_lahan)->get();
-            $sum = [];
-            foreach($tasks as $task){
-                $array_task =  (array) $task;
-                $status = DB::table('statustasks')->where('id_task', $task->id)->first();
-                $array_task['status'] = $status->status;
-                array_push($sum,$array_task); 
-            }
-            if($sum == NULL){
+            if($tasks == NULL){
                 return response()->json(['error' => 'Tasks not found !'], 401);
             }else{
-                return response()->json(['success' => $sum], $this-> successStatus);
+                return response()->json(['success' => $tasks], $this-> successStatus);
             }
         }else{
-            $sum = 0;
-            $tasks = DB::table('tasks')->where('id_pemilik_lahan', $id_pemilik_lahan)->get();
-            $sum=[];
-            foreach ($tasks as $task){
-                $array_task =  (array) $task;
-                $array_task['status'] = 0;
-                array_push($sum, $array_task);
-
-                $statustask = new Statustask;
-                $statustask->id_farm_manager = $id_farm_manager;
-                $statustask->id_task = $task->id;
-                $statustask->status = 0;
-                $statustask->save();
-            }
-            if($sum == NULL){
-                return response()->json(['error' => 'Tasks not found !'], 401);
+            $id_farm_manager = $user->id;
+            $check = DB::table('statustasks')->where('id_farm_manager', $id_farm_manager)->get()->toArray();
+            if($check != NULL){
+                $tasks = DB::table('tasks')->where('id_pemilik_lahan', $id_pemilik_lahan)->get();
+                $sum = [];
+                foreach($tasks as $task){
+                    $array_task =  (array) $task;
+                    $status = DB::table('statustasks')->where([
+                        ['id_task','=', $task->id],
+                        ['id_farm_manager','=',$id_farm_manager]
+                        ])->first();
+                    $array_task['status'] = $status->status;
+                    array_push($sum,$array_task); 
+                }
+                if($sum == NULL){
+                    return response()->json(['error' => 'Tasks not found !'], 401);
+                }else{
+                    return response()->json(['success' => $sum], $this-> successStatus);
+                }
             }else{
-                return response()->json(['success' => $sum], $this-> successStatus);
-            }      
+                $sum = 0;
+                $tasks = DB::table('tasks')->where('id_pemilik_lahan', $id_pemilik_lahan)->get();
+                $sum=[];
+                foreach ($tasks as $task){
+                    $array_task =  (array) $task;
+                    $array_task['status'] = 0;
+                    array_push($sum, $array_task);
+
+                    $statustask = new Statustask;
+                    $statustask->id_farm_manager = $id_farm_manager;
+                    $statustask->id_task = $task->id;
+                    $statustask->status = 0;
+                    $statustask->save();
+                }
+                if($sum == NULL){
+                    return response()->json(['error' => 'Tasks not found !'], 401);
+                }else{
+                    return response()->json(['success' => $sum], $this-> successStatus);
+                }      
+            }
         }
+        
     }
 
     //detail task
