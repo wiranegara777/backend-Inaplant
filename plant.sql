@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 14, 2019 at 07:36 AM
+-- Generation Time: Mar 15, 2019 at 12:29 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.2.14
 
@@ -41,7 +41,9 @@ CREATE TABLE `assignfarms` (
 --
 
 INSERT INTO `assignfarms` (`id`, `id_farm_manager`, `id_group_farm`, `created_at`, `updated_at`) VALUES
-(1, 2, 1, '2019-02-26 16:52:57', '2019-02-26 16:52:57');
+(1, 2, 1, '2019-02-26 16:52:57', '2019-02-26 16:52:57'),
+(2, 15, 1, '2019-03-15 04:18:06', '2019-03-15 04:18:06'),
+(3, 12, 1, '2019-03-15 04:18:21', '2019-03-15 04:18:21');
 
 -- --------------------------------------------------------
 
@@ -264,6 +266,7 @@ INSERT INTO `oauth_access_tokens` (`id`, `user_id`, `client_id`, `name`, `scopes
 ('16d38df7e0366c0275b26deec32c3a406814433c3fd4144fd1c83056a4ea92d1134e37537a70d29a', 1, 1, 'MyApp', '[]', 0, '2019-03-10 10:57:52', '2019-03-10 10:57:52', '2020-03-10 17:57:52'),
 ('17fc446297e47027b68db31e5c9d7030db97261d72b541785e5a5fec0af22ea7da90c4f3ddc1d99c', 1, 1, 'MyApp', '[]', 0, '2019-03-04 04:22:58', '2019-03-04 04:22:58', '2020-03-04 11:22:58'),
 ('19e2f8eb155bc219499f2f65c30161e0749ee2fec6198197278a86c7605437c1e0eabe3051839fdc', 3, 1, 'MyApp', '[]', 0, '2019-02-07 04:55:52', '2019-02-07 04:55:52', '2020-02-07 11:55:52'),
+('1cbbea9e9360545177675b4ece578752e052ed1412f03350f1d1b98f0563079021a3ee50ae3981c8', 1, 1, 'MyApp', '[]', 0, '2019-03-15 04:27:44', '2019-03-15 04:27:44', '2020-03-15 11:27:44'),
 ('1e4e1f559b7ba64ccb0ca89f81d8f7361d8e24a76b6c7af7436db6d748e944757c4677ad0e0279d5', 3, 1, 'MyApp', '[]', 0, '2019-02-21 21:46:48', '2019-02-21 21:46:48', '2020-02-22 04:46:48'),
 ('23ceea8ec73e86de6e0fbe7948085a81ec6656b67c1acc27c6c8a5bfd6bbf0d9a078a716a014320f', 1, 1, 'MyApp', '[]', 0, '2019-03-10 10:38:30', '2019-03-10 10:38:30', '2020-03-10 17:38:30'),
 ('23fd3db64099cda6772326cc0786af593b119f3182101db7a6b1782cffa0b22636bd242b774f195e', 1, 1, 'MyApp', '[]', 0, '2019-01-27 03:38:06', '2019-01-27 03:38:06', '2020-01-27 10:38:06'),
@@ -274,6 +277,7 @@ INSERT INTO `oauth_access_tokens` (`id`, `user_id`, `client_id`, `name`, `scopes
 ('2bea0c0f14570a6a575cecb16af362c2422d5b977c460187e0e6dd731b2d6846a0f68d1115f0aff3', 1, 1, 'MyApp', '[]', 0, '2019-03-13 23:12:34', '2019-03-13 23:12:34', '2020-03-14 06:12:34'),
 ('30cee2787f54f23a97c74fb25051bebf596f44d7141647e6a943a80365ca83e95cb8cb15002942a8', 1, 1, 'MyApp', '[]', 0, '2019-01-24 18:15:09', '2019-01-24 18:15:09', '2020-01-25 01:15:09'),
 ('31ccd5e9bf85ec8a93a6ac0f15d7b4f38a50b47eb689c4fb2f41eef766b9a6d949c673b4b5ec4563', 1, 1, 'MyApp', '[]', 0, '2019-01-24 18:15:12', '2019-01-24 18:15:12', '2020-01-25 01:15:12'),
+('34dff28fe7ff3afe8d01e50aa34f9aaac31315a4aaff41c4c706245b5bce0e473913a4d3affa8455', 1, 1, 'MyApp', '[]', 0, '2019-03-15 04:16:54', '2019-03-15 04:16:54', '2020-03-15 11:16:54'),
 ('35e1f4c4aad3275728cf490c54a5b1a462b965cf18d03fe69642d4ee53f8eca4b5a74afb8a743371', 2, 1, 'MyApp', '[]', 0, '2019-03-04 19:54:09', '2019-03-04 19:54:09', '2020-03-05 02:54:09'),
 ('374920cac7777f6be16b7db308ae4bdf964d585100b2eba43063c7f9784a45277b5574300ebc55e3', 2, 1, 'MyApp', '[]', 0, '2019-03-06 01:57:51', '2019-03-06 01:57:51', '2020-03-06 08:57:51'),
 ('392db63414286042094aeecb3e7b0d4117e04fb20529e846d917431720c1831e55b78b98b6890bf0', 1, 1, 'MyApp', '[]', 0, '2019-01-27 02:44:47', '2019-01-27 02:44:47', '2020-01-27 09:44:47'),
@@ -530,7 +534,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `role`, `password`, `remember_token`, `created_at`, `updated_at`, `devicetoken`, `no_hp`, `alamat`, `foto`) VALUES
-(1, 'James', 'pemiliklahan@gmail.com', 1, '$2y$10$LD4Kt48NdGkRDSsx5ZAGuunhKASWqlOpWIvG9JEV7hmro7dtIxge.', NULL, '2019-01-24 18:10:37', '2019-03-13 23:35:18', '', '', '', ''),
+(1, 'James', 'pemiliklahan@gmail.com', 1, '$2y$10$LD4Kt48NdGkRDSsx5ZAGuunhKASWqlOpWIvG9JEV7hmro7dtIxge.', NULL, '2019-01-24 18:10:37', '2019-03-15 04:27:44', 'string', '', '', ''),
 (2, 'Watanabe', 'farmmanager@gmail.com', 2, '$2y$10$4gZu2zN/0baEdB3cc1DNF.OGbDvoEC1RSA1g4xf.qV8QP4FQHGXiS', NULL, '2019-01-24 18:33:31', '2019-03-12 03:47:00', '', '08217391465', 'Jln PegangTimur', 'http://api.inacrop.com/laravel/public/images/1552045260.jpg'),
 (3, 'Lara Croft', 'ahlipraktisi@gmail.com', 3, '$2y$10$LD4Kt48NdGkRDSsx5ZAGuunhKASWqlOpWIvG9JEV7hmro7dtIxge.', NULL, '2019-01-27 00:22:10', '2019-02-22 23:49:14', '', '0124612464', 'balebak', ''),
 (4, 'mahatir', 'ahlipraktisi2@gmail.com', 3, '$2y$10$BrZ5ega/lIfyT1r.W/oQRuXsv230vw5E8xCEcb3i9ILITr9DfrVWq', NULL, '2019-02-07 04:45:03', '2019-02-15 02:53:43', '', '', '', ''),
@@ -688,7 +692,7 @@ ALTER TABLE `varietas`
 -- AUTO_INCREMENT for table `assignfarms`
 --
 ALTER TABLE `assignfarms`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `farms`

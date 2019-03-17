@@ -109,9 +109,9 @@ class FirebaseController extends Controller
                 $num1 = (int)$request->sender_id;
                 $num2 = (int)$request->receiver_id;
                 if($num1 < $num2){
-                    $message_id = $request->sender_id.$request->receiver_id;
+                    $message_id = $request->sender_id.'-'.$request->receiver_id;
                 } else {
-                    $message_id = $request->receiver_id.$request->sender_id;
+                    $message_id = $request->receiver_id.'-'.$request->sender_id;
                 }
                 $firestore_data  = [
                         "message" => ["stringValue" => $request->message],

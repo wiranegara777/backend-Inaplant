@@ -139,4 +139,21 @@ public $successStatus = 200;
 
     }
 
+    //get list farm that got associated to farm
+    public function getfarmmanagergroup($id_group_farm){
+        $list_farmmanager = DB::table('assignfarms')->where('id_group_farm', $id_group_farm)->get();
+        if($list_farmmanager->isEmpty()){
+            return response()->json(['error'=>'farmmanager not found !'], 401);
+        } else {
+            $sum = [];
+            foreach($list_farmmanager as $fm){
+               // $array_fm =  (array) $fm;
+                $fm_obj = User::find($fm->id_farm_manager);
+                //$array_task['status'] = $status->status;
+                array_push($sum,$fm_obj); 
+            }
+            return response()->json(['data' => $sum], $this-> successStatus);
+        }
+    }
+
 }

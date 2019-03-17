@@ -225,3 +225,23 @@
  * )
  *
  */
+
+    //GET list farmmanager that associated to group
+ /**
+ * @SWG\Get(
+ *   tags={"GroupFarm"},
+ *   path="/list_farmmanager/{id_group_farm}",
+ *   summary="get list farm manager in group farm",
+ *   operationId="getlistfarmmanagergroup",
+ *   @SWG\Parameter(
+ *     name="id_group_farm",
+ *     in="path",
+ *     type="integer",
+ *     description="you need login first before using this api",
+ *   ),
+ *   @SWG\Response(response=200, description="successful"),
+ *   @SWG\Response(response=401, description="unauthenticated"),
+ *   security={{"Bearer":{}}}
+ * )
+ *
+ */

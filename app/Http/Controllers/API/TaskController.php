@@ -37,7 +37,7 @@ class TaskController extends Controller
         $user = Auth::user();
         if($user->role == 1){
             $tasks = DB::table('tasks')->where('id_pemilik_lahan', $id_pemilik_lahan)->get();
-            if($tasks == NULL){
+            if($tasks->isEmpty()){
                 return response()->json(['error' => 'Tasks not found !'], 401);
             }else{
                 return response()->json(['success' => $tasks], $this-> successStatus);
@@ -94,13 +94,21 @@ class TaskController extends Controller
         if($user->role == 2){
             $task = DB::table('tasks')->where('id', $id_task)->first();
             $task = (array) $task;
+            try {
             $status = DB::table('statustasks')->where([
                 ['id_task','=', $id_task],
                 ['id_farm_manager','=',$id_farm_manager]
                 ])->first();
-            $task['status'] = $status->status;
-
-            return response()->json(['success' => $task], $this-> successStatus);
+            }
+            catch (\Exception $e) {
+                $status=NULL;
+              }
+            if($status == NULL){
+                return response()->json(['error' => 'task not found !'], 401);
+            }else{
+                $task['status'] = $status->status;
+                return response()->json(['success' => $task], $this-> successStatus);
+            }
         }else{
             return response()->json(['failed' => 'you are not logged in as farm manager'], 401);
 

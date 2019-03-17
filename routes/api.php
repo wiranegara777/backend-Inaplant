@@ -36,7 +36,8 @@ Route::group(['middleware' => 'auth:api'], function(){
 
 //ahlipraktisi
 Route::group(['middleware' => 'auth:api'], function(){  
-    
+    Route::get('list_ahli','API\UserController@getlistahli');
+
 });
 Route::post('register_ahli', 'API\UserController@registerAhliPraktisi');
 
@@ -73,7 +74,7 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::get('groupfarm/{id}','API\FarmController@getGroupfarm');
     Route::get('user_groupfarm','API\FarmController@getPemiliklahan');
     Route::get('varietas','API\FarmController@getVarietas');
-
+    Route::get('list_farmmanager/{id_group_farm}','API\FarmController@getfarmmanagergroup');
 });
 
 //Schedule

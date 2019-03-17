@@ -279,4 +279,21 @@ public $successStatus = 200;
         
     }
 
+    //get list ahli praktisi
+    public function getlistahli(){
+        $ahlis = DB::table('users')->where('role', '3')->get();
+        $sum = [];
+        foreach($ahlis as $ahli){
+            unset($ahli->password);
+            unset($ahli->created_at);
+            unset($ahli->updated_at);
+            $array_ahli =  (array) $ahli;
+            $komoditas = DB::table('komoditas')->where('id_ahlipraktisi', $ahli->id)->first();
+            $array_ahli['komoditas'] = $komoditas->komoditas;
+            array_push($sum,$array_ahli); 
+        }
+        return response()->json(['success'=> $sum], $this-> successStatus);
+        
+    }
+
 }

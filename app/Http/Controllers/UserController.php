@@ -274,3 +274,17 @@ use Illuminate\Http\Request;
  *
  */
 
+ //GET LIST USER BY ROLE
+ /**
+ * @SWG\Get(
+ *   tags={"AhliPraktisi"},
+ *   path="/list_ahli",
+ *   summary="get list ahli praktisi",
+ *   operationId="fetch user by id",
+ *   @SWG\Response(response=200, description="successful"),
+ *   @SWG\Response(response=401, description="unauthenticated"),
+ *   security={{"Bearer":{}}}
+ * )
+ *
+ */
+

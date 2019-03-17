@@ -291,6 +291,36 @@
                 ]
             }
         },
+        "/list_farmmanager/{id_group_farm}": {
+            "get": {
+                "tags": [
+                    "GroupFarm"
+                ],
+                "summary": "get list farm manager in group farm",
+                "operationId": "getlistfarmmanagergroup",
+                "parameters": [
+                    {
+                        "name": "id_group_farm",
+                        "in": "path",
+                        "description": "you need login first before using this api",
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful"
+                    },
+                    "401": {
+                        "description": "unauthenticated"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
         "/laporan": {
             "post": {
                 "tags": [
@@ -948,6 +978,28 @@
                         "description": "unauthorized"
                     }
                 }
+            }
+        },
+        "/list_ahli": {
+            "get": {
+                "tags": [
+                    "AhliPraktisi"
+                ],
+                "summary": "get list ahli praktisi",
+                "operationId": "fetch user by id",
+                "responses": {
+                    "200": {
+                        "description": "successful"
+                    },
+                    "401": {
+                        "description": "unauthenticated"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
             }
         }
     },
