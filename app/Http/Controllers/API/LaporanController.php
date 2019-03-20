@@ -20,45 +20,27 @@ class LaporanController extends Controller
 
     public function postLaporan(Request $request){
         $user = Auth::user();
-        $id_farm_manager = $user->id;
-        $validator = Validator::make($request->all(), [ 
-            'name' => 'required',  
-            'note' => 'required',
-            'varietas' => 'required',
-            'is_overdue' => 'required'
-        ]);
-        if ($validator->fails()) { 
-            return response()->json(['error'=>$validator->errors()], 401);   
-         } else {
-             $input = $request->all();
-             $input['id_farm_manager'] = $id_farm_manager;
-             $Groupfarm = $user->Groupfarm()->first();
-             $input['id_group_farm'] = $Groupfarm->id_group_farm;
-            if($request->hasFile('foto1')) {
-                $imageName = time().'.'.request()->foto1->getClientOriginalExtension();
-                $imageName = strtolower($imageName);
-                $imageName = '/'.$imageName;
-                $input['foto1'] = 'http://api.inacrop.com/laravel/public/images'.$imageName;
-                request()->foto1->move(public_path('images'), $imageName);
+        if($user->id == 2){
+            $id_farm_manager = $user->id;
+            $validator = Validator::make($request->all(), [ 
+                'name' => 'required',  
+                'note' => 'required',
+                'varietas' => 'required',
+                'is_overdue' => 'required'
+            ]);
+            if ($validator->fails()) { 
+                return response()->json(['error'=>$validator->errors()], 401);   
+            } else {
+                $input = $request->all();
+                $input['id_farm_manager'] = $id_farm_manager;
+                $Groupfarm = $user->Groupfarm()->first();
+                $input['id_group_farm'] = $Groupfarm->id_group_farm;            
+                $laporan = Laporan::create($input);
+                return response()->json(['success'=>'success added new Laporan'], $this-> successStatus);
             }
-            if($request->hasFile('foto2')) {
-                $imageName = time().'.'.request()->foto2->getClientOriginalExtension();
-                $imageName = strtolower($imageName);
-                $imageName = '/'.$imageName;
-                $input['foto2'] = 'http://api.inacrop.com/laravel/public/images'.$imageName;
-                request()->foto2->move(public_path('images'), $imageName);
-            }
-            if($request->hasFile('foto3')) {
-                $imageName = time().'.'.request()->foto3->getClientOriginalExtension();
-                $imageName = strtolower($imageName);
-                $imageName = '/'.$imageName;
-                $input['foto3'] = 'http://api.inacrop.com/laravel/public/images'.$imageName;
-                request()->foto3->move(public_path('images'), $imageName);
-            }
-             
-             $laporan = Laporan::create($input);
-             return response()->json(['success'=>'success added new Laporan'], $this-> successStatus);
-         }
+        }else{
+            return response()->json(['error'=>'you are not logged in as farm manager!'], 401);
+        }
     }
 
     public function getLaporans(){

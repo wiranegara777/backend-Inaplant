@@ -172,7 +172,7 @@ public $successStatus = 200;
                     request()->foto->move(public_path('images'), $imageName);
                     $user->save();
                 }
-                return response()->json(['success' => 'success edit profile !'], $this-> successStatus);
+                return response()->json(['success' => $user], $this-> successStatus);
             }else{
                 return response()->json(['error' => 'user not found !'], $this-> successStatus);
             }    
@@ -194,7 +194,7 @@ public $successStatus = 200;
             request()->image->move(public_path('images'), $imageName);
             $user->foto = $imageName;
             $user->save();
-            return response()->json(['success' => 'success edit image'], $this-> successStatus);
+            return response()->json(['success' => $imageName], $this-> successStatus);
         }
     }
     

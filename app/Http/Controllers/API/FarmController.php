@@ -65,6 +65,24 @@ public $successStatus = 200;
         }
         
     }
+ 
+    //GET GROUP FARM by pemilikl ahan
+    public function getGroupfarmpemiliklahan(){
+        $user = Auth::user();
+        $id = $user->id;
+        if($user->role == 1){
+            $Groupfarm = Groupfarm::find($id);
+            if($Groupfarm != NULL){
+                return response()->json(['success'=>$Groupfarm], $this-> successStatus);
+            } else {
+                return response()->json(['error'=>'groupfarm not found !'], 401);
+            }
+        }else{
+            return response()->json(['error'=>'you are not logged in as pemiik lahan !'], 401);
+        }
+       
+        
+    }
 
     public function postTerm(Request $request){
         $validator = Validator::make($request->all(), [ 
@@ -120,15 +138,22 @@ public $successStatus = 200;
      
     }
 
-    public function getFarm($id_farm){
-        $farm = Farm::find($id_farm);
-        if($farm == NULL){
-            return response()->json(['error' => 'farm not found !'], $this-> successStatus);
+    public function getFarm(){
+        $user = Auth::user();
+        if($user->role == 2){
+            $farm = DB::table('farms')->where('id_farm_manager', $user->id)->first();
+            if($farm == NULL){
+                return response()->json(['error' => 'farm not found !'], $this-> successStatus);
+            }else{
+                $varietas = Varietas::find($farm->varietas);
+                $farm = (array) $farm;
+                $farm['varietas'] = $varietas;
+                return response()->json(['success' => $farm], $this-> successStatus);
+            }
         }else{
-            $varietas = Varietas::find($farm->varietas);
-            $farm['varietas'] = $varietas;
-            return response()->json(['success' => $farm], $this-> successStatus);
+            return response()->json(['error' => 'you are not logged in as farm manager !'], $this-> successStatus);
         }
+        
        
      
     }

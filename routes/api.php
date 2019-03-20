@@ -65,7 +65,7 @@ Route::get('sample','SampleController@index');
 //farm
 Route::group(['middleware' => 'auth:api'], function(){
     Route::post('farm','API\FarmController@register');
-    Route::get('farm/{id_farm}', 'API\FarmController@getFarm');
+    Route::get('farm', 'API\FarmController@getFarm');
     Route::post('term', 'API\FarmController@postTerm');
     Route::get('term/{id_pemilik_lahan}', 'API\FarmController@getTerms');
     Route::put('farm/{id_farm}','API\FarmController@editFarm');
@@ -75,6 +75,7 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::get('user_groupfarm','API\FarmController@getPemiliklahan');
     Route::get('varietas','API\FarmController@getVarietas');
     Route::get('list_farmmanager/{id_group_farm}','API\FarmController@getfarmmanagergroup');
+    Route::get('groupfarm_pemiliklahan','API\FarmController@getGroupfarmpemiliklahan');
 });
 
 //Schedule
@@ -88,6 +89,8 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::post('laporan','API\LaporanController@postLaporan');
     Route::get('laporans','API\LaporanController@getLaporans');
     Route::get('laporan/{id_laporan}','API\LaporanController@getDetaillaporan');
+    Route::post('image_upload','API\UserController@uploadImage');
+
 });
 //Task
 Route::group(['middleware' => 'auth:api'], function(){

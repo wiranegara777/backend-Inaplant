@@ -1,0 +1,6 @@
+- fungsi message error mengubah id document menjadi --
+- get list khusus ahli praktisi
+- get farm by farm manager
+- pisah request foto dengan request yang lain dan jadiin pake 
+- get groupfarm by pemilik lahan
+- compress image

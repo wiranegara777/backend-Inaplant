@@ -76,6 +76,28 @@
                 ]
             }
         },
+        "/groupfarm_pemiliklahan": {
+            "get": {
+                "tags": [
+                    "GroupFarm"
+                ],
+                "summary": "get groupfarm detail by pemiliklahan",
+                "operationId": "fetchgroupfarm2",
+                "responses": {
+                    "200": {
+                        "description": "successful"
+                    },
+                    "401": {
+                        "description": "unauthenticated"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
         "/term": {
             "post": {
                 "tags": [
@@ -150,34 +172,6 @@
             }
         },
         "/farm/{id_farm}": {
-            "get": {
-                "tags": [
-                    "farm"
-                ],
-                "summary": "get detailFarm by id_farm",
-                "operationId": "getdetailfarmm",
-                "parameters": [
-                    {
-                        "name": "id_farm",
-                        "in": "path",
-                        "description": "farm id",
-                        "type": "integer"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful"
-                    },
-                    "401": {
-                        "description": "unauthenticated"
-                    }
-                },
-                "security": [
-                    {
-                        "Bearer": []
-                    }
-                ]
-            },
             "put": {
                 "tags": [
                     "farm"
@@ -269,6 +263,28 @@
                 ]
             }
         },
+        "/farm": {
+            "get": {
+                "tags": [
+                    "farm"
+                ],
+                "summary": "get detailFarm by farm manager",
+                "operationId": "getdetailfarmm",
+                "responses": {
+                    "200": {
+                        "description": "successful"
+                    },
+                    "401": {
+                        "description": "unauthenticated"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
         "/varietas": {
             "get": {
                 "tags": [
@@ -330,46 +346,35 @@
                 "operationId": "laporanPost",
                 "parameters": [
                     {
-                        "name": "name",
-                        "in": "formData",
-                        "description": "name Laporan",
-                        "type": "string"
-                    },
-                    {
-                        "name": "note",
-                        "in": "formData",
-                        "description": "Note from farmmanager",
-                        "type": "string"
-                    },
-                    {
-                        "name": "varietas",
-                        "in": "formData",
-                        "description": "varietas tanaman",
-                        "type": "string"
-                    },
-                    {
-                        "name": "is_overdue",
-                        "in": "formData",
-                        "description": "is overdue",
-                        "type": "integer"
-                    },
-                    {
-                        "name": "foto1",
-                        "in": "formData",
-                        "description": "optional foto1",
-                        "type": "file"
-                    },
-                    {
-                        "name": "foto2",
-                        "in": "formData",
-                        "description": "optional foto2",
-                        "type": "file"
-                    },
-                    {
-                        "name": "foto3",
-                        "in": "formData",
-                        "description": "optional foto3",
-                        "type": "file"
+                        "name": "body",
+                        "in": "body",
+                        "description": "post task",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "name": {
+                                    "type": "string"
+                                },
+                                "note": {
+                                    "type": "string"
+                                },
+                                "varietas": {
+                                    "type": "integer"
+                                },
+                                "is_overdue": {
+                                    "type": "integer"
+                                },
+                                "foto1": {
+                                    "type": "string"
+                                },
+                                "foto2": {
+                                    "type": "string"
+                                },
+                                "foto3": {
+                                    "type": "string"
+                                }
+                            }
+                        }
                     }
                 ],
                 "responses": {
@@ -726,34 +731,26 @@
                         "type": "integer"
                     },
                     {
-                        "name": "foto",
-                        "in": "formData",
-                        "description": "foto user",
-                        "type": "file"
-                    },
-                    {
-                        "name": "name",
-                        "in": "formData",
-                        "description": "nama profil",
-                        "type": "string"
-                    },
-                    {
-                        "name": "email",
-                        "in": "formData",
-                        "description": "email user",
-                        "type": "string"
-                    },
-                    {
-                        "name": "no_hp",
-                        "in": "formData",
-                        "description": "nomor hp user",
-                        "type": "string"
-                    },
-                    {
-                        "name": "alamat",
-                        "in": "formData",
-                        "description": "alamat",
-                        "type": "string"
+                        "name": "body",
+                        "in": "body",
+                        "description": "edit user profile",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "name": {
+                                    "type": "string"
+                                },
+                                "email": {
+                                    "type": "string"
+                                },
+                                "no_hp": {
+                                    "type": "string"
+                                },
+                                "alamat": {
+                                    "type": "string"
+                                }
+                            }
+                        }
                     }
                 ],
                 "responses": {
@@ -993,6 +990,72 @@
                     },
                     "401": {
                         "description": "unauthenticated"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
+        "/user_foto/{id}": {
+            "post": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "edit foto profile user",
+                "operationId": "userfotoprofile",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id user",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "image",
+                        "in": "formData",
+                        "description": "foto profile",
+                        "type": "file"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "401": {
+                        "description": "unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
+        "/image_upload": {
+            "post": {
+                "tags": [
+                    "image"
+                ],
+                "summary": "upload image",
+                "operationId": "uploadImage",
+                "parameters": [
+                    {
+                        "name": "image",
+                        "in": "formData",
+                        "description": "image file to upload",
+                        "type": "file"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "401": {
+                        "description": "unauthorized"
                     }
                 },
                 "security": [

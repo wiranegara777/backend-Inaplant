@@ -50,10 +50,19 @@ class TaskController extends Controller
                 $sum = [];
                 foreach($tasks as $task){
                     $array_task =  (array) $task;
-                    $status = DB::table('statustasks')->where([
-                        ['id_task','=', $task->id],
-                        ['id_farm_manager','=',$id_farm_manager]
-                        ])->first();
+                   // $status = DB::table('statustasks')->where([
+                    //    ['id_task','=', $task->id],
+                     //   ['id_farm_manager','=',$id_farm_manager]
+                      //  ])->first();
+                   $status = DB::table('statustasks')->where('id_task', $task->id)->where('id_farm_manager', $id_farm_manager)->first();
+                   if($status === NULL){
+                        $statustask = new Statustask;
+                        $statustask->id_farm_manager = $id_farm_manager;
+                        $statustask->id_task = $task->id;
+                        $statustask->status = 0;
+                        $statustask->save();
+                        $status = DB::table('statustasks')->where('id_task', $task->id)->where('id_farm_manager', $id_farm_manager)->first();
+                   }
                     $array_task['status'] = $status->status;
                     array_push($sum,$array_task); 
                 }

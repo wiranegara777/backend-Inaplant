@@ -141,6 +141,23 @@ class FirebaseController extends Controller
             #Provide your firestore project ID Here
                 $project_id = "laravel-1d7cd";  
                 
+                //$url = "https://firestore.googleapis.com/v1/projects/laravel-1d7cd/databases/(default)/documents/messages/".$message_id."/".$message_id."/".$key;
+                $url = "https://firestore.googleapis.com/v1beta1/projects/laravel-1d7cd/databases/(default)/documents/messages/".$message_id;
+                $curl = curl_init();
+                curl_setopt_array($curl, array(
+                    CURLOPT_RETURNTRANSFER => true,
+                    CURLOPT_CUSTOMREQUEST => 'POST',
+                    CURLOPT_HTTPHEADER => array('Content-Type: application/json',
+                        'X-HTTP-Method-Override: PATCH'),
+                    CURLOPT_URL => $url . '?key='.$firestore_key,
+                    CURLOPT_USERAGENT => 'cURL',
+                    CURLOPT_POSTFIELDS => $json
+                ));
+            
+                $response = curl_exec( $curl );
+            
+                curl_close( $curl );
+
                 $url = "https://firestore.googleapis.com/v1/projects/laravel-1d7cd/databases/(default)/documents/messages/".$message_id."/".$message_id."/".$key;
                 $curl = curl_init();
                 curl_setopt_array($curl, array(
@@ -157,6 +174,7 @@ class FirebaseController extends Controller
                 $response = curl_exec( $curl );
             
                 curl_close( $curl );
+                
                 
                 if ($response === FALSE) {
                     die('FCM Send Error: ' . curl_error($ch));

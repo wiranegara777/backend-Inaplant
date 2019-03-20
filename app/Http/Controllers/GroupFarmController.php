@@ -53,6 +53,20 @@
  *
  */
 
+  //GET GROUP FARM detail
+ /**
+ * @SWG\Get(
+ *   tags={"GroupFarm"},
+ *   path="/groupfarm_pemiliklahan",
+ *   summary="get groupfarm detail by pemiliklahan",
+ *   operationId="fetchgroupfarm2",
+ *   @SWG\Response(response=200, description="successful"),
+ *   @SWG\Response(response=401, description="unauthenticated"),
+ *   security={{"Bearer":{}}}
+ * )
+ *
+ */
+
  //POST GroupFarm
  /**
  * @SWG\Post(
@@ -196,21 +210,16 @@
  /**
  * @SWG\Get(
  *   tags={"farm"},
- *   path="/farm/{id_farm}",
- *   summary="get detailFarm by id_farm",
+ *   path="/farm",
+ *   summary="get detailFarm by farm manager",
  *   operationId="getdetailfarmm",
- *   @SWG\Parameter(
- *     name="id_farm",
- *     in="path",
- *     type="integer",
- *     description="farm id",
- *   ),
  *   @SWG\Response(response=200, description="successful"),
  *   @SWG\Response(response=401, description="unauthenticated"),
  *   security={{"Bearer":{}}}
  * )
  *
  */
+
 
     //GET list TERM
  /**

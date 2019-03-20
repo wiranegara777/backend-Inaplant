@@ -8,46 +8,40 @@
  *   summary="post laporan",
  *   operationId="laporanPost",
  *   @SWG\Parameter(
- *     name="name",
- *     in="formData",
- *     type="string",
- *     description="name Laporan",
- *   ),
- *   @SWG\Parameter(
- *     name="note",
- *     in="formData",
- *     type="string",
- *     description="Note from farmmanager",
- *   ),
- *   @SWG\Parameter(
- *     name="varietas",
- *     in="formData",
- *     type="string",
- *     description="varietas tanaman",
- *   ),
- *   @SWG\Parameter(
- *     name="is_overdue",
- *     in="formData",
- *     type="integer",
- *     description="is overdue",
- *   ),
- *   @SWG\Parameter(
- *     name="foto1",
- *     in="formData",
- *     type="file",
- *     description="optional foto1",
- *   ),
- *   @SWG\Parameter(
- *     name="foto2",
- *     in="formData",
- *     type="file",
- *     description="optional foto2",
- *   ),
- *   @SWG\Parameter(
- *     name="foto3",
- *     in="formData",
- *     type="file",
- *     description="optional foto3",
+ *     name="body",
+ *     in="body",
+ *     required=true,
+ *     description="post task",
+ *     @SWG\Schema( 
+ *          @SWG\Property(
+ *              property="name",
+ *              type="string"
+ *          ),
+ *          @SWG\Property(
+ *              property="note",
+ *              type="string"
+ *          ),
+ *          @SWG\Property(
+ *              property="varietas",
+ *              type="integer"
+ *          ),
+ *          @SWG\Property(
+ *              property="is_overdue",
+ *              type="integer"
+ *          ),
+ *          @SWG\Property(
+ *              property="foto1",
+ *              type="string"
+ *          ),
+ *          @SWG\Property(
+ *              property="foto2",
+ *              type="string"
+ *          ),
+ *          @SWG\Property(
+ *              property="foto3",
+ *              type="string"
+ *          ),
+ *     )
  *   ),
  *   @SWG\Response(response=200, description="successful"),
  *   security={{"Bearer":{}}}

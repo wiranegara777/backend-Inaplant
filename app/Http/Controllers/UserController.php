@@ -125,34 +125,28 @@ use Illuminate\Http\Request;
  *     description="user id",
  *   ),
  *   @SWG\Parameter(
- *     name="foto",
- *     in="formData",
- *     type="file",
- *     description="foto user",
- *   ),
- *   @SWG\Parameter(
- *     name="name",
- *     in="formData",
- *     type="string",
- *     description="nama profil",
- *   ),
- *   @SWG\Parameter(
- *     name="email",
- *     in="formData",
- *     type="string",
- *     description="email user",
- *   ),
- *   @SWG\Parameter(
- *     name="no_hp",
- *     in="formData",
- *     type="string",
- *     description="nomor hp user",
- *   ),
- *   @SWG\Parameter(
- *     name="alamat",
- *     in="formData",
- *     type="string",
- *     description="alamat",
+ *     name="body",
+ *     in="body",
+ *     required=true,
+ *     description="edit user profile",
+ *     @SWG\Schema( 
+ *          @SWG\Property(
+ *              property="name",
+ *              type="string"
+ *          ),
+ *          @SWG\Property(
+ *              property="email",
+ *              type="string"
+ *          ),
+ *          @SWG\Property(
+ *              property="no_hp",
+ *              type="string"
+ *          ),
+ *          @SWG\Property(
+ *              property="alamat",
+ *              type="string"
+ *          ),
+ *     )
  *   ),
  *   @SWG\Response(response=200, description="successful operation"),
  *   @SWG\Response(response=401, description="unauthorized"),
@@ -283,6 +277,52 @@ use Illuminate\Http\Request;
  *   operationId="fetch user by id",
  *   @SWG\Response(response=200, description="successful"),
  *   @SWG\Response(response=401, description="unauthenticated"),
+ *   security={{"Bearer":{}}}
+ * )
+ *
+ */
+
+ // EDIT FOTO PROFIL USER
+/**
+ * @SWG\Post(
+ *   tags={"user"},
+ *   path="/user_foto/{id}",
+ *   summary="edit foto profile user",
+ *   operationId="userfotoprofile",
+ *   @SWG\Parameter(
+ *     name="id",
+ *     in="path",
+ *     type="integer",
+ *     description="id user",
+ *   ),
+ *   @SWG\Parameter(
+ *     name="image",
+ *     in="formData",
+ *     type="file",
+ *     description="foto profile",
+ *   ),
+ *   @SWG\Response(response=200, description="successful operation"),
+ *   @SWG\Response(response=401, description="unauthorized"),
+ *   security={{"Bearer":{}}}
+ * )
+ *
+ */
+
+ // EDIT FOTO PROFIL USER
+/**
+ * @SWG\Post(
+ *   tags={"image"},
+ *   path="/image_upload",
+ *   summary="upload image",
+ *   operationId="uploadImage",
+ *   @SWG\Parameter(
+ *     name="image",
+ *     in="formData",
+ *     type="file",
+ *     description="image file to upload",
+ *   ),
+ *   @SWG\Response(response=200, description="successful operation"),
+ *   @SWG\Response(response=401, description="unauthorized"),
  *   security={{"Bearer":{}}}
  * )
  *
