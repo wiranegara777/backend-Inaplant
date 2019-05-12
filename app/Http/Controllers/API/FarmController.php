@@ -71,7 +71,7 @@ public $successStatus = 200;
         $user = Auth::user();
         $id = $user->id;
         if($user->role == 1){
-            $Groupfarm = Groupfarm::find($id);
+            $Groupfarm = DB::table('groupfarms')->where('id_pemilik_lahan', $id)->get();
             if($Groupfarm != NULL){
                 return response()->json(['success'=>$Groupfarm], $this-> successStatus);
             } else {
@@ -114,7 +114,7 @@ public $successStatus = 200;
             $farm = Farm::find($id_farm);
             if($farm != NULL){
                 $farm->update($request->only(['jumlah_pohon','varietas','siklus_pertumbuhan',
-                'panen_pertama','panen_terakhir','jumlah_produksi_pertahun','latitude_longtitude_1',
+                'panen_pertama','panen_terakhir','jumlah_produksi_pertahun', 'luas_lahan','latitude_longtitude_1',
                 'latitude_longtitude_2','latitude_longtitude_3','latitude_longtitude_4',]));
                 return response()->json(['success' => 'success edit farm profile !'], $this-> successStatus);
             }else{

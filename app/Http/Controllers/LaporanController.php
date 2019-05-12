@@ -26,8 +26,16 @@
  *              type="integer"
  *          ),
  *          @SWG\Property(
+ *              property="location",
+ *              type="string"
+ *          ),
+ *          @SWG\Property(
  *              property="is_overdue",
  *              type="integer"
+ *          ),
+ *          @SWG\Property(
+ *              property="perulangan",
+ *              type="string"
  *          ),
  *          @SWG\Property(
  *              property="foto1",

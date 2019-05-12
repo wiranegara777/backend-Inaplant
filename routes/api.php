@@ -56,6 +56,7 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::get('messages/{message_id}','API\MessageController@fetch');
    // Route::post('messages','API\MessageController@sentMessage');   
    Route::post('messages','FirebaseController@firestore'); 
+   Route::post('photomessage','FirebaseController@photomsg'); 
    Route::post('image', 'API\UserController@uploadImage');
         
 });
@@ -90,14 +91,23 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::get('laporans','API\LaporanController@getLaporans');
     Route::get('laporan/{id_laporan}','API\LaporanController@getDetaillaporan');
     Route::post('image_upload','API\UserController@uploadImage');
-
 });
+Route::get('laporan_export/{id_group_farm}', 'API\LaporanController@laporanExport');
+
 //Task
 Route::group(['middleware' => 'auth:api'], function(){
     Route::post('task','API\TaskController@postTask');
     Route::get('tasks/{id_pemilik_lahan}','API\TaskController@getTasks');
     Route::get('task/{id_task}','API\TaskController@getDetailtask');
     Route::put('task/{id_task}','API\TaskController@updateStatustask');
+    Route::put('task_pemiliklahan/{id_task}','API\TaskController@editTaskPemiliklahan');
+});
+
+//Task2
+Route::group(['middleware' => 'auth:api'], function(){
+    Route::post('task2','API\Task2Controller@postTask');
+    Route::get('task2s/{id_pemilik_lahan}','API\Task2Controller@getTasks');
+    Route::put('task2_pemiliklahan/{id_task}','API\Task2Controller@editTaskPemiliklahan');
 });
 
 

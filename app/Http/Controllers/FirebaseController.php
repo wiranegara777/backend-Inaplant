@@ -57,7 +57,7 @@ class FirebaseController extends Controller
     
     }
 
-    public function sendNotif($id,$message){
+    public function sendNotif($type,$id,$sender_id,$message){
         $user = User::find($id);
        // $token = "f0k5AlpOIKY:APA91bH5AroXgCAX0KlcC9qMn4E5AJDZIN36z8ilthxo2qWv_pdLGsLxxfI-IA3-Wn7mT54_ukl9Su1kIpfkQH37nUqXvSGl2haMev04fI8qJRqGcIyJOKusFQIzw0zGtTq8YHe8IS1G";
         $token = $user->devicetoken;
@@ -67,8 +67,14 @@ class FirebaseController extends Controller
         //$serverKey = 'AAAAXRRZoeM:APA91bHQLsQVYBMC9BtFJ-_6w-I1hTu4zAB5EXkF-lUKd-kr89YTt9-OyBfZjp4kZ79EWmArkTj9aUbP0kmv-P-IEu4Mn-uGeiGO5u9KQDjpTFCv5uddrzAujkN9MSxLsxG0xe3ysaJs';
         //$token = 'd2KHiwc17h0:APA91bH9NpAIjx9HkjQPj5EjOXsXaxGQMGMNAzzIUFzQSTb0DcVxIYwWmmE7uaAWD9yH125MvaCvX8pj4vcbLWGAXbh5XwwcgVIeEuukPDMKJFqlWUUPniqlBduIGAuRAsRx5lKuxuGh';
        // $serverKey = 'AAAAbN4PyRo:APA91bEzIxHOTn8Y8qMlZzyEsWz_Her4hsKOFbDgjOiqBR_OvhnvgOvEXwttynju9YykHgZ2pQET7UzEoSnuM2BAvmn0dpQ6s6moESqBJEb12WTcPEJtajCLoEzE3ofy6SCWjDVOOhO1';
-        $title = "NEW MESSAGE !";  
-        $body = $message;
+        $sender = User::find($sender_id);
+        if($type == 0){
+            $title = "New Message from ".$sender->name." !";  
+            $body = $message;
+        }else{
+            $title = " ".$sender->name." has send an image !";  
+            $body = "image.jpg";
+        }
         $notification = array('title' =>$title , 'body' => $body, 'sound' => 'default', 'badge' => '1');
         $arrayToSend = array('to' => $token, 'notification' => $notification,'priority'=>'high');
         $json = json_encode($arrayToSend);
@@ -108,16 +114,21 @@ class FirebaseController extends Controller
                 $key = date_timestamp_get($date2);
                 $num1 = (int)$request->sender_id;
                 $num2 = (int)$request->receiver_id;
-                if($num1 < $num2){
-                    $message_id = $request->sender_id.'-'.$request->receiver_id;
+                $check1 = User::find($num1);
+                if($check1->role == 3){
+                    $ahli = $num1;
+                    $farm = $num2;
                 } else {
-                    $message_id = $request->receiver_id.'-'.$request->sender_id;
+                    $ahli = $num2;
+                    $farm = $num1;
                 }
+                $message_id = $farm.'-'.$ahli;   
                 $firestore_data  = [
                         "message" => ["stringValue" => $request->message],
                         "sender_id" => ["integerValue" => $request->sender_id],
                         "receiver_id" => ["integerValue" => $request->receiver_id],
                         "timestamp" => ["stringValue" => $date],
+                        "type" => ["integerValue" => $request->type]
                     ];
                 $data = ["fields" => (object)$firestore_data];
             
@@ -179,7 +190,7 @@ class FirebaseController extends Controller
                 if ($response === FALSE) {
                     die('FCM Send Error: ' . curl_error($ch));
                     } else {
-                    $this->sendNotif($request->receiver_id,$request->message);
+                    $this->sendNotif(0,$request->receiver_id,$request->sender_id,$request->message);
                    // $respont['respond'] = $respond;
                     //$respont['key'] = $key;
                     //return response()->json(['status'=>$respond],200);
@@ -193,7 +204,116 @@ class FirebaseController extends Controller
         
 
     }
+
+    // BATESSSS
+
+    public function photomsg(Request $request){
+
+        $validator = Validator::make($request->all(), [ 
+            'sender_id' => 'required', 
+            'receiver_id' => 'required',
+            'message' => 'required'
+        ]);
+
+        if ($validator->fails()) { 
+                return response()->json(['error'=>$validator->errors()], 401);            
+            } else {
+                date_default_timezone_set("Asia/Jakarta");
+                $date = date("Y-m-d H:i:s");
+                $date2 = date_create();
+                $key = date_timestamp_get($date2);
+                $num1 = (int)$request->sender_id;
+                $num2 = (int)$request->receiver_id;
+                $check1 = User::find($num1);
+                if($check1->role == 3){
+                    $ahli = $num1;
+                    $farm = $num2;
+                } else {
+                    $ahli = $num2;
+                    $farm = $num1;
+                }
+                $message_id = $farm.'-'.$ahli;   
+                $firestore_data  = [
+                        "message" => ["stringValue" => $request->message],
+                        "sender_id" => ["integerValue" => $request->sender_id],
+                        "receiver_id" => ["integerValue" => $request->receiver_id],
+                        "timestamp" => ["stringValue" => $date],
+                        "type" => ["integerValue" => $request->type]
+                    ];
+                $data = ["fields" => (object)$firestore_data];
+            
+            //    Possible *value options are:
+            //    stringValue
+            //    doubleValue
+            //    integerValue
+            //    booleanValue
+            //    arrayValue
+            //    bytesValue
+            //    geoPointValue
+            //    mapValue
+            //    nullValue
+            //    referenceValue
+            //    timestampValue
+            
+                $json = json_encode($data);
+            
+            // $Enter your firestore unique key: below is a sample
+                $firestore_key = "AIzaSyCOUj4FqcUESnA3WR0JdAsaFsmI-Ki4g8M";
+            #Provide your firestore project ID Here
+                $project_id = "laravel-1d7cd";  
+                
+                //$url = "https://firestore.googleapis.com/v1/projects/laravel-1d7cd/databases/(default)/documents/messages/".$message_id."/".$message_id."/".$key;
+                $url = "https://firestore.googleapis.com/v1beta1/projects/laravel-1d7cd/databases/(default)/documents/messages/".$message_id;
+                $curl = curl_init();
+                curl_setopt_array($curl, array(
+                    CURLOPT_RETURNTRANSFER => true,
+                    CURLOPT_CUSTOMREQUEST => 'POST',
+                    CURLOPT_HTTPHEADER => array('Content-Type: application/json',
+                        'X-HTTP-Method-Override: PATCH'),
+                    CURLOPT_URL => $url . '?key='.$firestore_key,
+                    CURLOPT_USERAGENT => 'cURL',
+                    CURLOPT_POSTFIELDS => $json
+                ));
+            
+                $response = curl_exec( $curl );
+            
+                curl_close( $curl );
+
+                $url = "https://firestore.googleapis.com/v1/projects/laravel-1d7cd/databases/(default)/documents/messages/".$message_id."/".$message_id."/".$key;
+                $curl = curl_init();
+                curl_setopt_array($curl, array(
+                    CURLOPT_RETURNTRANSFER => true,
+                    CURLOPT_CUSTOMREQUEST => 'POST',
+                    CURLOPT_HTTPHEADER => array('Content-Type: application/json',
+                        'Content-Length: ' . strlen($json),
+                        'X-HTTP-Method-Override: PATCH'),
+                    CURLOPT_URL => $url . '?key='.$firestore_key,
+                    CURLOPT_USERAGENT => 'cURL',
+                    CURLOPT_POSTFIELDS => $json
+                ));
+            
+                $response = curl_exec( $curl );
+            
+                curl_close( $curl );
+                
+                
+                if ($response === FALSE) {
+                    die('FCM Send Error: ' . curl_error($ch));
+                    } else {
+                    $this->sendNotif(1,$request->receiver_id,$request->sender_id,$request->message);
+                   // $respont['respond'] = $respond;
+                    //$respont['key'] = $key;
+                    //return response()->json(['status'=>$respond],200);
+                    //return response()->json(['success'=>$key], 200); 
+                    }
+                echo $response . "\n";
+                
+        }
+
+
+        
+
+    }
+    //END
  
 }
-
-

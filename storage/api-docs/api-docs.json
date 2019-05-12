@@ -6,46 +6,6 @@
     },
     "basePath": "/api",
     "paths": {
-        "/groupfarm": {
-            "post": {
-                "tags": [
-                    "GroupFarm"
-                ],
-                "summary": "add new groupFarm",
-                "operationId": "addNewGroup",
-                "parameters": [
-                    {
-                        "name": "body",
-                        "in": "body",
-                        "description": "you need login first before using this api",
-                        "required": true,
-                        "schema": {
-                            "properties": {
-                                "name": {
-                                    "type": "string"
-                                },
-                                "id_pemilik_lahan": {
-                                    "type": "integer"
-                                },
-                                "komoditas": {
-                                    "type": "string"
-                                }
-                            }
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful"
-                    }
-                },
-                "security": [
-                    {
-                        "Bearer": []
-                    }
-                ]
-            }
-        },
         "/groupfarm/{id}": {
             "get": {
                 "tags": [
@@ -210,6 +170,9 @@
                                 "jumlah_produksi_pertahun": {
                                     "type": "string"
                                 },
+                                "luas_lahan": {
+                                    "type": "integer"
+                                },
                                 "latitude_longtitude_1": {
                                     "type": "string"
                                 },
@@ -361,8 +324,14 @@
                                 "varietas": {
                                     "type": "integer"
                                 },
+                                "location": {
+                                    "type": "string"
+                                },
                                 "is_overdue": {
                                     "type": "integer"
+                                },
+                                "perulangan": {
+                                    "type": "string"
                                 },
                                 "foto1": {
                                     "type": "string"
@@ -524,18 +493,62 @@
                 ]
             }
         },
-        "/task": {
+        "/photomessage": {
             "post": {
                 "tags": [
-                    "Task"
+                    "Message"
                 ],
-                "summary": "post task",
-                "operationId": "posttask",
+                "summary": "send photo message",
+                "description": "you need login first before using this api",
+                "operationId": "send message photo",
                 "parameters": [
                     {
                         "name": "body",
                         "in": "body",
-                        "description": "post task",
+                        "description": "you need login first before using this api",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "message": {
+                                    "type": "string"
+                                },
+                                "sender_id": {
+                                    "type": "integer"
+                                },
+                                "receiver_id": {
+                                    "type": "integer"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful"
+                    },
+                    "401": {
+                        "description": "unauthenticated"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
+        "/task2": {
+            "post": {
+                "tags": [
+                    "Task2"
+                ],
+                "summary": "post task2",
+                "operationId": "posttask2",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "post task2",
                         "required": true,
                         "schema": {
                             "properties": {
@@ -548,8 +561,11 @@
                                 "id_pemilik_lahan": {
                                     "type": "integer"
                                 },
-                                "id_term": {
-                                    "type": "integer"
+                                "start_date": {
+                                    "type": "string"
+                                },
+                                "end_date": {
+                                    "type": "string"
                                 }
                             }
                         }
@@ -570,13 +586,13 @@
                 ]
             }
         },
-        "/tasks/{id_pemilik_lahan}": {
+        "/task2s/{id_pemilik_lahan}": {
             "get": {
                 "tags": [
-                    "Task"
+                    "Task2"
                 ],
-                "summary": "get list task",
-                "operationId": "fetchlisttask",
+                "summary": "get list task 2",
+                "operationId": "fetchlisttask2",
                 "parameters": [
                     {
                         "name": "id_pemilik_lahan",
@@ -600,19 +616,41 @@
                 ]
             }
         },
-        "/task/{id_task}": {
-            "get": {
+        "/task2_pemiliklahan/{id_task}": {
+            "put": {
                 "tags": [
-                    "Task"
+                    "Task2"
                 ],
-                "summary": "get detail task by farmmanager",
-                "operationId": "fetchdetailtask",
+                "summary": "edit task2",
+                "operationId": "edittaskpemiliklahan2",
                 "parameters": [
                     {
                         "name": "id_task",
                         "in": "path",
-                        "description": "you need login as farmmanager first before using this api",
+                        "description": "you need login first before using this api",
                         "type": "integer"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "edit task pemilik lahan",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "title": {
+                                    "type": "string"
+                                },
+                                "description": {
+                                    "type": "string"
+                                },
+                                "start_date": {
+                                    "type": "string"
+                                },
+                                "end_date": {
+                                    "type": "string"
+                                }
+                            }
+                        }
                     }
                 ],
                 "responses": {
@@ -628,10 +666,12 @@
                         "Bearer": []
                     }
                 ]
-            },
+            }
+        },
+        "/task/{id_task}": {
             "put": {
                 "tags": [
-                    "Task"
+                    "Task2"
                 ],
                 "summary": "update status task to 1",
                 "operationId": "updatedetailtask",
@@ -775,21 +815,6 @@
                 ],
                 "summary": "Logout api",
                 "operationId": "logout",
-                "parameters": [
-                    {
-                        "name": "body",
-                        "in": "body",
-                        "description": "api for logout",
-                        "required": true,
-                        "schema": {
-                            "properties": {
-                                "devicetoken": {
-                                    "type": "string"
-                                }
-                            }
-                        }
-                    }
-                ],
                 "responses": {
                     "200": {
                         "description": "successful operation"

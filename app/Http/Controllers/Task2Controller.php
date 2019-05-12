@@ -3,15 +3,15 @@
 // LOGOUT API
 /**
  * @SWG\Post(
- *   tags={"Task"},
- *   path="/task",
- *   summary="post task",
- *   operationId="posttask",
+ *   tags={"Task2"},
+ *   path="/task2",
+ *   summary="post task2",
+ *   operationId="posttask2",
  *   @SWG\Parameter(
  *     name="body",
  *     in="body",
  *     required=true,
- *     description="post task",
+ *     description="post task2",
  *     @SWG\Schema( 
  *          @SWG\Property(
  *              property="title",
@@ -26,8 +26,12 @@
  *              type="integer"
  *          ),
  *          @SWG\Property(
- *              property="id_term",
- *              type="integer"
+ *              property="start_date",
+ *              type="string"
+ *          ),
+ *          @SWG\Property(
+ *              property="end_date",
+ *              type="string"
  *          ),
  *     )
  *   ),
@@ -42,10 +46,10 @@
  //GET LIST TASKS per id_pemilik_lahan
  /**
  * @SWG\Get(
- *   tags={"Task"},
- *   path="/tasks/{id_pemilik_lahan}",
- *   summary="get list task",
- *   operationId="fetchlisttask",
+ *   tags={"Task2"},
+ *   path="/task2s/{id_pemilik_lahan}",
+ *   summary="get list task 2",
+ *   operationId="fetchlisttask2",
  *   @SWG\Parameter(
  *     name="id_pemilik_lahan",
  *     in="path",
@@ -59,18 +63,43 @@
  *
  */
 
- //GET Detail task with status
+
+ //edit task by pemilik lahan 
  /**
- * @SWG\Get(
- *   tags={"Task"},
- *   path="/task/{id_task}",
- *   summary="get detail task by farmmanager",
- *   operationId="fetchdetailtask",
+ * @SWG\Put(
+ *   tags={"Task2"},
+ *   path="/task2_pemiliklahan/{id_task}",
+ *   summary="edit task2",
+ *   operationId="edittaskpemiliklahan2",
  *   @SWG\Parameter(
  *     name="id_task",
  *     in="path",
  *     type="integer",
- *     description="you need login as farmmanager first before using this api",
+ *     description="you need login first before using this api",
+ *   ),
+ *   @SWG\Parameter(
+ *     name="body",
+ *     in="body",
+ *     required=true,
+ *     description="edit task pemilik lahan",
+ *     @SWG\Schema( 
+ *          @SWG\Property(
+ *              property="title",
+ *              type="string"
+ *          ),
+ *          @SWG\Property(
+ *              property="description",
+ *              type="string"
+ *          ),
+ *          @SWG\Property(
+ *              property="start_date",
+ *              type="string"
+ *          ),
+ *          @SWG\Property(
+ *              property="end_date",
+ *              type="string"
+ *          ),
+ *     )
  *   ),
  *   @SWG\Response(response=200, description="successful"),
  *   @SWG\Response(response=401, description="unauthenticated"),
@@ -79,10 +108,10 @@
  *
  */
 
- //GET Detail task with status
+//update status task
  /**
  * @SWG\Put(
- *   tags={"Task"},
+ *   tags={"Task2"},
  *   path="/task/{id_task}",
  *   summary="update status task to 1",
  *   operationId="updatedetailtask",

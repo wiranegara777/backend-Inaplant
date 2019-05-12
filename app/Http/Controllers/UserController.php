@@ -51,18 +51,6 @@ use Illuminate\Http\Request;
  *   path="/logout",
  *   summary="Logout api",
  *   operationId="logout",
- *   @SWG\Parameter(
- *     name="body",
- *     in="body",
- *     required=true,
- *     description="api for logout",
- *     @SWG\Schema( 
- *          @SWG\Property(
- *              property="devicetoken",
- *              type="string"
- *          ),
- *     )
- *   ),
  *   @SWG\Response(response=200, description="successful operation"),
  *   @SWG\Response(response=401, description="unauthorized"),
  *   security={{"Bearer":{}}}

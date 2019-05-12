@@ -19,31 +19,25 @@ public $successStatus = 200;
      */ 
     public function login(Request $request){ 
         if(Auth::attempt(['email' => request('email'), 'password' => request('password')])){ 
-            $user = Auth::user(); 
-            if($user['devicetoken'] != null){
-                return response()->json(['error' => 'devicetoken is not null'], 401); 
-            } else {
-                $success['token'] =  $user->createToken('MyApp')-> accessToken; 
-                $success['user'] = $user;
-                $user['devicetoken'] = $request->devicetoken;
-                $user->save();
-                return response()->json(['success' => $success], $this-> successStatus);
-            }
+            $user = Auth::user();         
+            $success['token'] =  $user->createToken('MyApp')-> accessToken; 
+            $success['user'] = $user;
+            $user['devicetoken'] = $request->devicetoken;
+            $user['token_bearer'] = $success['token'];
+            $user->save();
+            return response()->json(['success' => $success], $this-> successStatus);
         } 
         else{ 
             return response()->json(['error'=>'Unauthorized'], 401); 
         } 
     }
 
-    public function logout(Request $request){
+    public function logout(){
         $user = Auth::user();
-        if ($user->devicetoken == $request->devicetoken){
-            $user->devicetoken = '';
+            $user->token_bearer = '';
+            $user->devicetoken = "";
             $user->save();
-            return response()->json(['success' => 'success logout and delete devicetoken'], $this-> successStatus);
-        } else {
-            return response()->json(['error' => 'devicetoken not same'], 401); 
-        }
+            return response()->json(['success' => 'success logout and delete token'], $this-> successStatus);
     }
 /** 
      * Register api 
@@ -81,6 +75,20 @@ public $successStatus = 200;
             $users = NULL;
         } 
         if($users != NULL){
+            if($request->role == 2){
+                $arr_farm_manager = [];
+                foreach($users as $user){
+                    $arr_user = (array) $user;
+                    $check = DB::table('assignfarms')->where('id_farm_manager', $user->id)->get();
+                    if($check->isEmpty()){
+                        $arr_user['is_assigned'] = 0;
+                    } else {
+                        $arr_user['is_assigned'] = 1;
+                    }
+                array_push($arr_farm_manager,$arr_user);
+                }
+                $users = $arr_farm_manager;
+            }
             return response()->json(['success' => $users], $this-> successStatus);
         }else{
             return response()->json(['error' => 'user not found !'], $this-> successStatus);
@@ -211,6 +219,10 @@ public $successStatus = 200;
             $assign = new \App\Assignfarm(['id_group_farm' => $request->id_group_farm]);
             $user->groupfarm()->save($assign);
 
+            $farm = new \App\Farm;
+            $farm->id_farm_manager = $user->id;
+            $farm->save();
+
             return response()->json(['success' => 'success assign groupfarm !'], $this-> successStatus);
         }
     }
@@ -236,9 +248,9 @@ public $successStatus = 200;
                     $user->role = 2;
                     $user->save();
 
-                    $farm = new \App\Farm;
-                    $farm->id_farm_manager = $user->id;
-                    $farm->save();
+                    // $farm = new \App\Farm;
+                    // $farm->id_farm_manager = $user->id;
+                    // $farm->save();
         
                     return response()->json(['success'=>'success added new farm manager'], $this-> successStatus); 
                 }

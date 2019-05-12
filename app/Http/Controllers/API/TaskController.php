@@ -147,4 +147,15 @@ class TaskController extends Controller
         }
 
     }
+
+    //edit task by pemilik lahan
+    public function editTaskPemiliklahan(Request $request, $id_task){
+        $task = Task::find($id_task);
+            if($task != NULL){
+                $task->update($request->only(['title','description','id_term']));
+                return response()->json(['success' => $task], $this-> successStatus);
+            }else{
+                return response()->json(['error' => 'task not found !'], $this-> successStatus);
+            } 
+    }
 }

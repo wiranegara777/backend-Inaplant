@@ -76,6 +76,41 @@ use Illuminate\Http\Request;
  *
  */
 
+ //SEND photo MESSAGE API
+ /**
+ * @SWG\Post(
+ *   tags={"Message"},
+ *   path="/photomessage",
+ *   summary="send photo message",
+ *   description="you need login first before using this api",
+ *   operationId="send message photo",
+ *   @SWG\Parameter(
+ *     name="body",
+ *     in="body",
+ *     required=true,
+ *     description="you need login first before using this api",
+ *     @SWG\Schema(
+ *          @SWG\Property(
+ *              property="message",
+ *              type="string",
+ *          ),
+ *          @SWG\Property(
+ *              property="sender_id",
+ *              type="integer",
+ *          ),
+ *          @SWG\Property(
+ *              property="receiver_id",
+ *              type="integer",
+ *          ),
+ *     )
+ *   ),
+ *   @SWG\Response(response=200, description="successful"),
+ *   @SWG\Response(response=401, description="unauthenticated"),
+ *   security={{"Bearer":{}}}
+ * )
+ *
+ */
+
 
 
 class SampleController extends Controller
